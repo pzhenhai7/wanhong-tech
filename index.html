@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>惠州市万泓科技有限公司 — 专业电子烟电池 · 无人机电池制造商</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== Navigation ===== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <img src="assets/logo.png" alt="万泓科技" class="nav-logo-img">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#products">产品</a></li>
+                <li><a href="#showcase">展示</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="cart.html" class="nav-action" style="position:relative;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    <span id="cartBadge" style="position:absolute;top:-6px;right:-8px;background:#FF6A00;color:#fff;font-size:10px;font-weight:600;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;">0</span>
+                </a>
+                <a href="tel:13682629862" class="nav-action" style="font-size:13px;color:var(--orange);font-weight:500;">📞 13682629862</a>
+            </div>
+            <button class="nav-toggle" aria-label="菜单">
+                <span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== Hero Carousel (多产品展示位) ===== -->
+    <section class="hero">
+        <div class="carousel" id="carousel">
+            <!-- Slide 1 -->
+            <div class="carousel-slide active">
+                <div class="carousel-bg" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+                    <div class="carousel-content">
+                        <span class="carousel-tag">旗舰新品</span>
+                        <h2 class="carousel-title">18400 电子烟电池</h2>
+                        <p class="carousel-desc">1100mAh · 钴+三元材料 · 支持 5A/8A 放电</p>
+                        <div class="carousel-specs">
+                            <span class="carousel-spec">⚡ 1100mAh</span>
+                            <span class="carousel-spec">🔋 3.7V</span>
+                            <span class="carousel-spec">🔥 8A 峰值</span>
+                        </div>
+                        <a href="product-18400.html" class="hero-btn">立即查看 →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+                <div class="carousel-bg" style="background: linear-gradient(135deg, #2d1b00 0%, #4a2800 50%, #6b3a00 100%);">
+                    <div class="carousel-content">
+                        <span class="carousel-tag">高倍率系列</span>
+                        <h2 class="carousel-title">大功率电子烟电池</h2>
+                        <p class="carousel-desc">21700 · 26650 · 持续放电 40A+</p>
+                        <div class="carousel-specs">
+                            <span class="carousel-spec">⚡ 4000mAh</span>
+                            <span class="carousel-spec">🔋 21700</span>
+                            <span class="carousel-spec">🔥 40A 放电</span>
+                        </div>
+                        <a href="#" class="hero-btn">探索系列 →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+                <div class="carousel-bg" style="background: linear-gradient(135deg, #001529 0%, #003153 50%, #004770 100%);">
+                    <div class="carousel-content">
+                        <span class="carousel-tag">无人机能源</span>
+                        <h2 class="carousel-title">无人机智能电池</h2>
+                        <p class="carousel-desc">11.4V · 4200mAh · 智能BMS管理 · 续航无忧</p>
+                        <div class="carousel-specs">
+                            <span class="carousel-spec">⚡ 4200mAh</span>
+                            <span class="carousel-spec">🔋 11.4V</span>
+                            <span class="carousel-spec">🚁 无人机</span>
+                        </div>
+                        <a href="#" class="hero-btn">探索系列 →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-btn carousel-prev" onclick="prevSlide()">‹</button>
+            <button class="carousel-btn carousel-next" onclick="nextSlide()">›</button>
+            <div class="carousel-dots" id="carouselDots">
+                <span class="dot active" onclick="goSlide(0)"></span>
+                <span class="dot" onclick="goSlide(1)"></span>
+                <span class="dot" onclick="goSlide(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Products Section (产品展示位 2) ===== -->
+    <section class="section" id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>我们的产品</h2>
+                <p>每一颗电池，都是对品质的承诺</p>
+            </div>
+            <div class="product-showcase">
+                <a href="product-18400.html" class="product-showcase-card">
+                    <div class="ps-card-img">
+                        <img src="assets/product-18400.jpg" alt="18400 电子烟电池" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                        <span class="ps-badge">新品</span>
+                    </div>
+                    <h3>18400 电子烟电池</h3>
+                    <p>1100mAh · 钴+三元 · 5A/8A</p>
+                    <span class="ps-link">查看详情 →</span>
+                </a>
+                <div class="product-showcase-card">
+                    <div class="ps-card-img">
+                        <div class="ps-placeholder">18650</div>
+                        <span class="ps-badge ps-badge-2">热销</span>
+                    </div>
+                    <h3>18650 锂电池</h3>
+                    <p>3000mAh · 高倍率 · 稳定</p>
+                    <span class="ps-link">查看详情 →</span>
+                </div>
+                <div class="product-showcase-card">
+                    <div class="ps-card-img">
+                        <div class="ps-placeholder">无人机</div>
+                    </div>
+                    <h3>无人机智能电池</h3>
+                    <p>4200mAh · 11.4V · BMS</p>
+                    <span class="ps-link">查看详情 →</span>
+                </div>
+                <div class="product-showcase-card">
+                    <div class="ps-card-img">
+                        <div class="ps-placeholder">定制</div>
+                    </div>
+                    <h3>OEM/ODM 定制</h3>
+                    <p>按需定制 · 专业方案</p>
+                    <span class="ps-link">查看详情 →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Showcase Section (展示位 3 — 双列大图) ===== -->
+    <section class="section section-gray" id="showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2>核心优势</h2>
+                <p>15年行业经验，50000㎡生产基地，服务50+国家</p>
+            </div>
+            <div class="showcase-grid">
+                <div class="showcase-card">
+                    <div class="showcase-card-img">
+                        <div class="sc-placeholder" style="background:linear-gradient(135deg,#667eea,#764ba2);">品质保障</div>
+                    </div>
+                    <div class="showcase-card-text">
+                        <h3>国际认证 · 品质无忧</h3>
+                        <p>通过ISO、CE、FCC等国际认证，每一颗电池出厂前经过严格检测。</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <div class="showcase-card-img">
+                        <div class="sc-placeholder" style="background:linear-gradient(135deg,#f093fb,#f5576c);">研发创新</div>
+                    </div>
+                    <div class="showcase-card-text">
+                        <h3>自主研发 · 持续创新</h3>
+                        <p>30+研发工程师，拥有多项电池技术专利，支持定制化解决方案。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Stats / About ===== -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-header">
+                <h2>惠州市万泓科技有限公司</h2>
+                <p>Huizhou Wanhong Technology Co., Ltd</p>
+            </div>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-num">15+</span>
+                    <span class="stat-label">年行业经验</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">50000㎡</span>
+                    <span class="stat-label">生产基地</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">300+</span>
+                    <span class="stat-label">员工</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">50+</span>
+                    <span class="stat-label">出口国家</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">ISO</span>
+                    <span class="stat-label">国际认证</span>
+                </div>
+            </div>
+            <div class="about-desc">
+                <p>成立于2012年，专注电子烟电池及无人机电池研发、生产与销售，产品广泛应用于一次性电子烟、换弹式电子烟、大烟雾设备、无人机、航模等领域。拥有全自动生产线和严格的品质管理体系，支持OEM/ODM定制。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Featured Product (展示位 3 — 突出18400) ===== -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="featured-product">
+                <div class="featured-info">
+                    <span class="featured-tag">🔥 热卖推荐</span>
+                    <h2>18400 1100mAh<br>电子烟专用电池</h2>
+                    <ul class="featured-list">
+                        <li>🔋 钴+三元材料，能量密度高</li>
+                        <li>⚡ 支持 5A 持续 / 8A 峰值放电</li>
+                        <li>✅ 过充、过放、短路三重保护</li>
+                        <li>📦 1000 件起订，支持定制</li>
+                    </ul>
+                    <a href="product-18400.html" class="featured-btn">立即询盘 →</a>
+                </div>
+                <div class="featured-visual">
+                    <img src="assets/product-18400.jpg" alt="18400 电子烟电池" style="width:100%;height:100%;object-fit:contain;border-radius:12px;padding:20px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Contact Section ===== -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="contact-wrap">
+                <div class="contact-info">
+                    <h2>联系我们</h2>
+                    <p>24小时在线，期待您的咨询</p>
+                    <div class="contact-item">
+                        <span class="contact-label">👤 总经理</span>
+                        <span class="contact-value">廖万欣</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">📞 电话</span>
+                        <span class="contact-value">13682629862</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">📧 邮箱</span>
+                        <span class="contact-value">info@wanhong-tech.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">📍 地址</span>
+                        <span class="contact-value">广东省惠州市仲恺高新区惠风路8号</span>
+                    </div>
+                    <a href="product-18400.html" class="contact-btn">立即询盘</a>
+                </div>
+                <div class="contact-map">
+                    <div class="map-placeholder">📍 万泓科技</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="万泓科技" class="footer-logo-img">
+                    <p>专注电子烟电池 · 无人机电池研发制造<br>提供一站式电池解决方案</p>
+                </div>
+                <div class="footer-col">
+                    <h5>产品</h5>
+                    <ul>
+                        <li><a href="product-18400.html">18400 电子烟电池</a></li>
+                        <li><a href="#">18650 锂电池</a></li>
+                        <li><a href="#">无人机电池</a></li>
+                        <li><a href="#">OEM/ODM 定制</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>公司</h5>
+                    <ul>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#showcase">核心优势</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>联系</h5>
+                    <ul>
+                        <li>📞 13682629862</li>
+                        <li>👤 廖万欣（总经理）</li>
+                        <li>📧 info@wanhong-tech.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 惠州市万泓科技有限公司 — All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
