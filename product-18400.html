@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18400 1100mAh 电子烟电池 — 惠州市万泓科技有限公司</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .pd-wrap { max-width:1000px; margin:120px auto 60px; padding:0 24px; }
+        .pd-back { display:inline-flex; align-items:center; gap:6px; font-size:14px; color:var(--text-light); margin-bottom:32px; transition:color .3s; }
+        .pd-back:hover { color:var(--orange); }
+        .pd-layout { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+        .pd-visual { position:sticky; top:100px; }
+        .pd-visual-box {
+            aspect-ratio:1; max-width:420px;
+            background:#fff; border-radius:16px;
+            border:1px solid var(--border);
+            display:flex; align-items:center; justify-content:center;
+            box-shadow:var(--shadow);
+        }
+        .pd-visual-box span { font-size:32px; font-weight:600; color:rgba(0,0,0,.08); font-family:var(--font-display); }
+        .pd-tag { display:inline-block; font-size:11px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); margin-bottom:12px; }
+        .pd-title { font-family:var(--font-display); font-size:clamp(24px,3vw,34px); font-weight:700; letter-spacing:-.5px; line-height:1.2; margin-bottom:20px; }
+        .pd-price { font-size:32px; font-weight:700; color:var(--text); margin-bottom:4px; }
+        .pd-price-desc { font-size:14px; color:var(--text-light); margin-bottom:24px; }
+        .pd-divider { height:1px; background:var(--border); margin:24px 0; }
+        .pd-specs { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:32px; }
+        .pd-spec { padding:12px 16px; background:var(--bg); border-radius:8px; }
+        .pd-spec-label { font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--text-light); margin-bottom:2px; }
+        .pd-spec-value { font-size:15px; font-weight:600; color:var(--text); }
+        .pd-qty { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+        .pd-qty label { font-size:14px; color:var(--text-light); }
+        .pd-qty input { width:100px; padding:8px 12px; border:1px solid var(--border); border-radius:8px; font-size:15px; text-align:center; outline:none; }
+        .pd-qty input:focus { border-color:var(--orange); }
+        .pd-qty span { font-size:13px; color:var(--text-light); }
+        .pd-btns { display:flex; gap:12px; }
+        .pd-btn-primary { flex:1; padding:14px; background:var(--orange); color:#fff; border:none; border-radius:50px; font-size:15px; font-weight:500; cursor:pointer; text-align:center; transition:all .3s; }
+        .pd-btn-primary:hover { background:#e55e00; transform:scale(1.02); }
+        .pd-btn-secondary { flex:1; padding:14px; background:#fff; color:var(--text); border:1.5px solid var(--border); border-radius:50px; font-size:15px; font-weight:500; cursor:pointer; text-align:center; transition:all .3s; text-decoration:none; display:flex; align-items:center; justify-content:center; }
+        .pd-btn-secondary:hover { border-color:var(--orange); color:var(--orange); }
+        .pd-success { display:none; background:#00A65A; color:#fff; padding:14px 20px; border-radius:8px; margin-bottom:20px; font-size:14px; text-align:center; }
+        .pd-desc { margin-top:80px; padding-top:40px; border-top:1px solid var(--border); }
+        .pd-desc h3 { font-size:18px; font-weight:600; margin-bottom:16px; }
+        .pd-desc p { font-size:14px; color:var(--text-light); line-height:1.8; max-width:600px; }
+        .pd-contact { margin-top:40px; padding:24px; background:var(--bg); border-radius:12px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+        .pd-contact-text { font-size:14px; color:var(--text-light); }
+        .pd-contact-text strong { color:var(--text); font-weight:600; }
+        .pd-contact-btn { padding:10px 24px; background:var(--orange); color:#fff; border-radius:50px; font-size:13px; font-weight:500; text-decoration:none; transition:all .3s; }
+        .pd-contact-btn:hover { background:#e55e00; }
+        @media (max-width:768px) {
+            .pd-layout { grid-template-columns:1fr; gap:40px; }
+            .pd-visual { position:static; }
+            .pd-visual-box { max-width:100%; }
+            .pd-specs { grid-template-columns:1fr; }
+            .pd-btns { flex-direction:column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Navigation ===== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.png" alt="万泓科技" class="nav-logo-img">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="index.html#products">产品</a></li>
+                <li><a href="index.html#about">关于</a></li>
+                <li><a href="index.html#contact">联系</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="cart.html" class="nav-action" style="position:relative;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    <span id="cartBadge" style="position:absolute;top:-6px;right:-8px;background:#FF6A00;color:#fff;font-size:10px;font-weight:600;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;">0</span>
+                </a>
+                <a href="tel:13682629862" class="nav-action" style="font-size:13px;color:var(--orange);font-weight:500;">📞 13682629862</a>
+            </div>
+            <button class="nav-toggle" aria-label="菜单">
+                <span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== Product Detail ===== -->
+    <div class="pd-wrap">
+        <a href="index.html" class="pd-back">← 返回首页</a>
+
+        <div class="pd-layout">
+            <!-- Visual -->
+            <div class="pd-visual">
+                <div class="pd-visual-box">
+                    <img src="assets/product-18400.jpg" alt="18400 1100mAh 电子烟电池" style="width:100%;height:100%;object-fit:contain;border-radius:16px;">
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="pd-info">
+                <span class="pd-tag">🔥 新品上市</span>
+                <h1 class="pd-title">18400 1100mAh<br>钴+三元材料 电子烟电池</h1>
+                <div class="pd-price">¥ 13.00</div>
+                <div class="pd-price-desc">单价 / 含税含运费，批量价格另议</div>
+
+                <div class="pd-success" id="pdSuccess" style="display:none;"></div>
+
+                <div class="pd-specs">
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">容量</div>
+                        <div class="pd-spec-value">1100mAh</div>
+                    </div>
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">标称电压</div>
+                        <div class="pd-spec-value">3.7V</div>
+                    </div>
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">材料体系</div>
+                        <div class="pd-spec-value">钴 + 三元 (NMC)</div>
+                    </div>
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">持续放电</div>
+                        <div class="pd-spec-value">5A</div>
+                    </div>
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">峰值放电</div>
+                        <div class="pd-spec-value">8A</div>
+                    </div>
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">循环寿命</div>
+                        <div class="pd-spec-value">&gt;500 次</div>
+                    </div>
+                </div>
+
+                <div class="pd-divider"></div>
+
+                <div class="pd-qty">
+                    <label>数量</label>
+                    <input type="number" id="pdQty" value="1" min="1" step="1">
+                    <span>件</span>
+                </div>
+
+                <div class="pd-btns">
+                    <button class="pd-btn-primary" onclick="buyNow()">立即购买</button>
+                    <button class="pd-btn-secondary" onclick="addToCart()">加入购物车</button>
+                </div>
+
+                <div class="pd-desc">
+                    <h3>产品描述</h3>
+                    <p>18400 规格锂电池，采用高纯度钴+三元正极材料，容量密度高，放电性能稳定。适用于电子烟、POD小烟等设备。支持 5A 持续放电、8A 峰值放电，内置过充、过放、短路多重保护，安全可靠。</p>
+                </div>
+
+                <div class="pd-contact">
+                    <div class="pd-contact-text">
+                        有任何疑问？请联系 <strong>廖万欣（总经理）</strong> — 我们将在 24 小时内回复
+                    </div>
+                    <a href="tel:13682629862" class="pd-contact-btn">📞 13682629862</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="万泓科技" class="footer-logo-img">
+                    <p>专注电子烟电池 · 无人机电池研发制造</p>
+                </div>
+                <div class="footer-col">
+                    <h5>产品</h5>
+                    <ul>
+                        <li><a href="product-18400.html">18400 电子烟电池</a></li>
+                        <li><a href="#">18650 锂电池</a></li>
+                        <li><a href="#">无人机电池</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>联系</h5>
+                    <ul>
+                        <li>📞 13682629862</li>
+                        <li>👤 廖万欣（总经理）</li>
+                        <li>📧 info@wanhong-tech.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 惠州市万泓科技有限公司</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 购物车数据
+        let cart = JSON.parse(localStorage.getItem('wanhong_cart') || '[]');
+
+        function saveCart() {
+            localStorage.setItem('wanhong_cart', JSON.stringify(cart));
+            updateCartBadge();
+        }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cartBadge');
+            if (badge) {
+                const total = cart.reduce((s, i) => s + i.qty, 0);
+                badge.textContent = total;
+                badge.style.display = total > 0 ? 'flex' : 'none';
+            }
+        }
+
+        function showMsg(text) {
+            const el = document.getElementById('pdSuccess');
+            el.style.display = 'block';
+            el.textContent = '✅ ' + text;
+            el.style.background = '#00A65A';
+            setTimeout(() => { el.style.display = 'none'; }, 3000);
+        }
+
+        function buyNow() {
+            const qty = parseInt(document.getElementById('pdQty').value) || 1;
+            cart.push({ id: '18400', name: '18400 1100mAh 电子烟电池', price: 13.00, qty });
+            saveCart();
+            showMsg('已添加 ' + qty + ' 件，即将跳转结算...');
+            setTimeout(() => { window.location.href = 'cart.html'; }, 800);
+        }
+
+        function addToCart() {
+            const qty = parseInt(document.getElementById('pdQty').value) || 1;
+            cart.push({ id: '18400', name: '18400 1100mAh 电子烟电池', price: 13.00, qty });
+            saveCart();
+            showMsg('已添加 ' + qty + ' 件 18400 电池到购物车');
+        }
+
+        // 页面加载时更新购物车角标
+        document.addEventListener('DOMContentLoaded', updateCartBadge);
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>
