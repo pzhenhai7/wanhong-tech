@@ -147,7 +147,7 @@ function doLogout() {
 async function loadProducts() {
   var el = document.getElementById('prodInfo');
   try {
-    var resp = await fetch('../data/products.json?_=' + Date.now());
+    var resp = await fetch('data/products.json?_=' + Date.now());
     var data = await resp.json();
     var count = (data.products || []).length;
     el.innerHTML = '<div class="info"><p>已加载产品: <strong>' + count + '</strong> 个</p></div>';
