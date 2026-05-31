@@ -1,6 +1,7 @@
-﻿// 鎯犲窞甯備竾娉撶鎶€鏈夐檺鍏徃 鈥?鍏ㄧ珯浜や簰
+// 惠州市万鸿科技有限公司 — 全站交互
 
-// 璐墿杞﹁鏍?function updateCartBadge() {
+// 购物车角标
+function updateCartBadge() {
     const badge = document.getElementById('cartBadge');
     if (!badge) return;
     try {
@@ -89,46 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ===================== Product buttons
-    document.querySelectorAll('.product-showcase-card .ps-link, .product-showcase-card').forEach(el => {
-        el.addEventListener('click', function(e) {
-            const link = this.closest('.product-showcase-card')?.getAttribute('href');
-            if (link && link !== '#') { if (e.target.tagName !== 'A') window.location.href = link; }
-            else { e.preventDefault(); showToast('馃搫 浜у搧璇︽儏椤垫鍦ㄥ缓璁句腑...'); }
-        });
-    });
-
     // ===================== Hero btn
     document.querySelectorAll('.hero-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
             if (this.getAttribute('href') === '#' || !this.getAttribute('href')) {
                 e.preventDefault();
-                showToast('馃搫 椤甸潰姝ｅ湪寤鸿涓紝璇疯仈绯诲粬鎬?13682629862');
+                showToast('页面正在建设中，请联系廖总 13682629862');
             }
         });
     });
-
-    // ===================== Feature btn
-    const featuredBtn = document.querySelector('.featured-btn');
-    if (featuredBtn) {
-        featuredBtn.addEventListener('click', function(e) {
-            if (this.getAttribute('href') === '#' || !this.getAttribute('href')) {
-                e.preventDefault();
-                showToast('馃摡 姝ｅ湪涓烘偍杞帴璇㈢洏娴佺▼...');
-            }
-        });
-    }
-
-    // ===================== Contact btn
-    const contactBtn = document.querySelector('.contact-btn');
-    if (contactBtn) {
-        contactBtn.addEventListener('click', function(e) {
-            if (this.getAttribute('href') === '#' || !this.getAttribute('href')) {
-                e.preventDefault();
-                showToast('馃摡 姝ｅ湪涓烘偍杞帴璇㈢洏娴佺▼...');
-            }
-        });
-    }
 
     // ===================== Footer links
     document.querySelectorAll('.footer-col a').forEach(link => {
@@ -170,14 +140,11 @@ async function loadProducts() {
         const data = await resp.json();
         const products = data.products || [];
 
-        // Render product showcase
         renderProductCards(products);
 
-        // Render featured product
         const featured = products.find(p => p.featured) || products[0];
         if (featured) renderFeaturedProduct(featured);
 
-        // Update carousel CTA links
         updateCarouselLinks(products);
     } catch {}
 }
@@ -186,7 +153,6 @@ function renderProductCards(products) {
     const container = document.getElementById('productShowcase');
     if (!container) return;
 
-    const colors = ['orange', '#0071e3', '#34c759', '#af52de'];
     container.innerHTML = products.map((p, i) => `
         <a href="product.html?id=${p.id}" class="product-showcase-card" data-index="${i}">
             <div class="ps-card-img">
@@ -198,7 +164,7 @@ function renderProductCards(products) {
             </div>
             <h3>${p.name}</h3>
             <p>${p.subtitle || ''}</p>
-            <span class="ps-link">鏌ョ湅璇︽儏 鈫?/span>
+            <span class="ps-link">查看详情 →</span>
         </a>
     `).join('');
 }
@@ -212,12 +178,12 @@ function renderFeaturedProduct(product) {
 
     if (info) {
         info.innerHTML = `
-            <span class="featured-tag">馃敟 鐑崠鎺ㄨ崘</span>
+            <span class="featured-tag">热卖推荐</span>
             <h2>${product.fullName || product.name}</h2>
             <ul class="featured-list">
-                ${(product.features || []).slice(0, 4).map(f => `<li>鉁?${f}</li>`).join('')}
+                ${(product.features || []).slice(0, 4).map(f => `<li>${f}</li>`).join('')}
             </ul>
-            <a href="product.html?id=${product.id}" class="featured-btn">绔嬪嵆璇㈢洏 鈫?/a>
+            <a href="product.html?id=${product.id}" class="featured-btn">立即询盘 →</a>
         `;
     }
     if (visual) {
