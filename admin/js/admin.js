@@ -1,4 +1,4 @@
-/* ===== 涓囨硴绉戞妧 鈥?鍚庡彴绠＄悊绯荤粺 JS ===== */
+/* ===== 万鸿科技 — 后台管理系统 JS ===== */
 
 // ===== State =====
 let APP = {
@@ -17,7 +17,6 @@ const ADMIN_PASS = 'wanhong888';
 
 // ===== Init =====
 document.addEventListener('DOMContentLoaded', () => {
-    // Check session
     const saved = sessionStorage.getItem('wanhong_admin');
     if (saved) {
         try {
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch { sessionStorage.removeItem('wanhong_admin'); }
     }
 
-    // Login tab switch
     document.querySelectorAll('.login-tab').forEach(tab => {
         tab.addEventListener('click', () => {
             document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
@@ -41,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Sidebar navigation
     document.querySelectorAll('.sidebar-item').forEach(item => {
         item.addEventListener('click', () => switchPage(item.dataset.page));
     });
@@ -61,7 +58,7 @@ function loginWithPassword() {
         document.getElementById('dashboard').style.display = 'flex';
         initDashboard();
     } else {
-        err.textContent = '璐﹀彿鎴栧瘑鐮侀敊璇?;
+        err.textContent = '账号或密码错误';
         err.style.display = 'block';
     }
 }
@@ -70,7 +67,7 @@ function loginWithToken() {
     const token = document.getElementById('loginTokenInput').value.trim();
     const err = document.getElementById('loginError');
     if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
-        err.textContent = '璇疯緭鍏ユ湁鏁堢殑GitHub Token (ghp_ 鎴?github_pat_ 寮€澶?';
+        err.textContent = '请输入有效的GitHub Token (ghp_ 或 github_pat_ 开头)';
         err.style.display = 'block';
         return;
     }
@@ -97,7 +94,7 @@ function logout() {
 // ===== Dashboard Init =====
 async function initDashboard() {
     updateModeBadge();
-    showStatus('姝ｅ湪鍔犺浇鏁版嵁...', '');
+    showStatus('正在加载数据...', '');
     if (APP.mode === 'github') {
         await syncFromGithub();
     } else {
@@ -110,12 +107,12 @@ async function initDashboard() {
 function updateModeBadge() {
     const badge = document.getElementById('loginModeBadge');
     if (APP.mode === 'github') {
-        badge.textContent = '鉁?GitHub宸茶繛鎺?;
+        badge.textContent = '已连接 GitHub';
         badge.dataset.mode = 'github';
         badge.style.background = '#d4edda';
         badge.style.color = '#155724';
     } else {
-        badge.textContent = '鏈湴妯″紡锛堟湭杩炴帴GitHub锛?;
+        badge.textContent = '本地模式（未连接 GitHub）';
         badge.dataset.mode = 'local';
     }
 }
@@ -148,28 +145,27 @@ async function loadLocalData() {
 
 async function syncFromGithub() {
     if (APP.mode !== 'github' || !APP.token) {
-        showToast('璇蜂娇鐢℅itHub Token鐧诲綍', 'error');
+        showToast('请使用 GitHub Token 登录', 'error');
         return;
     }
-    showStatus('姝ｅ湪浠嶨itHub鍚屾鏁版嵁...', '');
+    showStatus('正在从 GitHub 同步数据...', '');
     try {
         const resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${PRODUCTS_PATH}`, {
             headers: { 'Authorization': 'token ' + APP.token, 'Accept': 'application/vnd.github.v3+json' }
         });
-        if (!resp.ok) throw new Error('GitHub API鍝嶅簲: ' + resp.status);
+        if (!resp.ok) throw new Error('GitHub API 响应: ' + resp.status);
         const json = await resp.json();
         const content = atob(json.content.replace(/\n/g, ''));
         const data = JSON.parse(content);
         APP.products = data.products || [];
         APP.settings = data.settings || {};
         localStorage.setItem('wanhong_settings', JSON.stringify(APP.settings));
-        showStatus('鉁?鏁版嵁鍚屾鎴愬姛锛佸叡 ' + APP.products.length + ' 涓骇鍝?, '');
+        showStatus('数据同步成功！共 ' + APP.products.length + ' 个产品', '');
         setTimeout(hideStatus, 2000);
         renderDashboard();
-        showToast('鏁版嵁鍚屾鎴愬姛');
+        showToast('数据同步成功');
     } catch (e) {
-        showStatus('鉂?鍚屾澶辫触: ' + e.message, 'error');
-        // Fallback to local
+        showStatus('同步失败: ' + e.message, 'error');
         await loadLocalData();
         renderDashboard();
     }
@@ -177,18 +173,15 @@ async function syncFromGithub() {
 
 async function publishToGithub() {
     if (APP.mode !== 'github' || !APP.token) {
-        showToast('璇蜂娇鐢℅itHub Token鐧诲綍鍚庢墠鑳藉彂甯?, 'error');
+        showToast('请使用 GitHub Token 登录后才能发布', 'error');
         return;
     }
-    showStatus('姝ｅ湪鍙戝竷鍒癎itHub...', '');
+    showStatus('正在发布到 GitHub...', '');
 
-    // Merge settings
     APP.settings.githubToken = '';
-
     const content = JSON.stringify({ products: APP.products, settings: APP.settings }, null, 2);
 
     try {
-        // Get current file SHA
         let sha = '';
         try {
             const resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${PRODUCTS_PATH}`, {
@@ -200,12 +193,11 @@ async function publishToGithub() {
             }
         } catch {}
 
-        // Commit
         const commitResp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${PRODUCTS_PATH}`, {
             method: 'PUT',
             headers: { 'Authorization': 'token ' + APP.token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                message: '馃攧 鍚庡彴鏇存柊浜у搧鏁版嵁 - ' + new Date().toLocaleString('zh-CN'),
+                message: '后台更新产品数据 - ' + new Date().toLocaleString('zh-CN'),
                 content: btoa(unescape(encodeURIComponent(content))),
                 sha: sha || undefined,
                 branch: GITHUB_BRANCH
@@ -214,32 +206,27 @@ async function publishToGithub() {
 
         if (!commitResp.ok) {
             const err = await commitResp.json();
-            throw new Error(err.message || '鎻愪氦澶辫触');
+            throw new Error(err.message || '提交失败');
         }
 
-        showStatus('鉁?宸叉垚鍔熷彂甯冨埌GitHub锛佺瓑寰匬ages鑷姩閮ㄧ讲...', '');
+        showStatus('已成功发布到 GitHub！等待 Pages 自动部署...', '');
         setTimeout(hideStatus, 3000);
-        showToast('鍙戝竷鎴愬姛锛?);
+        showToast('发布成功！');
     } catch (e) {
-        showStatus('鉂?鍙戝竷澶辫触: ' + e.message, 'error');
-        showToast('鍙戝竷澶辫触: ' + e.message, 'error');
+        showStatus('发布失败: ' + e.message, 'error');
+        showToast('发布失败: ' + e.message, 'error');
     }
 }
 
 // ===== Render =====
 function renderDashboard() {
-    // Stats
     document.getElementById('statProducts').textContent = APP.products.length;
     const cats = new Set(APP.products.map(p => p.category));
     document.getElementById('statCategories').textContent = cats.size;
-    document.getElementById('statOrders').textContent = '鈥?;
-    document.getElementById('statStatus').textContent = APP.mode === 'github' ? '宸茶繛鎺itHub' : '鏈湴妯″紡';
+    document.getElementById('statOrders').textContent = '—';
+    document.getElementById('statStatus').textContent = APP.mode === 'github' ? '已连接 GitHub' : '本地模式';
     document.getElementById('statStatus').style.color = APP.mode === 'github' ? '#155724' : '#856404';
-
-    // Product list
     renderProductList();
-
-    // Settings
     renderSettings();
 }
 
@@ -247,7 +234,7 @@ function renderDashboard() {
 function renderProductList() {
     const list = document.getElementById('productList');
     if (APP.products.length === 0) {
-        list.innerHTML = '<div class="empty-state"><p>杩樻病鏈変骇鍝侊紝鐐瑰嚮鍙充笂瑙掓坊鍔?/p></div>';
+        list.innerHTML = '<div class="empty-state"><p>还没有产品，点击右上角添加</p></div>';
         return;
     }
     list.innerHTML = APP.products.map((p, i) => `
@@ -257,12 +244,12 @@ function renderProductList() {
             </div>
             <div class="pc-info">
                 <div class="pc-name">${p.name}</div>
-                <div class="pc-meta">${p.category} 路 ${p.subtitle || ''} 路 ID: ${p.id}</div>
+                <div class="pc-meta">${p.category} · ${p.subtitle || ''} · ID: ${p.id}</div>
             </div>
-            <div class="pc-price">楼${p.price.toFixed(2)}</div>
+            <div class="pc-price">¥${p.price.toFixed(2)}</div>
             <div class="pc-actions">
-                <button class="pc-btn pc-btn-edit" onclick="editProduct(${i})">缂栬緫</button>
-                <button class="pc-btn pc-btn-del" onclick="deleteProduct(${i})">鍒犻櫎</button>
+                <button class="pc-btn pc-btn-edit" onclick="editProduct(${i})">编辑</button>
+                <button class="pc-btn pc-btn-del" onclick="deleteProduct(${i})">删除</button>
             </div>
         </div>
     `).join('');
@@ -270,19 +257,18 @@ function renderProductList() {
 
 // ===== Product CRUD =====
 function showAddProduct() {
-    document.getElementById('modalTitle').textContent = '娣诲姞浜у搧';
+    document.getElementById('modalTitle').textContent = '添加产品';
     document.getElementById('editProductId').value = '';
     ['pf_id','pf_name','pf_subtitle','pf_price','pf_tag','pf_description','pf_fullDesc','pf_apps','pf_image'].forEach(id => {
         document.getElementById(id).value = '';
     });
-    document.getElementById('pf_category').value = '鐢靛瓙鐑熺數姹?;
+    document.getElementById('pf_category').value = '电子烟电池';
     document.getElementById('pf_featured').checked = false;
     document.getElementById('modalError').style.display = 'none';
-    // Reset specs
     document.getElementById('specEditor').innerHTML = `
         <div class="spec-row">
-            <input class="form-input spec-key" placeholder="鍙傛暟鍚?>
-            <input class="form-input spec-val" placeholder="鍙傛暟鍊?>
+            <input class="form-input spec-key" placeholder="参数名">
+            <input class="form-input spec-val" placeholder="参数值">
             <button class="btn-sm btn-add" onclick="addSpecRow()">+</button>
         </div>
     `;
@@ -291,12 +277,12 @@ function showAddProduct() {
 
 function editProduct(index) {
     const p = APP.products[index];
-    document.getElementById('modalTitle').textContent = '缂栬緫浜у搧';
+    document.getElementById('modalTitle').textContent = '编辑产品';
     document.getElementById('editProductId').value = index;
     document.getElementById('pf_id').value = p.id;
     document.getElementById('pf_name').value = p.name;
     document.getElementById('pf_subtitle').value = p.subtitle || '';
-    document.getElementById('pf_category').value = p.category || '鐢靛瓙鐑熺數姹?;
+    document.getElementById('pf_category').value = p.category || '电子烟电池';
     document.getElementById('pf_price').value = p.price;
     document.getElementById('pf_tag').value = p.tag || '';
     document.getElementById('pf_description').value = p.description || '';
@@ -306,17 +292,16 @@ function editProduct(index) {
     document.getElementById('pf_featured').checked = p.featured || false;
     document.getElementById('modalError').style.display = 'none';
 
-    // Specs
     const specEditor = document.getElementById('specEditor');
     const specs = p.specList || [];
     if (specs.length === 0) {
-        specEditor.innerHTML = `<div class="spec-row"><input class="form-input spec-key" placeholder="鍙傛暟鍚?><input class="form-input spec-val" placeholder="鍙傛暟鍊?><button class="btn-sm btn-add" onclick="addSpecRow()">+</button></div>`;
+        specEditor.innerHTML = `<div class="spec-row"><input class="form-input spec-key" placeholder="参数名"><input class="form-input spec-val" placeholder="参数值"><button class="btn-sm btn-add" onclick="addSpecRow()">+</button></div>`;
     } else {
         specEditor.innerHTML = specs.map((s, i) => `
             <div class="spec-row">
                 <input class="form-input spec-key" value="${s.label}">
                 <input class="form-input spec-val" value="${s.value}">
-                <button class="btn-sm ${i === 0 ? 'btn-add' : 'btn-cancel'}" onclick="${i === 0 ? 'addSpecRow()' : 'this.parentElement.remove()'}">${i === 0 ? '+' : '鉁?}</button>
+                <button class="btn-sm ${i === 0 ? 'btn-add' : 'btn-cancel'}" onclick="${i === 0 ? 'addSpecRow()' : 'this.parentElement.remove()'}">${i === 0 ? '+' : '✕'}</button>
             </div>
         `).join('');
     }
@@ -336,9 +321,9 @@ function addSpecRow() {
     const row = document.createElement('div');
     row.className = 'spec-row';
     row.innerHTML = `
-        <input class="form-input spec-key" placeholder="鍙傛暟鍚?>
-        <input class="form-input spec-val" placeholder="鍙傛暟鍊?>
-        <button class="btn-sm btn-cancel" onclick="this.parentElement.remove()">鉁?/button>
+        <input class="form-input spec-key" placeholder="参数名">
+        <input class="form-input spec-val" placeholder="参数值">
+        <button class="btn-sm btn-cancel" onclick="this.parentElement.remove()">✕</button>
     `;
     editor.appendChild(row);
 }
@@ -351,11 +336,10 @@ function saveProduct() {
     const name = document.getElementById('pf_name').value.trim();
     const price = parseFloat(document.getElementById('pf_price').value);
 
-    if (!id) { err.textContent = '璇疯緭鍏ヤ骇鍝両D'; err.style.display = 'block'; return; }
-    if (!name) { err.textContent = '璇疯緭鍏ヤ骇鍝佸悕绉?; err.style.display = 'block'; return; }
-    if (isNaN(price) || price <= 0) { err.textContent = '璇疯緭鍏ユ湁鏁堜环鏍?; err.style.display = 'block'; return; }
+    if (!id) { err.textContent = '请输入产品ID'; err.style.display = 'block'; return; }
+    if (!name) { err.textContent = '请输入产品名称'; err.style.display = 'block'; return; }
+    if (isNaN(price) || price <= 0) { err.textContent = '请输入有效价格'; err.style.display = 'block'; return; }
 
-    // Collect specs
     const specList = [];
     document.querySelectorAll('#specEditor .spec-row').forEach(row => {
         const key = row.querySelector('.spec-key').value.trim();
@@ -363,7 +347,6 @@ function saveProduct() {
         if (key && val) specList.push({ label: key, value: val });
     });
 
-    // Build specs object
     const specs = {};
     specList.forEach(s => { specs[s.label] = s.value; });
 
@@ -376,7 +359,7 @@ function saveProduct() {
         fullName: name,
         category: document.getElementById('pf_category').value,
         price,
-        priceDesc: '鍗曚环 / 鍚◣鍚繍璐癸紝鎵归噺浠锋牸鍙﹁',
+        priceDesc: '单价 / 含税含运费，批量价格另议',
         image: document.getElementById('pf_image').value.trim(),
         tag: document.getElementById('pf_tag').value.trim() || '',
         tagColor: 'orange',
@@ -396,9 +379,8 @@ function saveProduct() {
     if (editIdx !== '') {
         APP.products[parseInt(editIdx)] = product;
     } else {
-        // Check duplicate ID
         if (APP.products.some(p => p.id === id)) {
-            err.textContent = '浜у搧ID "' + id + '" 宸插瓨鍦紝璇蜂娇鐢ㄤ笉鍚岀殑ID';
+            err.textContent = '产品ID "' + id + '" 已存在，请使用不同的ID';
             err.style.display = 'block';
             return;
         }
@@ -408,15 +390,15 @@ function saveProduct() {
     closeModal();
     renderProductList();
     updateStats();
-    showToast(editIdx !== '' ? '浜у搧宸叉洿鏂? : '浜у搧宸叉坊鍔?);
+    showToast(editIdx !== '' ? '产品已更新' : '产品已添加');
 }
 
 function deleteProduct(index) {
-    if (!confirm('纭畾瑕佸垹闄?"' + APP.products[index].name + '" 鍚楋紵')) return;
+    if (!confirm('确定要删除 "' + APP.products[index].name + '" 吗？')) return;
     APP.products.splice(index, 1);
     renderProductList();
     updateStats();
-    showToast('浜у搧宸插垹闄?);
+    showToast('产品已删除');
 }
 
 function updateStats() {
@@ -448,10 +430,10 @@ function saveSettings() {
     const tk = document.getElementById('sf_githubToken').value.trim();
     if (tk) APP.token = tk;
 
-    document.getElementById('settingsStatus').textContent = '鉁?璁剧疆宸蹭繚瀛?;
+    document.getElementById('settingsStatus').textContent = '设置已保存';
     document.getElementById('settingsStatus').style.color = '#155724';
     setTimeout(() => { document.getElementById('settingsStatus').textContent = ''; }, 3000);
-    showToast('璁剧疆宸蹭繚瀛?);
+    showToast('设置已保存');
 }
 
 // ===== Utility =====
