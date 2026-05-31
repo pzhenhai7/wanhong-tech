@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wanhong Tech Admin</title>
+<title>万鸿科技 后台管理</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#1a1a2e;min-height:100vh;display:flex;align-items:center;justify-content:center}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#1a1a2e;min-height:100vh}
+/* Login */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center}
 .card{background:#fff;border-radius:20px;padding:44px 40px;width:400px;max-width:90vw;box-shadow:0 25px 80px rgba(0,0,0,.4);text-align:center}
 .logo{width:100px;height:100px;border-radius:50%;background:#fff5eb;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
 .logo img{height:64px;width:auto}
@@ -16,76 +18,262 @@ h1{font-size:24px;margin-bottom:4px}
 .tab{flex:1;padding:10px;border:none;background:#f5f5f7;cursor:pointer;font-size:13px;color:#888}
 .tab.active{background:#FF6A00;color:#fff}
 .form{display:flex;flex-direction:column;gap:14px}
-label{font-size:12px;font-weight:600;color:#555;text-align:left;text-transform:uppercase}
-input{padding:10px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none}
+label.f{font-size:12px;font-weight:600;color:#555;text-align:left;text-transform:uppercase}
+input[type=text],input[type=password]{padding:10px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none;width:100%}
 input:focus{border-color:#FF6A00}
-button.btn{padding:12px;background:#FF6A00;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer}
+button.btn{padding:12px;background:#FF6A00;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;width:100%}
 button.btn:hover{background:#e55e00}
 .hint{font-size:12px;color:#aaa;margin-top:-4px}
 .error{display:none;padding:10px;background:#fff0f0;color:#d00;border-radius:8px;font-size:13px;margin-top:12px}
-.dashboard{display:none;width:100%;min-height:100vh;background:#f0f2f5}
-.top{background:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd}
-.top h2{font-size:16px}
-.logout{background:none;border:1px solid #ddd;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:12px;color:#d00}
-.main{padding:24px;max-width:900px;margin:0 auto}
-.main h3{font-size:18px;margin-bottom:12px}
-.info{background:#fff;border-radius:12px;padding:20px;border:1px solid #ddd}
-.info p{color:#666;margin:4px 0;font-size:14px}
-.btn-group{margin-top:16px;display:flex;gap:10px}
-.btn-sm{padding:8px 20px;border:1px solid #ddd;border-radius:6px;background:#fff;cursor:pointer;font-size:13px}
+/* Dashboard Layout */
+.dboard{display:none;width:100%;min-height:100vh;background:#f0f2f5}
+.topbar{background:#fff;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;position:sticky;top:0;z-index:100}
+.topbar h2{font-size:15px}
+.topbar-actions{display:flex;gap:10px;align-items:center}
+.topbar .mode-badge{font-size:11px;padding:3px 10px;border-radius:4px;font-weight:500}
+.topbar .logout-btn{background:none;border:1px solid #ddd;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:12px;color:#d00}
+.body-wrap{display:flex;min-height:calc(100vh - 48px)}
+.sidebar{width:200px;background:#fff;border-right:1px solid #ddd;flex-shrink:0}
+.sidebar-item{padding:14px 20px;font-size:13px;color:#666;cursor:pointer;border-left:3px solid transparent;transition:all .2s}
+.sidebar-item:hover{background:#f9f9f9;color:#333}
+.sidebar-item.active{background:#fff5eb;color:#FF6A00;border-left-color:#FF6A00;font-weight:600}
+.content{flex:1;padding:24px;max-width:960px}
+.page{display:none}
+.page.active{display:block}
+.page-title{font-size:18px;font-weight:600;margin-bottom:16px}
+/* Dashboard page */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:#fff;border-radius:10px;padding:20px;border:1px solid #ddd;text-align:center}
+.stat-num{font-size:28px;font-weight:700;color:#FF6A00}
+.stat-label{font-size:12px;color:#888;margin-top:4px}
+.action-bar{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.btn-o{background:#FF6A00;color:#fff;border:none;padding:8px 20px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:500}
+.btn-o:hover{background:#e55e00}
+.btn-g{background:#fff;color:#333;border:1px solid #ddd;padding:8px 20px;border-radius:6px;font-size:13px;cursor:pointer}
+.btn-g:hover{background:#f5f5f5}
+.btn-d{background:#fff;color:#d00;border:1px solid #ddd;padding:8px 20px;border-radius:6px;font-size:13px;cursor:pointer}
+.btn-d:hover{background:#fff0f0}
+/* Product list */
+.prod-list{display:flex;flex-direction:column;gap:8px}
+.prod-card{background:#fff;border-radius:8px;padding:14px 16px;border:1px solid #ddd;display:flex;align-items:center;gap:14px}
+.prod-card-img{width:48px;height:48px;border-radius:6px;background:#f5f5f7;display:flex;align-items:center;justify-content:center;font-size:11px;color:#bbb;flex-shrink:0;overflow:hidden}
+.prod-card-img img{width:100%;height:100%;object-fit:cover}
+.prod-card-info{flex:1;min-width:0}
+.prod-card-name{font-size:14px;font-weight:600;margin-bottom:2px}
+.prod-card-meta{font-size:12px;color:#888}
+.prod-card-price{font-size:14px;font-weight:600;color:#FF6A00;white-space:nowrap}
+.prod-card-actions{display:flex;gap:6px}
+.prod-card-actions button{padding:4px 12px;border-radius:4px;font-size:12px;cursor:pointer;border:1px solid #ddd;background:#fff}
+.prod-card-actions .pe:hover{background:#e55e00;color:#fff;border-color:#e55e00}
+.prod-card-actions .pd{color:#d00}
+.empty-state{text-align:center;padding:60px 20px;color:#888;font-size:14px}
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center}
+.modal{background:#fff;border-radius:16px;padding:32px;width:600px;max-width:95vw;max-height:90vh;overflow-y:auto}
+.modal h3{font-size:18px;margin-bottom:20px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-grid .full{grid-column:1/-1}
+.form-grid label{font-size:12px;font-weight:600;color:#555;display:block;margin-bottom:4px}
+.form-grid input,.form-grid select,.form-grid textarea{padding:8px 12px;border:1.5px solid #ddd;border-radius:6px;font-size:13px;outline:none;width:100%}
+.form-grid input:focus,.form-grid select:focus,.form-grid textarea:focus{border-color:#FF6A00}
+.form-grid textarea{resize:vertical;min-height:60px;font-family:inherit}
+.form-grid .spec-row{display:flex;gap:8px;margin-bottom:6px}
+.form-grid .spec-row input{flex:1}
+.form-grid .spec-row button{flex-shrink:0}
+.btn-sm{padding:5px 14px;border:1px solid #ddd;border-radius:4px;font-size:12px;cursor:pointer;background:#fff}
 .btn-sm.primary{background:#FF6A00;color:#fff;border-color:#FF6A00}
+.btn-sm.primary:hover{background:#e55e00}
+.btn-sm.danger{color:#d00;border-color:#ddd}
+.modal-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
+.modal-actions button{padding:8px 24px;border-radius:6px;font-size:13px;cursor:pointer}
+/* Settings */
+.settings-form{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:600px}
+.settings-form .full{grid-column:1/-1}
+.settings-form label{font-size:12px;font-weight:600;color:#555;display:block;margin-bottom:4px}
+.settings-form input{padding:8px 12px;border:1.5px solid #ddd;border-radius:6px;font-size:13px;outline:none;width:100%}
+.settings-form input:focus{border-color:#FF6A00}
+/* Toast */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);padding:12px 24px;border-radius:8px;color:#fff;font-size:14px;z-index:9999;opacity:0;transition:opacity .4s;pointer-events:none}
+/* Status bar */
+.status-bar{display:none;align-items:center;gap:10px;padding:10px 16px;background:#e8f4e8;border-radius:8px;font-size:13px;margin-bottom:16px}
+.status-bar.error{background:#fff0f0;color:#d00}
+.status-bar .spinner{width:16px;height:16px;border:2px solid #ccc;border-top-color:#FF6A00;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:768px){
+  .body-wrap{flex-direction:column}
+  .sidebar{width:100%;display:flex;overflow-x:auto;border-right:none;border-bottom:1px solid #ddd}
+  .sidebar-item{white-space:nowrap;border-left:none;border-bottom:3px solid transparent;padding:12px 16px}
+  .sidebar-item.active{border-left:none;border-bottom-color:#FF6A00}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .form-grid,.settings-form{grid-template-columns:1fr}
+  .prod-card{flex-wrap:wrap}
+}
 </style>
 </head>
 <body>
 
-<div id="loginPage">
+<!-- ===== Login ===== -->
+<div id="loginPage" class="login-wrap">
 <div class="card">
-  <div class="logo"><img src="../assets/logo.png" alt="Wanhong"></div>
+  <div class="logo"><img src="assets/logo.png" alt="万鸿科技"></div>
   <h1>Wanhong Technology</h1>
-  <p class="sub">Huizhou Wanhong Technology Co., Ltd</p>
+  <p class="sub">惠州市万鸿科技有限公司</p>
 
   <div class="tab-bar">
-    <button class="tab active" onclick="switchTab('pass')">Password</button>
-    <button class="tab" onclick="switchTab('token')">Token</button>
+    <button class="tab active" onclick="switchTab('pass')">密码登录</button>
+    <button class="tab" onclick="switchTab('token')">Token 登录</button>
   </div>
 
   <div id="passForm" class="form">
-    <div><label>Username</label><input type="text" id="loginUser" placeholder="admin"></div>
-    <div><label>Password</label><input type="password" id="loginPass" placeholder="wanhong888" onkeydown="if(event.key==='Enter') doLogin()"></div>
-    <button class="btn" onclick="doLogin()">Sign In</button>
-    <p class="hint">Default: admin / wanhong888</p>
+    <label class="f">Username</label>
+    <input type="text" id="loginUser" placeholder="admin">
+    <label class="f">Password</label>
+    <input type="password" id="loginPass" placeholder="wanhong888" onkeydown="if(event.key==='Enter') doLogin()">
+    <button class="btn" onclick="doLogin()">登 录</button>
+    <p class="hint">默认账号: admin / wanhong888</p>
   </div>
 
   <div id="tokenForm" class="form" style="display:none">
-    <div><label>GitHub Token</label><input type="password" id="loginToken" placeholder="ghp_xxxxxxxxxxxx" onkeydown="if(event.key==='Enter') doTokenLogin()"></div>
-    <button class="btn" onclick="doTokenLogin()">Sign In</button>
-    <p class="hint">Use a GitHub token with repo scope</p>
+    <label class="f">GitHub Token</label>
+    <input type="password" id="loginToken" placeholder="ghp_xxxxxxxxxxxx" onkeydown="if(event.key==='Enter') doTokenLogin()">
+    <button class="btn" onclick="doTokenLogin()">登 录</button>
+    <p class="hint">使用有 repo 权限的 GitHub Token</p>
   </div>
 
   <div id="loginError" class="error"></div>
 </div>
 </div>
 
-<div id="dashboard" class="dashboard">
-  <div class="top">
+<!-- ===== Dashboard ===== -->
+<div id="dashboard" class="dboard">
+  <div class="topbar">
     <h2>万鸿科技 后台管理</h2>
-    <button class="logout" onclick="doLogout()">退出登录</button>
-  </div>
-  <div class="main">
-    <h3>控制台</h3>
-    <div class="info">
-      <p>欢迎使用万鸿科技后台管理系统。</p>
-      <p>使用 GitHub Token 登录后可直接发布产品数据到网站。</p>
+    <div class="topbar-actions">
+      <span class="mode-badge" id="modeBadge" style="background:#f5f5f5;color:#888">本地模式</span>
+      <button class="logout-btn" onclick="doLogout()">退出登录</button>
     </div>
-    <div id="prodInfo" style="margin-top:16px;"></div>
-    <div class="btn-group">
-      <button class="btn-sm primary" onclick="window.open('https://pzhenhai7.github.io/wanhong-tech','_blank')">查看网站</button>
+  </div>
+
+  <div class="body-wrap">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-item active" data-page="dashboard-overview" onclick="switchPage('dashboard-overview')">控制台</div>
+      <div class="sidebar-item" data-page="products" onclick="switchPage('products')">产品管理</div>
+      <div class="sidebar-item" data-page="settings" onclick="switchPage('settings')">系统设置</div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- Status Bar -->
+      <div class="status-bar" id="statusBar">
+        <div class="spinner"></div>
+        <span id="statusText">加载中...</span>
+      </div>
+
+      <!-- Page: Dashboard Overview -->
+      <div class="page active" id="page-dashboard-overview">
+        <div class="page-title">控制台</div>
+        <div class="stats">
+          <div class="stat-card"><div class="stat-num" id="statProducts">0</div><div class="stat-label">产品总数</div></div>
+          <div class="stat-card"><div class="stat-num" id="statCategories">0</div><div class="stat-label">分类数</div></div>
+          <div class="stat-card"><div class="stat-num" id="statMode">—</div><div class="stat-label">模式</div></div>
+          <div class="stat-card"><div class="stat-num" id="statStatus" style="font-size:16px;">—</div><div class="stat-label">状态</div></div>
+        </div>
+        <div class="action-bar">
+          <button class="btn-o" onclick="showAddProduct()">+ 添加产品</button>
+          <button class="btn-g" onclick="syncFromGithub()" id="syncBtn">从 GitHub 同步</button>
+          <button class="btn-o" onclick="publishToGithub()" id="publishBtn">发布到 GitHub</button>
+          <button class="btn-g" onclick="window.open('https://pzhenhai7.github.io/wanhong-tech','_blank')">查看网站</button>
+        </div>
+      </div>
+
+      <!-- Page: Products -->
+      <div class="page" id="page-products">
+        <div class="page-title">产品管理</div>
+        <div class="action-bar">
+          <button class="btn-o" onclick="showAddProduct()">+ 添加产品</button>
+        </div>
+        <div class="prod-list" id="productList">
+          <div class="empty-state">暂无产品，点击"添加产品"开始</div>
+        </div>
+      </div>
+
+      <!-- Page: Settings -->
+      <div class="page" id="page-settings">
+        <div class="page-title">系统设置</div>
+        <div class="settings-form">
+          <div class="full"><label>公司名称</label><input type="text" id="sf_companyName" placeholder="惠州市万鸿科技有限公司"></div>
+          <div><label>联系电话</label><input type="text" id="sf_phone" placeholder="13682629862"></div>
+          <div><label>邮箱</label><input type="text" id="sf_email" placeholder="info@wanhong-tech.com"></div>
+          <div><label>联系人</label><input type="text" id="sf_contactPerson" placeholder="廖万欣"></div>
+          <div class="full"><label>公司地址</label><input type="text" id="sf_address" placeholder="广东省惠州市仲恺高新区惠风路8号"></div>
+          <div class="full">
+            <label>GitHub Token</label>
+            <input type="password" id="sf_githubToken" placeholder="ghp_xxxxxxxxxxxx">
+          </div>
+          <div class="full" style="display:flex;gap:10px">
+            <button class="btn-o" onclick="saveSettings()" style="width:auto">保存设置</button>
+            <span id="settingsStatus" style="font-size:13px;color:#155724;align-self:center"></span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- ===== Product Modal ===== -->
+<div class="modal-overlay" id="productModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h3 id="modalTitle">添加产品</h3>
+    <input type="hidden" id="editProductIdx">
+    <div class="form-grid">
+      <div><label>产品 ID *</label><input type="text" id="pf_id" placeholder="如: 18400"></div>
+      <div><label>产品名称 *</label><input type="text" id="pf_name" placeholder="18400 电子烟电池"></div>
+      <div><label>副标题</label><input type="text" id="pf_subtitle" placeholder="1100mAh · 钴+三元"></div>
+      <div><label>分类</label>
+        <select id="pf_category">
+          <option value="电子烟电池">电子烟电池</option>
+          <option value="高倍率电池">高倍率电池</option>
+          <option value="无人机电池">无人机电池</option>
+          <option value="OEM定制">OEM/ODM 定制</option>
+        </select>
+      </div>
+      <div><label>价格 ¥</label><input type="number" id="pf_price" step="0.01" placeholder="13.00"></div>
+      <div><label>标签</label><input type="text" id="pf_tag" placeholder="新品 / 热销"></div>
+      <div class="full"><label>图片路径</label><input type="text" id="pf_image" placeholder="assets/product-18400.jpg"></div>
+      <div class="full"><label>简短描述</label><textarea id="pf_description" rows="2" placeholder="产品简短描述"></textarea></div>
+      <div class="full"><label>详细描述</label><textarea id="pf_fullDesc" rows="3" placeholder="支持 HTML"></textarea></div>
+      <div class="full"><label>适用范围（逗号分隔）</label><input type="text" id="pf_apps" placeholder="电子烟, POD, 雾化器"></div>
+      <div class="full"><label>规格参数</label>
+        <div id="specEditor">
+          <div class="spec-row">
+            <input placeholder="参数名" class="spec-key">
+            <input placeholder="参数值" class="spec-val">
+            <button class="btn-sm primary" onclick="addSpecRow()" style="font-size:16px;padding:4px 12px">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="full"><label><input type="checkbox" id="pf_featured"> 标记为推荐产品</label></div>
+    </div>
+    <div class="error" id="modalError"></div>
+    <div class="modal-actions">
+      <button class="btn-g" onclick="closeModal()">取消</button>
+      <button class="btn-o" onclick="saveProduct()">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="adminToast"></div>
+
 <script>
-// Tab switch
+// ===== State =====
+let APP = { token: '', mode: 'local', products: [], settings: {} };
+const GITHUB_REPO = 'pzhenhai7/wanhong-tech';
+const GITHUB_BRANCH = 'main';
+const PRODUCTS_PATH = 'data/products.json';
+
+// ===== Login =====
 function switchTab(t) {
   document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
   if (t === 'pass') {
@@ -101,71 +289,369 @@ function switchTab(t) {
 }
 
 function showError(msg) {
-  var err = document.getElementById('loginError');
-  err.textContent = msg;
-  err.style.display = 'block';
+  var e = document.getElementById('loginError');
+  e.textContent = msg; e.style.display = 'block';
 }
 
-// Password login
 function doLogin() {
-  var user = document.getElementById('loginUser').value.trim();
-  var pass = document.getElementById('loginPass').value.trim();
-  if (user === 'admin' && pass === 'wanhong888') {
-    sessionStorage.setItem('wanhong_admin', 'local');
-    document.getElementById('loginPage').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
-    loadProducts();
-  } else {
-    showError('账号或密码错误');
-  }
+  var u = document.getElementById('loginUser').value.trim();
+  var p = document.getElementById('loginPass').value.trim();
+  if (u === 'admin' && p === 'wanhong888') {
+    APP.mode = 'local';
+    sessionStorage.setItem('wanhong_admin', JSON.stringify({mode:'local',token:''}));
+    enterDashboard();
+  } else { showError('账号或密码错误'); }
 }
 
-// Token login
 function doTokenLogin() {
-  var token = document.getElementById('loginToken').value.trim();
-  if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
+  var t = document.getElementById('loginToken').value.trim();
+  if (!t.startsWith('ghp_') && !t.startsWith('github_pat_')) {
     showError('Token 格式无效（需以 ghp_ 或 github_pat_ 开头）');
     return;
   }
-  sessionStorage.setItem('wanhong_admin', 'github:' + token);
-  APP_TOKEN = token;
-  document.getElementById('loginPage').style.display = 'none';
-  document.getElementById('dashboard').style.display = 'block';
-  loadProducts();
+  APP.token = t; APP.mode = 'github';
+  sessionStorage.setItem('wanhong_admin', JSON.stringify({mode:'github',token:t}));
+  enterDashboard();
 }
-
-var APP_TOKEN = '';
 
 function doLogout() {
   sessionStorage.removeItem('wanhong_admin');
-  APP_TOKEN = '';
-  document.getElementById('loginPage').style.display = 'flex';
+  APP.token = ''; APP.mode = 'local';
   document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('loginPage').style.display = 'flex';
 }
 
-// Load products
-async function loadProducts() {
-  var el = document.getElementById('prodInfo');
+function enterDashboard() {
+  document.getElementById('loginPage').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  initDashboard();
+}
+
+// ===== Dashboard Init =====
+async function initDashboard() {
+  // Load products
   try {
     var resp = await fetch('data/products.json?_=' + Date.now());
-    var data = await resp.json();
-    var count = (data.products || []).length;
-    el.innerHTML = '<div class="info"><p>已加载产品: <strong>' + count + '</strong> 个</p></div>';
+    var d = await resp.json();
+    APP.products = d.products || [];
+    APP.settings = d.settings || {};
   } catch(e) {
-    el.innerHTML = '<div class="info"><p>无法加载产品数据。</p></div>';
+    APP.products = [];
+    APP.settings = {};
+  }
+
+  // If GitHub mode, sync from GitHub
+  if (APP.mode === 'github' && APP.token) {
+    await syncFromGithub(false);
+  }
+
+  renderAll();
+}
+
+// ===== Sync from GitHub =====
+async function syncFromGithub(showMsg = true) {
+  if (!APP.token) { toast('请先使用 GitHub Token 登录', 'error'); return; }
+  showStatus('正在从 GitHub 同步...');
+  try {
+    var resp = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + PRODUCTS_PATH, {
+      headers: { 'Authorization': 'token ' + APP.token, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (!resp.ok) throw new Error('GitHub API: ' + resp.status);
+    var json = await resp.json();
+    var content = decodeURIComponent(escape(atob(json.content)));
+    var data = JSON.parse(content);
+    APP.products = data.products || [];
+    APP.settings = data.settings || {};
+    hideStatus();
+    renderAll();
+    if (showMsg) toast('同步完成，已加载 ' + APP.products.length + ' 个产品');
+  } catch(e) {
+    showStatus('同步失败: ' + e.message, 'error');
+    setTimeout(hideStatus, 3000);
+    if (showMsg) toast('同步失败', 'error');
   }
 }
 
-// Auto login
+// ===== Publish to GitHub =====
+async function publishToGithub() {
+  if (!APP.token) { toast('请先使用 GitHub Token 登录', 'error'); return; }
+  showStatus('正在发布到 GitHub...');
+
+  // Strip token from settings before saving
+  var saveSettings = JSON.parse(JSON.stringify(APP.settings));
+  var content = JSON.stringify({ products: APP.products, settings: saveSettings }, null, 2);
+
+  try {
+    var sha = '';
+    try {
+      var r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + PRODUCTS_PATH, {
+        headers: { 'Authorization': 'token ' + APP.token, 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (r.ok) { var j = await r.json(); sha = j.sha; }
+    } catch {}
+
+    var commitResp = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + PRODUCTS_PATH, {
+      method: 'PUT',
+      headers: { 'Authorization': 'token ' + APP.token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: '管理员更新产品 - ' + new Date().toLocaleString(),
+        content: btoa(unescape(encodeURIComponent(content))),
+        sha: sha || undefined,
+        branch: GITHUB_BRANCH
+      })
+    });
+
+    if (!commitResp.ok) { var er = await commitResp.json(); throw new Error(er.message || '发布失败'); }
+
+    showStatus('已发布到 GitHub！等待 Pages 部署...');
+    setTimeout(hideStatus, 3000);
+    toast('发布成功！');
+  } catch(e) {
+    showStatus('发布失败: ' + e.message, 'error');
+    toast('发布失败: ' + e.message, 'error');
+  }
+}
+
+// ===== Render =====
+function renderAll() {
+  document.getElementById('statProducts').textContent = APP.products.length;
+  var cats = new Set(APP.products.map(p => p.category));
+  document.getElementById('statCategories').textContent = cats.size;
+
+  var badge = document.getElementById('modeBadge');
+  if (APP.mode === 'github') {
+    badge.textContent = 'GitHub 已连接';
+    badge.style.cssText = 'font-size:11px;padding:3px 10px;border-radius:4px;font-weight:500;background:#d4edda;color:#155724';
+  } else {
+    badge.textContent = '本地模式';
+    badge.style.cssText = 'font-size:11px;padding:3px 10px;border-radius:4px;font-weight:500;background:#f5f5f5;color:#888';
+  }
+
+  document.getElementById('statMode').textContent = APP.mode === 'github' ? '在线' : '本地';
+  document.getElementById('statStatus').textContent = APP.mode === 'github' ? '已连接 GitHub' : '仅本地编辑';
+  document.getElementById('statStatus').style.fontSize = APP.mode === 'github' ? '14px' : '14px';
+  document.getElementById('statStatus').style.color = APP.mode === 'github' ? '#155724' : '#856404';
+
+  renderProductList();
+  renderSettings();
+}
+
+function renderProductList() {
+  var list = document.getElementById('productList');
+  if (APP.products.length === 0) {
+    list.innerHTML = '<div class="empty-state">暂无产品，点击"添加产品"开始</div>';
+    return;
+  }
+  list.innerHTML = APP.products.map(function(p, i) {
+    var imgHtml = p.image ? '<img src="' + p.image + '" alt="' + p.name + '">' : p.id;
+    return '<div class="prod-card">' +
+      '<div class="prod-card-img">' + imgHtml + '</div>' +
+      '<div class="prod-card-info">' +
+        '<div class="prod-card-name">' + (p.name || '') + '</div>' +
+        '<div class="prod-card-meta">' + (p.category || '') + ' / ID: ' + (p.id || '') + '</div>' +
+      '</div>' +
+      '<div class="prod-card-price">¥' + (p.price ? p.price.toFixed(2) : '0.00') + '</div>' +
+      '<div class="prod-card-actions">' +
+        '<button class="pe" onclick="editProduct(' + i + ')">编辑</button>' +
+        '<button class="pd" onclick="deleteProduct(' + i + ')">删除</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+// ===== Product CRUD =====
+function showAddProduct() {
+  document.getElementById('modalTitle').textContent = '添加产品';
+  document.getElementById('editProductIdx').value = '';
+  ['pf_id','pf_name','pf_subtitle','pf_price','pf_tag','pf_description','pf_fullDesc','pf_apps','pf_image'].forEach(function(id) {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('pf_category').value = '电子烟电池';
+  document.getElementById('pf_featured').checked = false;
+  document.getElementById('modalError').style.display = 'none';
+  document.getElementById('specEditor').innerHTML = '<div class="spec-row"><input class="spec-key" placeholder="参数名"><input class="spec-val" placeholder="参数值"><button class="btn-sm primary" onclick="addSpecRow()" style="font-size:16px;padding:4px 12px">+</button></div>';
+  document.getElementById('productModal').style.display = 'flex';
+}
+
+function editProduct(idx) {
+  var p = APP.products[idx];
+  document.getElementById('modalTitle').textContent = '编辑产品';
+  document.getElementById('editProductIdx').value = idx;
+  document.getElementById('pf_id').value = p.id || '';
+  document.getElementById('pf_name').value = p.name || '';
+  document.getElementById('pf_subtitle').value = p.subtitle || '';
+  document.getElementById('pf_category').value = p.category || '电子烟电池';
+  document.getElementById('pf_price').value = p.price || '';
+  document.getElementById('pf_tag').value = p.tag || '';
+  document.getElementById('pf_description').value = p.description || '';
+  document.getElementById('pf_fullDesc').value = (p.fullDescription || '').replace(/<br>/g, '\n');
+  document.getElementById('pf_apps').value = (p.applications || []).join(', ');
+  document.getElementById('pf_image').value = p.image || '';
+  document.getElementById('pf_featured').checked = p.featured || false;
+  document.getElementById('modalError').style.display = 'none';
+
+  var editor = document.getElementById('specEditor');
+  var specs = p.specList || [];
+  if (specs.length === 0) {
+    editor.innerHTML = '<div class="spec-row"><input class="spec-key" placeholder="参数名"><input class="spec-val" placeholder="参数值"><button class="btn-sm primary" onclick="addSpecRow()" style="font-size:16px;padding:4px 12px">+</button></div>';
+  } else {
+    editor.innerHTML = specs.map(function(s, i) {
+      return '<div class="spec-row">' +
+        '<input class="spec-key" value="' + (s.label || '') + '">' +
+        '<input class="spec-val" value="' + (s.value || '') + '">' +
+        (i === 0
+          ? '<button class="btn-sm primary" onclick="addSpecRow()" style="font-size:16px;padding:4px 12px">+</button>'
+          : '<button class="btn-sm danger" onclick="this.parentElement.remove()" style="font-size:14px;padding:4px 10px">✕</button>') +
+      '</div>';
+    }).join('');
+  }
+  document.getElementById('productModal').style.display = 'flex';
+}
+
+function closeModal() { document.getElementById('productModal').style.display = 'none'; }
+
+function addSpecRow() {
+  var ed = document.getElementById('specEditor');
+  var row = document.createElement('div'); row.className = 'spec-row';
+  row.innerHTML = '<input class="spec-key" placeholder="参数名"><input class="spec-val" placeholder="参数值"><button class="btn-sm danger" onclick="this.parentElement.remove()" style="font-size:14px;padding:4px 10px">✕</button>';
+  ed.appendChild(row);
+}
+
+function saveProduct() {
+  var err = document.getElementById('modalError');
+  err.style.display = 'none';
+
+  var id = document.getElementById('pf_id').value.trim();
+  var name = document.getElementById('pf_name').value.trim();
+  var price = parseFloat(document.getElementById('pf_price').value);
+
+  if (!id) { err.textContent = '请输入产品 ID'; err.style.display = 'block'; return; }
+  if (!name) { err.textContent = '请输入产品名称'; err.style.display = 'block'; return; }
+  if (isNaN(price) || price <= 0) { err.textContent = '请输入有效价格'; err.style.display = 'block'; return; }
+
+  var specList = [];
+  document.querySelectorAll('#specEditor .spec-row').forEach(function(row) {
+    var k = row.querySelector('.spec-key').value.trim();
+    var v = row.querySelector('.spec-val').value.trim();
+    if (k && v) specList.push({ label: k, value: v });
+  });
+
+  var specs = {};
+  specList.forEach(function(s) { specs[s.label] = s.value; });
+
+  var apps = document.getElementById('pf_apps').value.split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+  var tag = document.getElementById('pf_tag').value.trim();
+
+  var product = {
+    id: id,
+    name: name,
+    subtitle: document.getElementById('pf_subtitle').value.trim(),
+    fullName: name,
+    category: document.getElementById('pf_category').value,
+    price: price,
+    priceDesc: '单价 / 含税含运费，批量价格另议',
+    image: document.getElementById('pf_image').value.trim(),
+    tag: tag,
+    tagColor: 'orange',
+    badge: tag,
+    badgeType: tag === '新品' ? 'new' : 'hot',
+    featured: document.getElementById('pf_featured').checked,
+    specs: specs,
+    features: [],
+    applications: apps,
+    description: document.getElementById('pf_description').value.trim(),
+    fullDescription: document.getElementById('pf_fullDesc').value.trim() || '<p>' + document.getElementById('pf_description').value.trim() + '</p>',
+    specList: specList,
+    createdAt: new Date().toISOString().slice(0, 10)
+  };
+
+  var editIdx = document.getElementById('editProductIdx').value;
+  if (editIdx !== '') {
+    APP.products[parseInt(editIdx)] = product;
+    toast('产品已更新');
+  } else {
+    if (APP.products.some(function(p) { return p.id === id; })) {
+      err.textContent = '产品 ID "' + id + '" 已存在';
+      err.style.display = 'block';
+      return;
+    }
+    APP.products.push(product);
+    toast('产品已添加');
+  }
+
+  closeModal();
+  renderAll();
+}
+
+function deleteProduct(idx) {
+  if (!confirm('确定删除 "' + APP.products[idx].name + '"？')) return;
+  APP.products.splice(idx, 1);
+  renderAll();
+  toast('产品已删除');
+}
+
+// ===== Settings =====
+function renderSettings() {
+  var s = APP.settings;
+  document.getElementById('sf_companyName').value = s.companyName || '';
+  document.getElementById('sf_phone').value = s.phone || '';
+  document.getElementById('sf_email').value = s.email || '';
+  document.getElementById('sf_contactPerson').value = s.contactPerson || '';
+  document.getElementById('sf_address').value = s.address || '';
+  if (APP.token) document.getElementById('sf_githubToken').value = APP.token;
+}
+
+function saveSettings() {
+  APP.settings.companyName = document.getElementById('sf_companyName').value.trim();
+  APP.settings.phone = document.getElementById('sf_phone').value.trim();
+  APP.settings.email = document.getElementById('sf_email').value.trim();
+  APP.settings.contactPerson = document.getElementById('sf_contactPerson').value.trim();
+  APP.settings.address = document.getElementById('sf_address').value.trim();
+  var tk = document.getElementById('sf_githubToken').value.trim();
+  if (tk) APP.token = tk;
+  document.getElementById('settingsStatus').textContent = '设置已保存';
+  setTimeout(function() { document.getElementById('settingsStatus').textContent = ''; }, 3000);
+  toast('设置已保存');
+}
+
+// ===== Utility =====
+function switchPage(page) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.sidebar-item').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('page-' + page).classList.add('active');
+  document.querySelector('.sidebar-item[data-page="' + page + '"]').classList.add('active');
+}
+
+function showStatus(msg, type) {
+  var bar = document.getElementById('statusBar');
+  document.getElementById('statusText').textContent = msg;
+  bar.style.display = 'flex';
+  bar.className = 'status-bar' + (type === 'error' ? ' error' : '');
+}
+
+function hideStatus() {
+  document.getElementById('statusBar').style.display = 'none';
+}
+
+function toast(msg, type) {
+  var t = document.getElementById('adminToast');
+  t.style.background = type === 'error' ? '#E55E00' : '#00A65A';
+  t.textContent = msg;
+  t.style.opacity = '1';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function() { t.style.opacity = '0'; }, 3000);
+}
+
+// ===== Auto Login =====
 (function() {
   var saved = sessionStorage.getItem('wanhong_admin');
   if (saved) {
-    if (saved.startsWith('github:')) {
-      APP_TOKEN = saved.substring(7);
-    }
-    document.getElementById('loginPage').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
-    loadProducts();
+    try {
+      var data = JSON.parse(saved);
+      APP.token = data.token || '';
+      APP.mode = data.mode || 'local';
+      enterDashboard();
+    } catch(e) { sessionStorage.removeItem('wanhong_admin'); }
   }
 })();
 </script>
