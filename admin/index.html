@@ -68,18 +68,18 @@ button.btn:hover{background:#e55e00}
 
 <div id="dashboard" class="dashboard">
   <div class="top">
-    <h2>Wanhong Tech Admin</h2>
-    <button class="logout" onclick="doLogout()">Logout</button>
+    <h2>万鸿科技 后台管理</h2>
+    <button class="logout" onclick="doLogout()">退出登录</button>
   </div>
   <div class="main">
-    <h3>Dashboard</h3>
+    <h3>控制台</h3>
     <div class="info">
-      <p>Welcome to Wanhong Technology admin panel.</p>
-      <p>Use the GitHub Token login to publish product changes.</p>
+      <p>欢迎使用万鸿科技后台管理系统。</p>
+      <p>使用 GitHub Token 登录后可直接发布产品数据到网站。</p>
     </div>
     <div id="prodInfo" style="margin-top:16px;"></div>
     <div class="btn-group">
-      <button class="btn-sm primary" onclick="window.open('https://pzhenhai7.github.io/wanhong-tech','_blank')">View Site</button>
+      <button class="btn-sm primary" onclick="window.open('https://pzhenhai7.github.io/wanhong-tech','_blank')">查看网站</button>
     </div>
   </div>
 </div>
@@ -116,7 +116,7 @@ function doLogin() {
     document.getElementById('dashboard').style.display = 'block';
     loadProducts();
   } else {
-    showError('Invalid username or password');
+    showError('账号或密码错误');
   }
 }
 
@@ -124,7 +124,7 @@ function doLogin() {
 function doTokenLogin() {
   var token = document.getElementById('loginToken').value.trim();
   if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
-    showError('Invalid token format');
+    showError('Token 格式无效（需以 ghp_ 或 github_pat_ 开头）');
     return;
   }
   sessionStorage.setItem('wanhong_admin', 'github:' + token);
@@ -150,9 +150,9 @@ async function loadProducts() {
     var resp = await fetch('../data/products.json?_=' + Date.now());
     var data = await resp.json();
     var count = (data.products || []).length;
-    el.innerHTML = '<div class="info"><p>Products loaded: <strong>' + count + '</strong></p></div>';
+    el.innerHTML = '<div class="info"><p>已加载产品: <strong>' + count + '</strong> 个</p></div>';
   } catch(e) {
-    el.innerHTML = '<div class="info"><p>Could not load products.</p></div>';
+    el.innerHTML = '<div class="info"><p>无法加载产品数据。</p></div>';
   }
 }
 
