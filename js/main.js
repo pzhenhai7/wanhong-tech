@@ -1,7 +1,6 @@
-// 惠州市万泓科技有限公司 — 全站交互
+// 鎯犲窞甯備竾娉撶鎶€鏈夐檺鍏徃 鈥?鍏ㄧ珯浜や簰
 
-// 购物车角标
-function updateCartBadge() {
+// 璐墿杞﹁鏍?function updateCartBadge() {
     const badge = document.getElementById('cartBadge');
     if (!badge) return;
     try {
@@ -95,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('click', function(e) {
             const link = this.closest('.product-showcase-card')?.getAttribute('href');
             if (link && link !== '#') { if (e.target.tagName !== 'A') window.location.href = link; }
-            else { e.preventDefault(); showToast('📄 产品详情页正在建设中...'); }
+            else { e.preventDefault(); showToast('馃搫 浜у搧璇︽儏椤垫鍦ㄥ缓璁句腑...'); }
         });
     });
 
@@ -104,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', function(e) {
             if (this.getAttribute('href') === '#' || !this.getAttribute('href')) {
                 e.preventDefault();
-                showToast('📄 页面正在建设中，请联系廖总 13682629862');
+                showToast('馃搫 椤甸潰姝ｅ湪寤鸿涓紝璇疯仈绯诲粬鎬?13682629862');
             }
         });
     });
@@ -115,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         featuredBtn.addEventListener('click', function(e) {
             if (this.getAttribute('href') === '#' || !this.getAttribute('href')) {
                 e.preventDefault();
-                showToast('📩 正在为您转接询盘流程...');
+                showToast('馃摡 姝ｅ湪涓烘偍杞帴璇㈢洏娴佺▼...');
             }
         });
     }
@@ -126,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contactBtn.addEventListener('click', function(e) {
             if (this.getAttribute('href') === '#' || !this.getAttribute('href')) {
                 e.preventDefault();
-                showToast('📩 正在为您转接询盘流程...');
+                showToast('馃摡 姝ｅ湪涓烘偍杞帴璇㈢洏娴佺▼...');
             }
         });
     }
@@ -141,6 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // ===================== Load products from JSON
+    loadProducts();
 
     // ===================== Intersection Observer for fade-in
     const observer = new IntersectionObserver((entries) => {
@@ -160,3 +162,74 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+// ===== Dynamic Product Loading =====
+async function loadProducts() {
+    try {
+        const resp = await fetch('data/products.json?_=' + Date.now());
+        const data = await resp.json();
+        const products = data.products || [];
+
+        // Render product showcase
+        renderProductCards(products);
+
+        // Render featured product
+        const featured = products.find(p => p.featured) || products[0];
+        if (featured) renderFeaturedProduct(featured);
+
+        // Update carousel CTA links
+        updateCarouselLinks(products);
+    } catch {}
+}
+
+function renderProductCards(products) {
+    const container = document.getElementById('productShowcase');
+    if (!container) return;
+
+    const colors = ['orange', '#0071e3', '#34c759', '#af52de'];
+    container.innerHTML = products.map((p, i) => `
+        <a href="product.html?id=${p.id}" class="product-showcase-card" data-index="${i}">
+            <div class="ps-card-img">
+                ${p.image
+                    ? `<img src="${p.image}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`
+                    : `<div class="ps-placeholder">${p.id.replace(/[^0-9a-zA-Z]/g,'')}</div>`
+                }
+                ${p.badge ? `<span class="ps-badge" style="${p.badgeType === 'hot' ? 'background:#0071e3;' : ''}">${p.badge}</span>` : ''}
+            </div>
+            <h3>${p.name}</h3>
+            <p>${p.subtitle || ''}</p>
+            <span class="ps-link">鏌ョ湅璇︽儏 鈫?/span>
+        </a>
+    `).join('');
+}
+
+function renderFeaturedProduct(product) {
+    const section = document.getElementById('featuredProductSection');
+    if (!section) return;
+
+    const info = section.querySelector('.featured-info');
+    const visual = section.querySelector('.featured-visual');
+
+    if (info) {
+        info.innerHTML = `
+            <span class="featured-tag">馃敟 鐑崠鎺ㄨ崘</span>
+            <h2>${product.fullName || product.name}</h2>
+            <ul class="featured-list">
+                ${(product.features || []).slice(0, 4).map(f => `<li>鉁?${f}</li>`).join('')}
+            </ul>
+            <a href="product.html?id=${product.id}" class="featured-btn">绔嬪嵆璇㈢洏 鈫?/a>
+        `;
+    }
+    if (visual) {
+        visual.innerHTML = product.image
+            ? `<img src="${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:contain;border-radius:12px;padding:20px;">`
+            : `<div class="fv-placeholder">${product.id}</div>`;
+    }
+}
+
+function updateCarouselLinks(products) {
+    const btns = document.querySelectorAll('.hero-btn');
+    if (btns.length > 0 && products.length > 0) {
+        btns[0].href = 'product.html?id=' + products[0].id;
+    }
+}
