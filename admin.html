@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wanhong Tech Admin</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:#1a1a2e;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.card{background:#fff;border-radius:20px;padding:44px 40px;width:400px;max-width:90vw;box-shadow:0 25px 80px rgba(0,0,0,.4);text-align:center}
+.logo{width:100px;height:100px;border-radius:50%;background:#fff5eb;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.logo img{height:64px;width:auto}
+h1{font-size:24px;margin-bottom:4px}
+.sub{color:#888;font-size:14px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #eee}
+.tab-bar{display:flex;margin-bottom:20px;border:1px solid #ddd;border-radius:8px;overflow:hidden}
+.tab{flex:1;padding:10px;border:none;background:#f5f5f7;cursor:pointer;font-size:13px;color:#888}
+.tab.active{background:#FF6A00;color:#fff}
+.form{display:flex;flex-direction:column;gap:14px}
+label{font-size:12px;font-weight:600;color:#555;text-align:left;text-transform:uppercase}
+input{padding:10px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none}
+input:focus{border-color:#FF6A00}
+button.btn{padding:12px;background:#FF6A00;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer}
+button.btn:hover{background:#e55e00}
+.hint{font-size:12px;color:#aaa;margin-top:-4px}
+.error{display:none;padding:10px;background:#fff0f0;color:#d00;border-radius:8px;font-size:13px;margin-top:12px}
+.dashboard{display:none;width:100%;min-height:100vh;background:#f0f2f5}
+.top{background:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd}
+.top h2{font-size:16px}
+.logout{background:none;border:1px solid #ddd;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:12px;color:#d00}
+.main{padding:24px;max-width:900px;margin:0 auto}
+.main h3{font-size:18px;margin-bottom:12px}
+.info{background:#fff;border-radius:12px;padding:20px;border:1px solid #ddd}
+.info p{color:#666;margin:4px 0;font-size:14px}
+.btn-group{margin-top:16px;display:flex;gap:10px}
+.btn-sm{padding:8px 20px;border:1px solid #ddd;border-radius:6px;background:#fff;cursor:pointer;font-size:13px}
+.btn-sm.primary{background:#FF6A00;color:#fff;border-color:#FF6A00}
+</style>
+</head>
+<body>
+
+<div id="loginPage">
+<div class="card">
+  <div class="logo"><img src="../assets/logo.png" alt="Wanhong"></div>
+  <h1>Wanhong Technology</h1>
+  <p class="sub">Huizhou Wanhong Technology Co., Ltd</p>
+
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab('pass')">Password</button>
+    <button class="tab" onclick="switchTab('token')">Token</button>
+  </div>
+
+  <div id="passForm" class="form">
+    <div><label>Username</label><input type="text" id="loginUser" placeholder="admin"></div>
+    <div><label>Password</label><input type="password" id="loginPass" placeholder="wanhong888" onkeydown="if(event.key==='Enter') doLogin()"></div>
+    <button class="btn" onclick="doLogin()">Sign In</button>
+    <p class="hint">Default: admin / wanhong888</p>
+  </div>
+
+  <div id="tokenForm" class="form" style="display:none">
+    <div><label>GitHub Token</label><input type="password" id="loginToken" placeholder="ghp_xxxxxxxxxxxx" onkeydown="if(event.key==='Enter') doTokenLogin()"></div>
+    <button class="btn" onclick="doTokenLogin()">Sign In</button>
+    <p class="hint">Use a GitHub token with repo scope</p>
+  </div>
+
+  <div id="loginError" class="error"></div>
+</div>
+</div>
+
+<div id="dashboard" class="dashboard">
+  <div class="top">
+    <h2>万鸿科技 后台管理</h2>
+    <button class="logout" onclick="doLogout()">退出登录</button>
+  </div>
+  <div class="main">
+    <h3>控制台</h3>
+    <div class="info">
+      <p>欢迎使用万鸿科技后台管理系统。</p>
+      <p>使用 GitHub Token 登录后可直接发布产品数据到网站。</p>
+    </div>
+    <div id="prodInfo" style="margin-top:16px;"></div>
+    <div class="btn-group">
+      <button class="btn-sm primary" onclick="window.open('https://pzhenhai7.github.io/wanhong-tech','_blank')">查看网站</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab switch
+function switchTab(t) {
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  if (t === 'pass') {
+    document.querySelectorAll('.tab')[0].classList.add('active');
+    document.getElementById('passForm').style.display = 'flex';
+    document.getElementById('tokenForm').style.display = 'none';
+  } else {
+    document.querySelectorAll('.tab')[1].classList.add('active');
+    document.getElementById('passForm').style.display = 'none';
+    document.getElementById('tokenForm').style.display = 'flex';
+  }
+  document.getElementById('loginError').style.display = 'none';
+}
+
+function showError(msg) {
+  var err = document.getElementById('loginError');
+  err.textContent = msg;
+  err.style.display = 'block';
+}
+
+// Password login
+function doLogin() {
+  var user = document.getElementById('loginUser').value.trim();
+  var pass = document.getElementById('loginPass').value.trim();
+  if (user === 'admin' && pass === 'wanhong888') {
+    sessionStorage.setItem('wanhong_admin', 'local');
+    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadProducts();
+  } else {
+    showError('账号或密码错误');
+  }
+}
+
+// Token login
+function doTokenLogin() {
+  var token = document.getElementById('loginToken').value.trim();
+  if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
+    showError('Token 格式无效（需以 ghp_ 或 github_pat_ 开头）');
+    return;
+  }
+  sessionStorage.setItem('wanhong_admin', 'github:' + token);
+  APP_TOKEN = token;
+  document.getElementById('loginPage').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  loadProducts();
+}
+
+var APP_TOKEN = '';
+
+function doLogout() {
+  sessionStorage.removeItem('wanhong_admin');
+  APP_TOKEN = '';
+  document.getElementById('loginPage').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+}
+
+// Load products
+async function loadProducts() {
+  var el = document.getElementById('prodInfo');
+  try {
+    var resp = await fetch('../data/products.json?_=' + Date.now());
+    var data = await resp.json();
+    var count = (data.products || []).length;
+    el.innerHTML = '<div class="info"><p>已加载产品: <strong>' + count + '</strong> 个</p></div>';
+  } catch(e) {
+    el.innerHTML = '<div class="info"><p>无法加载产品数据。</p></div>';
+  }
+}
+
+// Auto login
+(function() {
+  var saved = sessionStorage.getItem('wanhong_admin');
+  if (saved) {
+    if (saved.startsWith('github:')) {
+      APP_TOKEN = saved.substring(7);
+    }
+    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadProducts();
+  }
+})();
+</script>
+</body>
+</html>
