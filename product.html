@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>浜у搧璇︽儏 鈥?鎯犲窞甯備竾娉撶鎶€鏈夐檺鍏徃</title>
+    <title>产品详情 — 惠州市万鸿科技有限公司</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -82,19 +82,19 @@
                 <img src="assets/logo.png" alt="万鸿科技" class="nav-logo-img">
             </a>
             <ul class="nav-menu">
-                <li><a href="index.html">棣栭〉</a></li>
-                <li><a href="index.html#products">浜у搧</a></li>
-                <li><a href="index.html#about">鍏充簬</a></li>
-                <li><a href="index.html#contact">鑱旂郴</a></li>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="index.html#products">产品</a></li>
+                <li><a href="index.html#about">关于</a></li>
+                <li><a href="index.html#contact">联系</a></li>
             </ul>
             <div class="nav-actions">
                 <a href="cart.html" class="nav-action" style="position:relative;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
                     <span id="cartBadge" style="position:absolute;top:-6px;right:-8px;background:#FF6A00;color:#fff;font-size:10px;font-weight:600;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;">0</span>
                 </a>
-                <a href="tel:13682629862" class="nav-action" style="font-size:13px;color:var(--orange);font-weight:500;">馃摓 13682629862</a>
+                <a href="tel:13682629862" class="nav-action" style="font-size:13px;color:var(--orange);font-weight:500;">📞 13682629862</a>
             </div>
-            <button class="nav-toggle" aria-label="鑿滃崟">
+            <button class="nav-toggle" aria-label="菜单">
                 <span></span><span></span>
             </button>
         </div>
@@ -102,9 +102,9 @@
 
     <!-- ===== Product Detail ===== -->
     <div class="pd-wrap" id="pdWrap">
-        <a href="index.html" class="pd-back">鈫?杩斿洖棣栭〉</a>
+        <a href="index.html" class="pd-back">← 返回首页</a>
         <div id="pdContent">
-            <div class="pd-loading">鍔犺浇浜у搧淇℃伅涓?..</div>
+            <div class="pd-loading">加载产品信息中...</div>
         </div>
     </div>
 
@@ -114,27 +114,27 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <img src="assets/logo.png" alt="万鸿科技" class="footer-logo-img">
-                    <p>涓撴敞鐢靛瓙鐑熺數姹?路 鏃犱汉鏈虹數姹犵爺鍙戝埗閫?/p>
+                    <p>专注电子烟电池 · 无人机电池研发制造</p>
                 </div>
                 <div class="footer-col">
-                    <h5>浜у搧</h5>
+                    <h5>产品</h5>
                     <ul>
-                        <li><a href="product.html?id=18400">18400 鐢靛瓙鐑熺數姹?/a></li>
-                        <li><a href="product.html?id=18650">18650 楂樺€嶇巼鐢垫睜</a></li>
-                        <li><a href="product.html?id=drone">鏃犱汉鏈烘櫤鑳界數姹?/a></li>
+                        <li><a href="product.html?id=18400">18400 电子烟电池</a></li>
+                        <li><a href="product.html?id=18650">18650 高倍率电池</a></li>
+                        <li><a href="product.html?id=drone">无人机智能电池</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h5>鑱旂郴</h5>
+                    <h5>联系</h5>
                     <ul>
-                        <li>馃摓 13682629862</li>
-                        <li>馃懁 寤栦竾娆ｏ紙鎬荤粡鐞嗭級</li>
-                        <li>馃摟 info@wanhong-tech.com</li>
+                        <li>📞 13682629862</li>
+                        <li>廖万欣（总经理）</li>
+                        <li>✉️ info@wanhong-tech.com</li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 鎯犲窞甯備竾娉撶鎶€鏈夐檺鍏徃</p>
+                <p>&copy; 2026 惠州市万鸿科技有限公司</p>
             </div>
         </div>
     </footer>
@@ -169,7 +169,7 @@
                 info.prepend(el);
             }
             el.style.display = 'block';
-            el.textContent = '鉁?' + text;
+            el.textContent = '✓ ' + text;
             el.style.background = '#00A65A';
             clearTimeout(el._timer);
             el._timer = setTimeout(() => { el.style.display = 'none'; }, 3000);
@@ -180,7 +180,7 @@
             const qty = parseInt(document.getElementById('pdQty')?.value) || 1;
             cart.push({ id: currentProduct.id, name: currentProduct.name, price: currentProduct.price, qty });
             saveCart();
-            showMsg('宸叉坊鍔?' + qty + ' 浠讹紝鍗冲皢璺宠浆缁撶畻...');
+            showMsg('已添加 ' + qty + ' 件，即将跳转结算...');
             setTimeout(() => { window.location.href = 'cart.html'; }, 800);
         }
 
@@ -189,7 +189,7 @@
             const qty = parseInt(document.getElementById('pdQty')?.value) || 1;
             cart.push({ id: currentProduct.id, name: currentProduct.name, price: currentProduct.price, qty });
             saveCart();
-            showMsg('宸叉坊鍔?' + qty + ' 浠?' + currentProduct.name + ' 鍒拌喘鐗╄溅');
+            showMsg('已添加 ' + qty + ' 件 ' + currentProduct.name + ' 到购物车');
         }
 
         async function loadProduct() {
@@ -199,9 +199,9 @@
             if (!id) {
                 document.getElementById('pdContent').innerHTML = `
                     <div class="pd-notfound">
-                        <h2>鏈寚瀹氫骇鍝?/h2>
-                        <p>璇蜂粠浜у搧鍒楄〃涓€夋嫨涓€涓骇鍝?/p>
-                        <a href="index.html#products">鈫?鍓嶅線浜у搧鍒楄〃</a>
+                        <h2>未指定产品</h2>
+                        <p>请从产品列表中选择一个产品</p>
+                        <a href="index.html#products">→ 前往产品列表</a>
                     </div>`;
                 return;
             }
@@ -214,23 +214,23 @@
                 if (!product) {
                     document.getElementById('pdContent').innerHTML = `
                         <div class="pd-notfound">
-                            <h2>浜у搧鏈壘鍒?/h2>
-                            <p>浜у搧 "${id}" 涓嶅瓨鍦?/p>
-                            <a href="index.html#products">鈫?鏌ョ湅鎵€鏈変骇鍝?/a>
+                            <h2>产品未找到</h2>
+                            <p>产品 "${id}" 不存在</p>
+                            <a href="index.html#products">→ 查看所有产品</a>
                         </div>`;
                     return;
                 }
 
                 currentProduct = product;
                 renderProduct(product);
-                document.title = product.name + ' 鈥?鎯犲窞甯備竾娉撶鎶€鏈夐檺鍏徃';
+                document.title = product.name + ' — 惠州市万鸿科技有限公司';
                 updateCartBadge();
             } catch (e) {
                 document.getElementById('pdContent').innerHTML = `
                     <div class="pd-notfound">
-                        <h2>鍔犺浇澶辫触</h2>
+                        <h2>加载失败</h2>
                         <p>无法加载产品数据，请稍后重试</p>
-                        <a href="index.html">鈫?杩斿洖棣栭〉</a>
+                        <a href="index.html">← 返回首页</a>
                     </div>`;
             }
         }
@@ -259,16 +259,16 @@
                         </div>
                     </div>
                     <div class="pd-info">
-                        <span class="pd-tag">${p.tag ? '馃敟 ' + p.tag : ''}</span>
+                        <span class="pd-tag">${p.tag ? '🔥 ' + p.tag : ''}</span>
                         <h1 class="pd-title">${p.fullName || p.name}</h1>
-                        <div class="pd-price">楼 ${p.price.toFixed(2)}</div>
-                        <div class="pd-price-desc">${p.priceDesc || '鍗曚环 / 鍚◣鍚繍璐癸紝鎵归噺浠锋牸鍙﹁'}</div>
+                        <div class="pd-price">¥ ${p.price.toFixed(2)}</div>
+                        <div class="pd-price-desc">${p.priceDesc || '单价 / 含税含运费，批量价格另议'}</div>
 
                         <div style="display:none;" id="pdSuccess"></div>
 
                         ${hasFeatures ? `
                         <div class="pd-features">
-                            ${p.features.map(f => `<div class="pd-feature"><span class="pd-feature-icon">鉁?/span> ${f}</div>`).join('')}
+                            ${p.features.map(f => `<div class="pd-feature"><span class="pd-feature-icon">✓</span> ${f}</div>`).join('')}
                         </div>` : ''}
 
                         <div class="pd-specs">${specRows}</div>
@@ -281,25 +281,26 @@
                         <div class="pd-divider"></div>
 
                         <div class="pd-qty">
-                            <label>鏁伴噺</label>
+                            <label>数量</label>
                             <input type="number" id="pdQty" value="1" min="1" step="1">
-                            <span>浠?/span>
+                            <span>件</span>
                         </div>
 
                         <div class="pd-btns">
-                            <button class="pd-btn-primary" onclick="buyNow()">绔嬪嵆璐拱</button>
-                            <button class="pd-btn-secondary" onclick="addToCart()">鍔犲叆璐墿杞?/button>
+                            <button class="pd-btn-primary" onclick="buyNow()">立即购买</button>
+                            <button class="pd-btn-secondary" onclick="addToCart()">加入购物车</button>
                         </div>
 
                         <div class="pd-desc">
-                            <h3>浜у搧鎻忚堪</h3>
+                            <h3>产品描述</h3>
                             ${p.fullDescription ? p.fullDescription : '<p>' + (p.description || '') + '</p>'}
                         </div>
 
                         <div class="pd-contact">
                             <div class="pd-contact-text">
-                                鏈変换浣曠枒闂紵璇疯仈绯?<strong>寤栦竾娆ｏ紙鎬荤粡鐞嗭級</strong> 鈥?鎴戜滑灏嗗湪 24 灏忔椂鍐呭洖澶?                            </div>
-                            <a href="tel:13682629862" class="pd-contact-btn">馃摓 13682629862</a>
+                                有任何疑问？请联系 <strong>廖万欣（总经理）</strong> — 我们将在 24 小时内回复
+                            </div>
+                            <a href="tel:13682629862" class="pd-contact-btn">📞 13682629862</a>
                         </div>
                     </div>
                 </div>
