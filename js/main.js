@@ -1,4 +1,4 @@
-// 鎯犲窞甯備竾娉撶鎶€鏈夐檺鍏徃 鈥?鍏ㄧ珯浜や簰
+﻿// 鎯犲窞甯備竾娉撶鎶€鏈夐檺鍏徃 鈥?鍏ㄧ珯浜や簰
 
 // 璐墿杞﹁鏍?function updateCartBadge() {
     const badge = document.getElementById('cartBadge');
