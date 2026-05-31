@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>涓囨硴绉戞妧 鈥?鍚庡彴绠＄悊</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div id="app">
+    <!-- ===== Login Page ===== -->
+    <div id="loginPage" class="login-page">
+        <div class="login-card">
+            <div class="login-logo">
+                <img src="../assets/logo.png" alt="涓囨硴绉戞妧">
+            </div>
+            <h1 class="login-title">鍚庡彴绠＄悊绯荤粺</h1>
+            <p class="login-desc">鎯犲窞甯備竾娉撶鎶€鏈夐檺鍏徃</p>
+
+            <div class="login-tabs">
+                <button class="login-tab active" data-tab="password">瀵嗙爜鐧诲綍</button>
+                <button class="login-tab" data-tab="token">Token鐧诲綍</button>
+            </div>
+
+            <!-- Password Login -->
+            <div id="loginPassword" class="login-form">
+                <div class="form-group">
+                    <label>绠＄悊鍛樿处鍙?/label>
+                    <input type="text" id="loginUser" placeholder="璇疯緭鍏ヨ处鍙? class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>瀵嗙爜</label>
+                    <input type="password" id="loginPass" placeholder="璇疯緭鍏ュ瘑鐮? class="form-input" onkeydown="if(event.key==='Enter') loginWithPassword()">
+                </div>
+                <button class="login-btn" onclick="loginWithPassword()">鐧?褰?/button>
+                <p class="login-hint">榛樿璐﹀彿: admin / 瀵嗙爜: wanhong888</p>
+            </div>
+
+            <!-- Token Login -->
+            <div id="loginToken" class="login-form" style="display:none;">
+                <div class="form-group">
+                    <label>GitHub Token</label>
+                    <input type="password" id="loginTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="form-input" onkeydown="if(event.key==='Enter') loginWithToken()">
+                </div>
+                <p class="login-hint" style="margin-bottom:12px;">浣跨敤GitHub Token鍙洿鎺ョ鐞嗕粨搴撴枃浠?/p>
+                <button class="login-btn" onclick="loginWithToken()">鐧?褰?/button>
+            </div>
+
+            <div id="loginError" class="login-error"></div>
+        </div>
+    </div>
+
+    <!-- ===== Dashboard ===== -->
+    <div id="dashboard" class="dashboard" style="display:none;">
+
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <h2>涓囨硴绉戞妧 路 鍚庡彴绠＄悊</h2>
+            </div>
+            <div class="topbar-right">
+                <span class="topbar-mode" id="loginModeBadge">鏈湴妯″紡</span>
+                <button class="topbar-btn" onclick="syncFromGithub()" id="syncBtn">馃攧 浠嶨itHub鍚屾</button>
+                <button class="topbar-btn" onclick="publishToGithub()" id="publishBtn">馃摛 鍙戝竷鍒癎itHub</button>
+                <button class="topbar-btn topbar-logout" onclick="logout()">閫€鍑?/button>
+            </div>
+        </header>
+
+        <!-- Status Bar -->
+        <div class="status-bar" id="statusBar" style="display:none;">
+            <span id="statusText"></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <nav class="sidebar">
+                <button class="sidebar-item active" data-page="dashboard-overview">
+                    <span>馃搳</span> 鎺у埗鍙?                </button>
+                <button class="sidebar-item" data-page="products">
+                    <span>馃摝</span> 浜у搧绠＄悊
+                </button>
+                <button class="sidebar-item" data-page="orders">
+                    <span>馃搵</span> 璁㈠崟绠＄悊
+                </button>
+                <button class="sidebar-item" data-page="settings">
+                    <span>鈿欙笍</span> 缃戠珯璁剧疆
+                </button>
+            </nav>
+
+            <!-- Content Area -->
+            <div class="content-area">
+
+                <!-- ===== Overview ===== -->
+                <div id="page-dashboard-overview" class="page active">
+                    <h1 class="page-title">鎺у埗鍙?/h1>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-num" id="statProducts">0</div>
+                            <div class="stat-label">浜у搧鎬绘暟</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num" id="statOrders">0</div>
+                            <div class="stat-label">璁㈠崟鏁?/div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num" id="statCategories">0</div>
+                            <div class="stat-label">浜у搧鍒嗙被</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num" id="statStatus" style="font-size:14px;">鏈彂甯?/div>
+                            <div class="stat-label">鍙戝竷鐘舵€?/div>
+                        </div>
+                    </div>
+
+                    <div class="section-title">蹇€熸搷浣?/div>
+                    <div class="quick-actions">
+                        <button class="quick-action" onclick="switchPage('products'); showAddProduct()">
+                            <span class="qa-icon">鉃?/span>
+                            <span class="qa-text">娣诲姞浜у搧</span>
+                        </button>
+                        <button class="quick-action" onclick="publishToGithub()">
+                            <span class="qa-icon">馃摛</span>
+                            <span class="qa-text">鍙戝竷缃戠珯</span>
+                        </button>
+                        <button class="quick-action" onclick="window.open('https://pzhenhai7.github.io/wanhong-tech','_blank')">
+                            <span class="qa-icon">馃寪</span>
+                            <span class="qa-text">鏌ョ湅缃戠珯</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ===== Products ===== -->
+                <div id="page-products" class="page">
+                    <div class="page-header">
+                        <h1 class="page-title">浜у搧绠＄悊</h1>
+                        <button class="btn btn-primary" onclick="showAddProduct()">+ 娣诲姞浜у搧</button>
+                    </div>
+
+                    <div class="product-list" id="productList">
+                        <!-- Rendered by JS -->
+                    </div>
+
+                    <!-- Add/Edit Product Modal -->
+                    <div class="modal-overlay" id="productModal" style="display:none;" onclick="closeModalOnOverlay(event)">
+                        <div class="modal">
+                            <div class="modal-header">
+                                <h3 id="modalTitle">娣诲姞浜у搧</h3>
+                                <button class="modal-close" onclick="closeModal()">鉁?/button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" id="editProductId">
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>浜у搧ID *</label>
+                                        <input type="text" id="pf_id" class="form-input" placeholder="渚嬪: 18400, 18650">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>浜у搧鍚嶇О *</label>
+                                        <input type="text" id="pf_name" class="form-input" placeholder="渚嬪: 18400 鐢靛瓙鐑熺數姹?>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>鍓爣棰?/label>
+                                        <input type="text" id="pf_subtitle" class="form-input" placeholder="1100mAh 路 閽?涓夊厓 路 5A/8A">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>鍒嗙被</label>
+                                        <select id="pf_category" class="form-input">
+                                            <option value="鐢靛瓙鐑熺數姹?>鐢靛瓙鐑熺數姹?/option>
+                                            <option value="鏃犱汉鏈虹數姹?>鏃犱汉鏈虹數姹?/option>
+                                            <option value="瀹氬埗鏈嶅姟">瀹氬埗鏈嶅姟</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>浠锋牸 (楼) *</label>
+                                        <input type="number" id="pf_price" class="form-input" step="0.01" placeholder="13.00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>鏍囩</label>
+                                        <input type="text" id="pf_tag" class="form-input" placeholder="鏂板搧 / 鐑攢 / 涓撲笟绾?>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>浜у搧鎻忚堪</label>
+                                    <textarea id="pf_description" class="form-input form-textarea" rows="3" placeholder="绠€鐭殑浜у搧鎻忚堪"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>璇︾粏鎻忚堪 (HTML)</label>
+                                    <textarea id="pf_fullDesc" class="form-input form-textarea" rows="4" placeholder="<p>璇︾粏鐨勪骇鍝佹弿杩癏TML</p>"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>搴旂敤棰嗗煙 (閫楀彿鍒嗛殧)</label>
+                                    <input type="text" id="pf_apps" class="form-input" placeholder="鐢靛瓙鐑? POD灏忕儫">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>浜у搧鍥剧墖URL</label>
+                                    <div class="input-row">
+                                        <input type="text" id="pf_image" class="form-input" placeholder="assets/product-xxx.jpg">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" id="pf_featured"> 棣栭〉鎺ㄨ崘
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Specs Editor -->
+                                <div class="form-group">
+                                    <label>瑙勬牸鍙傛暟</label>
+                                    <div id="specEditor">
+                                        <div class="spec-row">
+                                            <input class="form-input spec-key" placeholder="鍙傛暟鍚?>
+                                            <input class="form-input spec-val" placeholder="鍙傛暟鍊?>
+                                            <button class="btn-sm btn-add" onclick="addSpecRow()">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="modalError" class="form-error"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-cancel" onclick="closeModal()">鍙栨秷</button>
+                                <button class="btn btn-primary" onclick="saveProduct()">淇濆瓨浜у搧</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Orders ===== -->
+                <div id="page-orders" class="page">
+                    <h1 class="page-title">璁㈠崟绠＄悊</h1>
+                    <div id="ordersContent">
+                        <div class="empty-state">
+                            <p>璁㈠崟鏁版嵁瀛樺偍鍦ㄧ敤鎴锋祻瑙堝櫒鏈湴锛岀洰鍓嶆殏涓嶆敮鎸佷簯绔悓姝ャ€?/p>
+                            <p style="font-size:13px;color:var(--text-light);margin-top:8px;">寤鸿锛氬悗缁彲闆嗘垚琛ㄥ崟鎻愪氦鍔熻兘锛屽皢璁㈠崟鍙戦€佸埌鎮ㄧ殑閭銆?/p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== Settings ===== -->
+                <div id="page-settings" class="page">
+                    <h1 class="page-title">缃戠珯璁剧疆</h1>
+
+                    <div class="settings-section">
+                        <h3>鍏徃淇℃伅</h3>
+                        <div class="form-group">
+                            <label>鍏徃鍚嶇О</label>
+                            <input type="text" id="sf_companyName" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>鑱旂郴鐢佃瘽</label>
+                            <input type="text" id="sf_phone" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>閭</label>
+                            <input type="text" id="sf_email" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>鑱旂郴浜?/label>
+                            <input type="text" id="sf_contactPerson" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label>鍦板潃</label>
+                            <input type="text" id="sf_address" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>GitHub 閮ㄧ讲</h3>
+                        <div class="form-group">
+                            <label>GitHub Token</label>
+                            <input type="password" id="sf_githubToken" class="form-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+                            <p class="form-hint">鐢ㄤ簬鑷姩閮ㄧ讲鍒癎itHub Pages锛孴oken闇€鏈塺epo鏉冮檺</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveSettings()">淇濆瓨璁剧疆</button>
+                        <span id="settingsStatus" style="margin-left:12px;font-size:13px;"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
