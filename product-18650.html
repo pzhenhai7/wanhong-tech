@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18650 3000mAh 楂樺€嶇巼閿傜數姹?鈥?鎯犲窞甯備竾娉撶鎶€鏈夐檺鍏徃</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .pd-wrap { max-width:1000px; margin:120px auto 60px; padding:0 24px; }
+        .pd-back { display:inline-flex; align-items:center; gap:6px; font-size:14px; color:var(--text-light); margin-bottom:32px; transition:color .3s; }
+        .pd-back:hover { color:var(--orange); }
+        .pd-layout { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+        .pd-visual { position:sticky; top:100px; }
+        .pd-visual-box {
+            aspect-ratio:1; max-width:420px;
+            background:linear-gradient(135deg,#f8f8f8,#e8e8e8); border-radius:16px;
+            border:1px solid var(--border);
+            display:flex; align-items:center; justify-content:center;
+            box-shadow:var(--shadow); overflow:hidden;
+        }
+        .pd-visual-inner {
+            text-align:center;
+        }
+        .pd-visual-inner .pd-v-model {
+            font-size:48px; font-weight:700; color:rgba(0,0,0,.08);
+            font-family:var(--font-display); letter-spacing:-1px;
+        }
+        .pd-visual-inner .pd-v-cap {
+            font-size:16px; color:rgba(0,0,0,.15); font-weight:500; margin-top:4px;
+        }
+        .pd-visual-box.has-img { background:#fff; }
+        .pd-tag { display:inline-block; font-size:11px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--orange); margin-bottom:12px; }
+        .pd-title { font-family:var(--font-display); font-size:clamp(24px,3vw,34px); font-weight:700; letter-spacing:-.5px; line-height:1.2; margin-bottom:20px; }
+        .pd-price { font-size:32px; font-weight:700; color:var(--text); margin-bottom:4px; }
+        .pd-price-desc { font-size:14px; color:var(--text-light); margin-bottom:24px; }
+        .pd-divider { height:1px; background:var(--border); margin:24px 0; }
+        .pd-specs { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:32px; }
+        .pd-spec { padding:12px 16px; background:var(--bg); border-radius:8px; }
+        .pd-spec-label { font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--text-light); margin-bottom:2px; }
+        .pd-spec-value { font-size:15px; font-weight:600; color:var(--text); }
+        .pd-qty { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+        .pd-qty label { font-size:14px; color:var(--text-light); }
+        .pd-qty input { width:100px; padding:8px 12px; border:1px solid var(--border); border-radius:8px; font-size:15px; text-align:center; outline:none; }
+        .pd-qty input:focus { border-color:var(--orange); }
+        .pd-qty span { font-size:13px; color:var(--text-light); }
+        .pd-btns { display:flex; gap:12px; }
+        .pd-btn-primary { flex:1; padding:14px; background:var(--orange); color:#fff; border:none; border-radius:50px; font-size:15px; font-weight:500; cursor:pointer; text-align:center; transition:all .3s; }
+        .pd-btn-primary:hover { background:#e55e00; transform:scale(1.02); }
+        .pd-btn-secondary { flex:1; padding:14px; background:#fff; color:var(--text); border:1.5px solid var(--border); border-radius:50px; font-size:15px; font-weight:500; cursor:pointer; text-align:center; transition:all .3s; text-decoration:none; display:flex; align-items:center; justify-content:center; }
+        .pd-btn-secondary:hover { border-color:var(--orange); color:var(--orange); }
+        .pd-success { display:none; background:#00A65A; color:#fff; padding:14px 20px; border-radius:8px; margin-bottom:20px; font-size:14px; text-align:center; }
+        .pd-desc { margin-top:80px; padding-top:40px; border-top:1px solid var(--border); }
+        .pd-desc h3 { font-size:18px; font-weight:600; margin-bottom:16px; }
+        .pd-desc p { font-size:14px; color:var(--text-light); line-height:1.8; max-width:600px; }
+        .pd-contact { margin-top:40px; padding:24px; background:var(--bg); border-radius:12px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+        .pd-contact-text { font-size:14px; color:var(--text-light); }
+        .pd-contact-text strong { color:var(--text); font-weight:600; }
+        .pd-contact-btn { padding:10px 24px; background:var(--orange); color:#fff; border-radius:50px; font-size:13px; font-weight:500; text-decoration:none; transition:all .3s; }
+        .pd-contact-btn:hover { background:#e55e00; }
+        .pd-application { margin-top:40px; }
+        .pd-application h3 { font-size:18px; font-weight:600; margin-bottom:16px; }
+        .pd-app-tags { display:flex; gap:8px; flex-wrap:wrap; }
+        .pd-app-tag { padding:6px 16px; background:var(--orange-light); color:var(--orange); border-radius:20px; font-size:13px; font-weight:500; }
+        @media (max-width:768px) {
+            .pd-layout { grid-template-columns:1fr; gap:40px; }
+            .pd-visual { position:static; }
+            .pd-visual-box { max-width:100%; }
+            .pd-specs { grid-template-columns:1fr; }
+            .pd-btns { flex-direction:column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Navigation ===== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.png" alt="涓囨硴绉戞妧" class="nav-logo-img">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">棣栭〉</a></li>
+                <li><a href="index.html#products">浜у搧</a></li>
+                <li><a href="index.html#about">鍏充簬</a></li>
+                <li><a href="index.html#contact">鑱旂郴</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="cart.html" class="nav-action" style="position:relative;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                    <span id="cartBadge" style="position:absolute;top:-6px;right:-8px;background:#FF6A00;color:#fff;font-size:10px;font-weight:600;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;">0</span>
+                </a>
+                <a href="tel:13682629862" class="nav-action" style="font-size:13px;color:var(--orange);font-weight:500;">馃摓 13682629862</a>
+            </div>
+            <button class="nav-toggle" aria-label="鑿滃崟">
+                <span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== Product Detail ===== -->
+    <div class="pd-wrap">
+        <a href="index.html" class="pd-back">鈫?杩斿洖棣栭〉</a>
+
+        <div class="pd-layout">
+            <!-- Visual -->
+            <div class="pd-visual">
+                <div class="pd-visual-box">
+                    <div class="pd-visual-inner">
+                        <div class="pd-v-model">18650</div>
+                        <div class="pd-v-cap">3000mAh 楂樺€嶇巼</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info -->
+            <div class="pd-info">
+                <span class="pd-tag">馃敟 鐑攢鐖嗘</span>
+                <h1 class="pd-title">18650 3000mAh<br>楂樺€嶇巼閿傜數姹?/h1>
+                <div class="pd-price">楼 18.00</div>
+                <div class="pd-price-desc">鍗曚环 / 鍚◣鍚繍璐癸紝鎵归噺浠锋牸鍙﹁</div>
+
+                <div class="pd-success" id="pdSuccess" style="display:none;"></div>
+
+                <div class="pd-specs">
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">瀹归噺</div>
+                        <div class="pd-spec-value">3000mAh</div>
+                    </div>
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">鏍囩О鐢靛帇</div>
+                        <div class="pd-spec-value">3.7V</div>
+                    </div>
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">鏉愭枡浣撶郴</div>
+                        <div class="pd-spec-value">閽撮吀閿?/ NMC</div>
+                    </div>
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">鎸佺画鏀剧數</div>
+                        <div class="pd-spec-value">20A</div>
+                    </div>
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">宄板€兼斁鐢?/div>
+                        <div class="pd-spec-value">40A</div>
+                    </div>
+                    <div class="pd-spec">
+                        <div class="pd-spec-label">寰幆瀵垮懡</div>
+                        <div class="pd-spec-value">&gt;500 娆?/div>
+                    </div>
+                </div>
+
+                <div class="pd-application">
+                    <h3>閫傜敤棰嗗煙</h3>
+                    <div class="pd-app-tags">
+                        <span class="pd-app-tag">鐢靛瓙鐑?/span>
+                        <span class="pd-app-tag">澶х儫闆捐澶?/span>
+                        <span class="pd-app-tag">鎵嬬數绛?/span>
+                        <span class="pd-app-tag">鐢靛姩宸ュ叿</span>
+                        <span class="pd-app-tag">绉诲姩鐢垫簮</span>
+                    </div>
+                </div>
+
+                <div class="pd-divider"></div>
+
+                <div class="pd-qty">
+                    <label>鏁伴噺</label>
+                    <input type="number" id="pdQty" value="1" min="1" step="1">
+                    <span>浠?/span>
+                </div>
+
+                <div class="pd-btns">
+                    <button class="pd-btn-primary" onclick="buyNow()">绔嬪嵆璐拱</button>
+                    <button class="pd-btn-secondary" onclick="addToCart()">鍔犲叆璐墿杞?/button>
+                </div>
+
+                <div class="pd-desc">
+                    <h3>浜у搧鎻忚堪</h3>
+                    <p>18650 楂樺€嶇巼閿傜數姹狅紝閲囩敤楂樺搧璐ㄩ挻閰搁攤姝ｆ瀬鏉愭枡锛?000mAh瀹归噺瀵嗗害锛屾敮鎸?20A 鎸佺画鏀剧數銆?0A 宄板€兼斁鐢垫€ц兘銆傞€傜敤浜庡ぇ鍔熺巼鐢靛瓙鐑熴€佺數鍔ㄥ伐鍏风瓑璁惧銆傚唴缃繃鍏呫€佽繃鏀俱€佺煭璺€佹俯鎺у閲嶄繚鎶わ紝閫氳繃CE銆丗CC璁よ瘉锛屽搧璐ㄧǔ瀹氬彲闈犮€?/p>
+                </div>
+
+                <div class="pd-contact">
+                    <div class="pd-contact-text">
+                        鏈変换浣曠枒闂紵璇疯仈绯?<strong>寤栦竾娆ｏ紙鎬荤粡鐞嗭級</strong> 鈥?鎴戜滑灏嗗湪 24 灏忔椂鍐呭洖澶?                    </div>
+                    <a href="tel:13682629862" class="pd-contact-btn">馃摓 13682629862</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="涓囨硴绉戞妧" class="footer-logo-img">
+                    <p>涓撴敞鐢靛瓙鐑熺數姹?路 鏃犱汉鏈虹數姹犵爺鍙戝埗閫?/p>
+                </div>
+                <div class="footer-col">
+                    <h5>浜у搧</h5>
+                    <ul>
+                        <li><a href="product-18400.html">18400 鐢靛瓙鐑熺數姹?/a></li>
+                        <li><a href="product-18650.html">18650 楂樺€嶇巼鐢垫睜</a></li>
+                        <li><a href="product-drone.html">鏃犱汉鏈烘櫤鑳界數姹?/a></li>
+                        <li><a href="product-oem.html">OEM/ODM 瀹氬埗</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h5>鑱旂郴</h5>
+                    <ul>
+                        <li>馃摓 13682629862</li>
+                        <li>馃懁 寤栦竾娆ｏ紙鎬荤粡鐞嗭級</li>
+                        <li>馃摟 info@wanhong-tech.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 鎯犲窞甯備竾娉撶鎶€鏈夐檺鍏徃</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 璐墿杞︽暟鎹?        let cart = JSON.parse(localStorage.getItem('wanhong_cart') || '[]');
+
+        function saveCart() {
+            localStorage.setItem('wanhong_cart', JSON.stringify(cart));
+            updateCartBadge();
+        }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cartBadge');
+            if (badge) {
+                const total = cart.reduce((s, i) => s + i.qty, 0);
+                badge.textContent = total;
+                badge.style.display = total > 0 ? 'flex' : 'none';
+            }
+        }
+
+        function showMsg(text) {
+            const el = document.getElementById('pdSuccess');
+            el.style.display = 'block';
+            el.textContent = '鉁?' + text;
+            el.style.background = '#00A65A';
+            setTimeout(() => { el.style.display = 'none'; }, 3000);
+        }
+
+        function buyNow() {
+            const qty = parseInt(document.getElementById('pdQty').value) || 1;
+            cart.push({ id: '18650', name: '18650 3000mAh 楂樺€嶇巼閿傜數姹?, price: 18.00, qty });
+            saveCart();
+            showMsg('宸叉坊鍔?' + qty + ' 浠讹紝鍗冲皢璺宠浆缁撶畻...');
+            setTimeout(() => { window.location.href = 'cart.html'; }, 800);
+        }
+
+        function addToCart() {
+            const qty = parseInt(document.getElementById('pdQty').value) || 1;
+            cart.push({ id: '18650', name: '18650 3000mAh 楂樺€嶇巼閿傜數姹?, price: 18.00, qty });
+            saveCart();
+            showMsg('宸叉坊鍔?' + qty + ' 浠?18650 鐢垫睜鍒拌喘鐗╄溅');
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCartBadge);
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>
