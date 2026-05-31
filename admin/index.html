@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>万泓科技 — 后台管理</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>万鸿科技 — 后台管理</title>
     <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
@@ -17,10 +14,11 @@
         <div class="login-card">
             <div class="login-brand">
                 <div class="login-logo-wrap">
-                    <img src="../assets/logo.png" alt="万泓科技" class="login-logo-img">
+                    <img src="../assets/logo.png" alt="万鸿科技" class="login-logo-img">
                 </div>
-                <h1 class="login-title">万泓科技</h1>
-                <p class="login-desc">惠州市万泓科技有限公司<br><span class="login-desc-en">Huizhou Wanhong Technology Co., Ltd</span></p>
+                <h1 class="login-title">万鸿科技</h1>
+                <p class="login-desc">惠州市万鸿科技有限公司</p>
+                <p class="login-desc-en">Huizhou Wanhong Technology Co., Ltd</p>
                 <div class="login-divider"></div>
                 <p class="login-subtitle">后台管理系统</p>
             </div>
@@ -33,15 +31,15 @@
             <!-- Password Login -->
             <div id="loginPassword" class="login-form">
                 <div class="form-group">
-                    <label>管理员账号</label>
-                    <input type="text" id="loginUser" placeholder="请输入管理员账号" class="form-input">
+                    <label>账号</label>
+                    <input type="text" id="loginUser" placeholder="admin" class="form-input">
                 </div>
                 <div class="form-group">
                     <label>密码</label>
-                    <input type="password" id="loginPass" placeholder="请输入登录密码" class="form-input" onkeydown="if(event.key==='Enter') loginWithPassword()">
+                    <input type="password" id="loginPass" placeholder="wanhong888" class="form-input" onkeydown="if(event.key==='Enter') loginWithPassword()">
                 </div>
                 <button class="login-btn" onclick="loginWithPassword()">登 录</button>
-                <p class="login-hint">默认账号: admin / 密码: wanhong888</p>
+                <p class="login-hint">默认账号 admin / 密码 wanhong888</p>
             </div>
 
             <!-- Token Login -->
@@ -50,7 +48,7 @@
                     <label>GitHub Token</label>
                     <input type="password" id="loginTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="form-input" onkeydown="if(event.key==='Enter') loginWithToken()">
                 </div>
-                <p class="login-hint" style="margin-bottom:12px;">使用GitHub Token可直接管理仓库文件并发布</p>
+                <p class="login-hint" style="margin-bottom:12px;">可使用 GitHub Token 直接管理仓库并发布</p>
                 <button class="login-btn" onclick="loginWithToken()">登 录</button>
             </div>
 
@@ -64,16 +62,16 @@
         <!-- Top Bar -->
         <header class="topbar">
             <div class="topbar-left">
-                <img src="../assets/logo.png" alt="万泓科技" class="topbar-logo">
+                <img src="../assets/logo.png" alt="万鸿科技" class="topbar-logo">
                 <div class="topbar-title">
-                    <span class="topbar-name">万泓科技</span>
+                    <span class="topbar-name">万鸿科技</span>
                     <span class="topbar-sub">后台管理系统</span>
                 </div>
             </div>
             <div class="topbar-right">
                 <span class="topbar-mode" id="loginModeBadge">本地模式</span>
-                <button class="topbar-btn" onclick="syncFromGithub()" id="syncBtn">🔄 从GitHub同步</button>
-                <button class="topbar-btn" onclick="publishToGithub()" id="publishBtn">📤 发布到GitHub</button>
+                <button class="topbar-btn" onclick="syncFromGithub()" id="syncBtn">从 GitHub 同步</button>
+                <button class="topbar-btn" onclick="publishToGithub()" id="publishBtn">发布到 GitHub</button>
                 <button class="topbar-btn topbar-logout" onclick="logout()">退出</button>
             </div>
         </header>
@@ -129,15 +127,15 @@
                     <div class="section-title">快速操作</div>
                     <div class="quick-actions">
                         <button class="quick-action" onclick="switchPage('products'); showAddProduct()">
-                            <span class="qa-icon">➕</span>
+                            <span class="qa-icon">+</span>
                             <span class="qa-text">添加产品</span>
                         </button>
                         <button class="quick-action" onclick="publishToGithub()">
-                            <span class="qa-icon">📤</span>
+                            <span class="qa-icon">↑</span>
                             <span class="qa-text">发布网站</span>
                         </button>
                         <button class="quick-action" onclick="window.open('https://pzhenhai7.github.io/wanhong-tech','_blank')">
-                            <span class="qa-icon">🌐</span>
+                            <span class="qa-icon">◎</span>
                             <span class="qa-text">查看网站</span>
                         </button>
                     </div>
@@ -166,11 +164,11 @@
 
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label>产品ID *</label>
-                                        <input type="text" id="pf_id" class="form-input" placeholder="例如: 18400, 18650">
+                                        <label>产品ID</label>
+                                        <input type="text" id="pf_id" class="form-input" placeholder="例如: 18400">
                                     </div>
                                     <div class="form-group">
-                                        <label>产品名称 *</label>
+                                        <label>产品名称</label>
                                         <input type="text" id="pf_name" class="form-input" placeholder="例如: 18400 电子烟电池">
                                     </div>
                                 </div>
@@ -178,7 +176,7 @@
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label>副标题</label>
-                                        <input type="text" id="pf_subtitle" class="form-input" placeholder="1100mAh · 钴+三元 · 5A/8A">
+                                        <input type="text" id="pf_subtitle" class="form-input" placeholder="1100mAh / 钴+三元 / 5A放电">
                                     </div>
                                     <div class="form-group">
                                         <label>分类</label>
@@ -192,7 +190,7 @@
 
                                 <div class="form-row">
                                     <div class="form-group">
-                                        <label>价格 (¥) *</label>
+                                        <label>价格 (元)</label>
                                         <input type="number" id="pf_price" class="form-input" step="0.01" placeholder="13.00">
                                     </div>
                                     <div class="form-group">
@@ -207,17 +205,17 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>详细描述 (HTML)</label>
-                                    <textarea id="pf_fullDesc" class="form-input form-textarea" rows="4" placeholder="<p>详细的产品描述HTML</p>"></textarea>
+                                    <label>详细描述</label>
+                                    <textarea id="pf_fullDesc" class="form-input form-textarea" rows="4" placeholder="可使用 HTML 标签"></textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>应用领域 (逗号分隔)</label>
+                                    <label>应用领域（逗号分隔）</label>
                                     <input type="text" id="pf_apps" class="form-input" placeholder="电子烟, POD小烟">
                                 </div>
 
                                 <div class="form-group">
-                                    <label>产品图片URL</label>
+                                    <label>产品图片路径</label>
                                     <div class="input-row">
                                         <input type="text" id="pf_image" class="form-input" placeholder="assets/product-xxx.jpg">
                                         <label class="checkbox-label">
@@ -253,8 +251,7 @@
                     <h1 class="page-title">订单管理</h1>
                     <div id="ordersContent">
                         <div class="empty-state">
-                            <p>订单数据存储在用户浏览器本地，目前暂不支持云端同步。</p>
-                            <p style="font-size:13px;color:var(--text-light);margin-top:8px;">建议：后续可集成表单提交功能，将订单发送到您的邮箱。</p>
+                            <p>订单数据目前存储在用户浏览器本地，暂不支持云端同步。</p>
                         </div>
                     </div>
                 </div>
@@ -274,7 +271,7 @@
                             <input type="text" id="sf_phone" class="form-input">
                         </div>
                         <div class="form-group">
-                            <label>邮箱</label>
+                            <label>电子邮箱</label>
                             <input type="text" id="sf_email" class="form-input">
                         </div>
                         <div class="form-group">
@@ -282,7 +279,7 @@
                             <input type="text" id="sf_contactPerson" class="form-input">
                         </div>
                         <div class="form-group">
-                            <label>地址</label>
+                            <label>公司地址</label>
                             <input type="text" id="sf_address" class="form-input">
                         </div>
                     </div>
@@ -292,7 +289,7 @@
                         <div class="form-group">
                             <label>GitHub Token</label>
                             <input type="password" id="sf_githubToken" class="form-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-                            <p class="form-hint">用于自动部署到GitHub Pages，Token需有repo权限</p>
+                            <p class="form-hint">需要 repo 权限，用于自动发布到 GitHub Pages</p>
                         </div>
                         <button class="btn btn-primary" onclick="saveSettings()">保存设置</button>
                         <span id="settingsStatus" style="margin-left:12px;font-size:13px;"></span>
