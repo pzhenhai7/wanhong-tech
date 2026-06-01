@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#ffffff"/>
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f0f0"/>
+      <stop offset="100%" style="stop-color:#e0e0e0"/>
+    </linearGradient>
+  </defs>
+  <!-- Battery body -->
+  <rect x="130" y="60" width="140" height="280" rx="16" ry="16" fill="#333" stroke="#ccc" stroke-width="2"/>
+  <rect x="155" y="85" width="90" height="200" rx="4" ry="4" fill="url(#g1)"/>
+  <!-- Positive terminal -->
+  <rect x="175" y="45" width="50" height="20" rx="4" ry="4" fill="#666"/>
+  <!-- Charge indicator -->
+  <rect x="175" y="300" width="50" height="20" rx="4" ry="4" fill="#FF6A00"/>
+  <!-- Model text -->
+  <text x="200" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#333">18650</text>
+  <text x="200" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#999">3000mAh 高倍率</text>
+</svg>
