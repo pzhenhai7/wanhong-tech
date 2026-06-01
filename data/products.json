@@ -117,6 +117,117 @@
         { "label": "循环寿命", "value": ">300 次" }
       ],
       "createdAt": "2026-06-01"
+    },
+    {
+      "id": "lg-17350",
+      "name": "LG 17350 电子烟电池",
+      "subtitle": "850mAh · 3.7V · 韩国LG电芯",
+      "fullName": "LG 17350 850mAh<br>韩国LG电芯 电子烟电池",
+      "category": "电子烟电池",
+      "price": 15.00,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "",
+      "tag": "新品",
+      "tagColor": "orange",
+      "badge": "新品",
+      "badgeType": "new",
+      "featured": false,
+      "specs": {
+        "容量": "850mAh",
+        "标称电压": "3.7V",
+        "品牌": "LG",
+        "循环寿命": "&gt;500 次"
+      },
+      "features": [
+        "韩国LG原装电芯",
+        "850mAh稳定容量",
+        "3.7V标准电压",
+        "品质稳定，一致性好"
+      ],
+      "applications": ["电子烟", "POD小烟", "便携设备"],
+      "description": "LG 17350 锂电池，采用韩国LG原装电芯，850mAh容量，3.7V标准电压。品质稳定，一致性好，适用于电子烟、POD小烟等便携设备。",
+      "fullDescription": "<p>LG 17350 锂电池，采用韩国LG原装电芯，850mAh容量，3.7V标准电压。</p><p>品质稳定，一致性好，适用于电子烟、POD小烟等便携设备。内置多重保护，安全可靠。</p>",
+      "specList": [
+        { "label": "容量", "value": "850mAh" },
+        { "label": "标称电压", "value": "3.7V" },
+        { "label": "品牌", "value": "LG" },
+        { "label": "循环寿命", "value": ">500 次" }
+      ],
+      "createdAt": "2026-06-01"
+    },
+    {
+      "id": "18300",
+      "name": "18300 电子烟电池",
+      "subtitle": "800mAh · 3.7V · 2.96Wh",
+      "fullName": "18300 800mAh<br>2.96Wh 电子烟电池",
+      "category": "电子烟电池",
+      "price": 14.00,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "",
+      "tag": "新品",
+      "tagColor": "orange",
+      "badge": "新品",
+      "badgeType": "new",
+      "featured": false,
+      "specs": {
+        "容量": "800mAh",
+        "标称电压": "3.7V",
+        "能量": "2.96Wh",
+        "循环寿命": "&gt;500 次"
+      },
+      "features": [
+        "800mAh稳定容量",
+        "2.96Wh能量密度",
+        "3.7V标准电压",
+        "适用于多种电子烟设备"
+      ],
+      "applications": ["电子烟", "POD小烟"],
+      "description": "18300 规格锂电池，800mAh容量，3.7V标称电压，2.96Wh能量。适用于电子烟、POD小烟等设备，性能稳定可靠。",
+      "fullDescription": "<p>18300 规格锂电池，800mAh容量，3.7V标称电压，2.96Wh能量密度。</p><p>适用于电子烟、POD小烟等设备，性能稳定可靠，内置过充、过放保护。</p>",
+      "specList": [
+        { "label": "容量", "value": "800mAh" },
+        { "label": "标称电压", "value": "3.7V" },
+        { "label": "能量", "value": "2.96Wh" },
+        { "label": "循环寿命", "value": ">500 次" }
+      ],
+      "createdAt": "2026-06-01"
+    },
+    {
+      "id": "18250",
+      "name": "18250 电子烟电池",
+      "subtitle": "600mAh · 3.7V · 2.22Wh",
+      "fullName": "18250 600mAh<br>2.22Wh 电子烟电池",
+      "category": "电子烟电池",
+      "price": 13.50,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "",
+      "tag": "新品",
+      "tagColor": "orange",
+      "badge": "新品",
+      "badgeType": "new",
+      "featured": false,
+      "specs": {
+        "容量": "600mAh",
+        "标称电压": "3.7V",
+        "能量": "2.22Wh",
+        "循环寿命": "&gt;500 次"
+      },
+      "features": [
+        "600mAh稳定容量",
+        "2.22Wh能量密度",
+        "3.7V标准电压",
+        "小巧尺寸，适用性广"
+      ],
+      "applications": ["电子烟", "POD小烟", "迷你设备"],
+      "description": "18250 规格锂电池，600mAh容量，3.7V标称电压，2.22Wh能量。体积小巧，适用于电子烟、POD小烟、迷你设备等。",
+      "fullDescription": "<p>18250 规格锂电池，600mAh容量，3.7V标称电压，2.22Wh能量密度。</p><p>体积小巧，适用于电子烟、POD小烟、迷你设备等。性能稳定，安全可靠。</p>",
+      "specList": [
+        { "label": "容量", "value": "600mAh" },
+        { "label": "标称电压", "value": "3.7V" },
+        { "label": "能量", "value": "2.22Wh" },
+        { "label": "循环寿命", "value": ">500 次" }
+      ],
+      "createdAt": "2026-06-01"
     }
   ],
   "settings": {
