@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#ffffff"/>
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0ece8"/>
+      <stop offset="100%" style="stop-color:#e0dad4"/>
+    </linearGradient>
+  </defs>
+  <!-- Battery body (slimmer) -->
+  <rect x="145" y="55" width="110" height="290" rx="14" ry="14" fill="#333" stroke="#bbb" stroke-width="2"/>
+  <rect x="165" y="80" width="70" height="200" rx="4" ry="4" fill="url(#g1)"/>
+  <!-- Positive terminal -->
+  <rect x="182" y="40" width="36" height="18" rx="3" ry="3" fill="#666"/>
+  <!-- Specs on battery -->
+  <text x="200" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#333">3.7V</text>
+  <text x="200" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">600mAh</text>
+  <text x="200" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#666">2.22Wh</text>
+  <!-- Model text -->
+  <text x="200" y="370" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#333">18250</text>
+  <text x="200" y="395" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#999">600mAh 迷你电子烟电池</text>
+</svg>
