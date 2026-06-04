@@ -698,11 +698,15 @@ function saveProduct() {
 }
 
 async function saveAllData() {
+  // Strip token before saving
+  let saveSettings = JSON.parse(JSON.stringify(APP.settings));
+  delete saveSettings.githubToken;
+
   try {
     const resp = await fetch('/api/save-products', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ products: APP.products, settings: APP.settings })
+      body: JSON.stringify({ products: APP.products, settings: saveSettings })
     });
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     toast('✅ 已保存，前台已同步更新');
@@ -800,29 +804,32 @@ function renderOrders() {
 
   list.innerHTML = orders.map(o => {
     let statusText = {pending:'待处理',contacted:'已联系',completed:'已完成'};
+    // Escape HTML to prevent XSS
+    function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    const totalAmount = typeof o.totalAmount === 'number' ? o.totalAmount : (typeof o.totalAmount === 'string' ? parseFloat(o.totalAmount) : 0);
     return '<div class="order-card '+(o.read?'':'unread')+'">' +
       '<div class="order-header">' +
-        '<span class="order-id">#'+o.id+' · '+o.createdAt+'</span>' +
-        '<span class="order-status '+o.status+'">'+ (statusText[o.status]||o.status) +'</span>' +
+        '<span class="order-id">#'+esc(o.id)+' · '+esc(o.createdAt)+'</span>' +
+        '<span class="order-status '+esc(o.status)+'">'+ (statusText[o.status]||esc(o.status)) +'</span>' +
       '</div>' +
       '<div class="order-body">' +
-        '<div><span class="label">客户: </span><span class="value">'+(o.customerName||'未填写')+'</span></div>' +
-        '<div><span class="label">电话: </span><span class="value">'+(o.phone||'未填写')+'</span></div>' +
-        '<div><span class="label">公司: </span><span class="value">'+(o.company||'未填写')+'</span></div>' +
-        '<div><span class="label">邮箱: </span><span class="value">'+(o.email||'未填写')+'</span></div>' +
-        '<div><span class="label">地址: </span><span class="value">'+(o.address||'未填写')+'</span></div>' +
-        '<div><span class="label">产品: </span><span class="value">'+(o.productName||'')+' × '+(o.quantity||0)+'</span></div>' +
-        '<div><span class="label">金额: </span><span class="value" style="color:#FF6A00;">¥ '+(o.totalAmount ? o.totalAmount.toFixed(2) : (o.productName?((APP.products.find(p=>p.id===o.productId)||{}).price||0)*o.quantity:'-'))+'</span></div>' +
+        '<div><span class="label">客户: </span><span class="value">'+esc(o.customerName||'未填写')+'</span></div>' +
+        '<div><span class="label">电话: </span><span class="value">'+esc(o.phone||'未填写')+'</span></div>' +
+        '<div><span class="label">公司: </span><span class="value">'+esc(o.company||'未填写')+'</span></div>' +
+        '<div><span class="label">邮箱: </span><span class="value">'+esc(o.email||'未填写')+'</span></div>' +
+        '<div><span class="label">地址: </span><span class="value">'+esc(o.address||'未填写')+'</span></div>' +
+        '<div><span class="label">产品: </span><span class="value">'+esc(o.productName||'')+' × '+(o.quantity||0)+'</span></div>' +
+        '<div><span class="label">金额: </span><span class="value" style="color:#FF6A00;">¥ '+(totalAmount ? totalAmount.toFixed(2) : (o.productName?((APP.products.find(p=>p.id===o.productId)||{}).price||0)*o.quantity:'-'))+'</span></div>' +
       '</div>' +
-      (o.message ? '<div class="order-msg">💬 '+(o.message||'')+'</div>' : '') +
+      (o.message ? '<div class="order-msg">💬 '+esc(o.message||'')+'</div>' : '') +
       '<div class="order-actions">' +
-        '<input class="order-notes" placeholder="备注..." id="notes_'+o.id+'" value="'+(o.adminNotes||'')+'" onchange="saveOrderNote(\''+o.id+'\')">' +
-        '<select onchange="updateOrderStatus(\''+o.id+'\',this.value)" style="padding:4px 8px;border:1px solid #ddd;border-radius:4px;font-size:12px;">' +
+        '<input class="order-notes" placeholder="备注..." id="notes_'+esc(o.id)+'" value="'+esc(o.adminNotes||'')+'" onchange="saveOrderNote(\''+esc(o.id)+'\')">' +
+        '<select onchange="updateOrderStatus(\''+esc(o.id)+'\',this.value)" style="padding:4px 8px;border:1px solid #ddd;border-radius:4px;font-size:12px;">' +
           '<option value="pending" '+(o.status==='pending'?'selected':'')+'>待处理</option>' +
           '<option value="contacted" '+(o.status==='contacted'?'selected':'')+'>已联系</option>' +
           '<option value="completed" '+(o.status==='completed'?'selected':'')+'>已完成</option>' +
         '</select>' +
-        (o.phone ? '<a href="tel:'+o.phone+'" class="btn-o" style="width:auto;font-size:11px;text-decoration:none;padding:4px 12px;">📞 联系</a>' : '') +
+        (o.phone ? '<a href="tel:'+esc(o.phone)+'" class="btn-o" style="width:auto;font-size:11px;text-decoration:none;padding:4px 12px;">📞 联系</a>' : '') +
       '</div>' +
     '</div>';
   }).join('');

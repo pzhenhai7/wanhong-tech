@@ -292,15 +292,15 @@
             try {
                 const resp = await fetch('/api/payment');
                 if (resp.ok) payment = await resp.json();
-            } catch(e) {}
+            } catch(e) { console.error('Payment fetch failed:', e); }
             if (!payment) {
                 try {
                     const resp = await fetch('data/payment.json?_=' + Date.now());
                     if (resp.ok) payment = await resp.json();
-                } catch(e) {}
+                } catch(e) { console.error('Payment JSON fallback failed:', e); }
             }
 
-            if (!payment || (!payment.bank.enabled && !payment.wechat.enabled && !payment.alipay.enabled)) {
+            if (!payment || (!payment.bank?.enabled && !payment.wechat?.enabled && !payment.alipay?.enabled)) {
                 alert('✅ 订单已提交！\n\n我们会尽快与您联系确认。\n电话: 13682629862');
                 return;
             }
@@ -325,7 +325,7 @@
                 wechatHtml = `
                 <div style="background:#f9f9f9;border-radius:10px;padding:16px;margin-bottom:12px;text-align:center;">
                     <h5 style="margin:0 0 10px;font-size:15px;">💬 微信扫码支付</h5>
-                    <img src="/${payment.wechat.qrImage}" alt="微信收款码" style="width:200px;height:200px;object-fit:contain;border-radius:8px;border:1px solid #ddd;">
+                    <img src="${payment.wechat.qrImage}" alt="微信收款码" style="width:200px;height:200px;object-fit:contain;border-radius:8px;border:1px solid #ddd;">
                     <div style="font-size:12px;color:#888;margin-top:6px;">请使用微信扫一扫</div>
                 </div>`;
             }
@@ -333,7 +333,7 @@
                 alipayHtml = `
                 <div style="background:#f9f9f9;border-radius:10px;padding:16px;margin-bottom:12px;text-align:center;">
                     <h5 style="margin:0 0 10px;font-size:15px;">🧧 支付宝扫码支付</h5>
-                    <img src="/${payment.alipay.qrImage}" alt="支付宝收款码" style="width:200px;height:200px;object-fit:contain;border-radius:8px;border:1px solid #ddd;">
+                    <img src="${payment.alipay.qrImage}" alt="支付宝收款码" style="width:200px;height:200px;object-fit:contain;border-radius:8px;border:1px solid #ddd;">
                     <div style="font-size:12px;color:#888;margin-top:6px;">请使用支付宝扫一扫</div>
                 </div>`;
             }

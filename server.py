@@ -165,6 +165,15 @@ def handle_save_products(body):
     write_json(path, data)
     return 200, {"success": True}
 
+def safe_read_json(rfile, content_len):
+    """Safely parse JSON body, returning {} on error"""
+    if content_len <= 0:
+        return {}
+    try:
+        return json.loads(rfile.read(content_len))
+    except (json.JSONDecodeError, Exception):
+        return {}
+
 class APIHandler(http.server.SimpleHTTPRequestHandler):
     """Custom handler with API endpoints + static file serving."""
 
@@ -198,22 +207,22 @@ class APIHandler(http.server.SimpleHTTPRequestHandler):
             self._api_response(status, data)
         elif self.path == '/api/orders':
             content_len = int(self.headers.get('Content-Length', 0))
-            body = json.loads(self.rfile.read(content_len)) if content_len > 0 else {}
+            body = safe_read_json(self.rfile, content_len)
             status, data = handle_post_order(body)
             self._api_response(status, data)
         elif self.path == '/api/payment':
             content_len = int(self.headers.get('Content-Length', 0))
-            body = json.loads(self.rfile.read(content_len)) if content_len > 0 else {}
+            body = safe_read_json(self.rfile, content_len)
             status, data = handle_save_payment(body)
             self._api_response(status, data)
         elif self.path == '/api/settings':
             content_len = int(self.headers.get('Content-Length', 0))
-            body = json.loads(self.rfile.read(content_len)) if content_len > 0 else {}
+            body = safe_read_json(self.rfile, content_len)
             status, data = handle_save_settings(body)
             self._api_response(status, data)
         elif self.path == '/api/save-products':
             content_len = int(self.headers.get('Content-Length', 0))
-            body = json.loads(self.rfile.read(content_len)) if content_len > 0 else {}
+            body = safe_read_json(self.rfile, content_len)
             status, data = handle_save_products(body)
             self._api_response(status, data)
         else:
@@ -222,8 +231,12 @@ class APIHandler(http.server.SimpleHTTPRequestHandler):
     def do_PUT(self):
         if self.path.startswith('/api/orders/'):
             order_id = self.path.split('/api/orders/')[1]
+            if not order_id:
+                self.send_response(404)
+                self.end_headers()
+                return
             content_len = int(self.headers.get('Content-Length', 0))
-            body = json.loads(self.rfile.read(content_len)) if content_len > 0 else {}
+            body = safe_read_json(self.rfile, content_len)
             status, data = handle_update_order(order_id, body)
             self._api_response(status, data)
         else:

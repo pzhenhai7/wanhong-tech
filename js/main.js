@@ -6,7 +6,6 @@
         const bc = new BroadcastChannel('wanhong_reload');
         bc.onmessage = function(e) {
             if (e.data && e.data.action === 'reload') {
-                // 后台保存了，自动刷新页面显示最新数据
                 loadProducts();
             }
         };
@@ -159,7 +158,7 @@ async function loadProducts() {
         if (featured) renderFeaturedProduct(featured);
 
         updateCarouselLinks(products);
-    } catch {}
+    } catch(e) { console.error('Failed to load products:', e); }
 }
 
 function renderProductCards(products) {
