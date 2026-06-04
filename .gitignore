@@ -1,6 +1,6 @@
 # 敏感数据 — 不上传 GitHub
 data/orders.json
-data/payment.json
+# data/payment.json (removed — needed on GitHub Pages for payment display)
 
 # 系统文件
 .DS_Store

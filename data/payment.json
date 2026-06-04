@@ -1,0 +1,16 @@
+{
+  "bank": {
+    "enabled": true,
+    "accountName": "廖万欣",
+    "accountNumber": "6230580000472167019",
+    "bankName": ""
+  },
+  "wechat": {
+    "enabled": true,
+    "qrImage": "assets/uploads/88000d7f043c4563ae664b3fc86cebcb.jpg"
+  },
+  "alipay": {
+    "enabled": true,
+    "qrImage": "assets/uploads/f30dce3e07a94589929b43171dfe78eb.jpg"
+  }
+}

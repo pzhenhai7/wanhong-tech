@@ -270,30 +270,35 @@
                     document.getElementById('checkoutModal').remove();
                     saveCart([]);
                     renderCart();
-                    // Load payment info and show
                     loadAndShowPayment(total);
-                } else {
-                    alert('提交失败，请稍后重试。\n也可直接致电: 13682629862');
+                    return;
                 }
-            } catch(e) {
-                try {
-                    localStorage.setItem('wanhong_last_order', JSON.stringify(order));
-                    document.getElementById('checkoutModal').remove();
-                    saveCart([]);
-                    renderCart();
-                    loadAndShowPayment(total);
-                } catch(e2) {
-                    alert('提交失败，请直接致电: 13682629862');
-                }
+            } catch(e) {}
+            // GitHub Pages fallback — save locally + show payment
+            try {
+                localStorage.setItem('wanhong_last_order', JSON.stringify(order));
+                document.getElementById('checkoutModal').remove();
+                saveCart([]);
+                renderCart();
+                loadAndShowPayment(total);
+            } catch(e2) {
+                alert('提交失败，请直接致电: 13682629862');
             }
         }
 
         async function loadAndShowPayment(total) {
             let payment = null;
+            // Try API first (local server), then static JSON (GitHub Pages)
             try {
                 const resp = await fetch('/api/payment');
                 if (resp.ok) payment = await resp.json();
             } catch(e) {}
+            if (!payment) {
+                try {
+                    const resp = await fetch('data/payment.json?_=' + Date.now());
+                    if (resp.ok) payment = await resp.json();
+                } catch(e) {}
+            }
 
             if (!payment || (!payment.bank.enabled && !payment.wechat.enabled && !payment.alipay.enabled)) {
                 alert('✅ 订单已提交！\n\n我们会尽快与您联系确认。\n电话: 13682629862');
