@@ -6,7 +6,7 @@
       "subtitle": "260mAh · 3.7V · 0.96Wh",
       "fullName": "08500 电子烟电池<br>260mAh · 3.7V · 0.96Wh",
       "category": "电子烟电池",
-      "price": 19.99,
+      "price": 1.8,
       "priceDesc": "单价 / 含税含运费，批量价格另议",
       "image": "assets/product-photo-17f2e152.jpg",
       "tag": "新品",
@@ -1113,7 +1113,6 @@
     "contactTitle": "总经理",
     "address": "广东省惠州市仲恺高新区惠风路8号",
     "footerDesc": "专注电子烟电池研发制造",
-    "githubRepo": "pzhenhai7/wanhong-tech",
-    "githubToken": ""
+    "githubRepo": "pzhenhai7/wanhong-tech"
   }
 }
