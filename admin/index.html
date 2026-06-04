@@ -404,6 +404,70 @@ let APP = { token: '', mode: 'local', products: [], settings: {}, orders: [], pa
 const GITHUB_REPO = 'pzhenhai7/wanhong-tech';
 const GITHUB_BRANCH = 'main';
 const PRODUCTS_PATH = 'data/products.json';
+const ORDERS_PATH = 'data/orders.json';
+const PAYMENT_PATH = 'data/payment.json';
+// Auto-detect if running on domain (GitHub Pages) or local
+const IS_DOMAIN = window.location.hostname !== 'localhost' && !window.location.hostname.startsWith('127.0.0.1') && !window.location.hostname.startsWith('192.');
+
+// ===== GitHub API helpers =====
+function ghHeaders() {
+  return { 'Authorization': 'token ' + APP.token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
+}
+
+async function ghGet(path) {
+  const resp = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, { headers: ghHeaders() });
+  if (resp.status === 404) return { sha: null, content: null };
+  if (!resp.ok) throw new Error('GitHub API error: ' + resp.status);
+  const j = await resp.json();
+  // decode base64 content (with UTF-8 safety)
+  const raw = atob(j.content);
+  const bytes = new Uint8Array(raw.length);
+  for (let i = 0; i < raw.length; i++) bytes[i] = raw.charCodeAt(i);
+  return { sha: j.sha, content: new TextDecoder('utf-8').decode(bytes) };
+}
+
+async function ghPut(path, content, message, sha) {
+  const body = {
+    message: message,
+    content: btoa(String.fromCharCode(...new TextEncoder().encode(content))),
+    branch: GITHUB_BRANCH
+  };
+  if (sha) body.sha = sha;
+  const resp = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+    method: 'PUT', headers: ghHeaders(), body: JSON.stringify(body)
+  });
+  if (!resp.ok) { const er = await resp.json(); throw new Error(er.message || 'HTTP ' + resp.status); }
+  return await resp.json();
+}
+
+async function ghUploadImage(file) {
+  // Upload image to assets/uploads/ and return path
+  const path = 'assets/uploads/' + file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+  const reader = new FileReader();
+  const base64 = await new Promise((resolve, reject) => {
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+
+  // Try to get existing SHA
+  let sha = null;
+  try {
+    const existing = await ghGet(path);
+    sha = existing.sha;
+  } catch(e) {}
+
+  await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+    method: 'PUT', headers: ghHeaders(),
+    body: JSON.stringify({
+      message: 'Upload ' + file.name,
+      content: base64,
+      branch: GITHUB_BRANCH,
+      sha: sha || undefined
+    })
+  });
+  return path;
+}
 
 // ===== Login =====
 function switchTab(t) {
@@ -429,6 +493,10 @@ function doLogin() {
   let u = document.getElementById('loginUser').value.trim();
   let p = document.getElementById('loginPass').value.trim();
   if (u === 'admin' && p === 'wanhong888') {
+    if (IS_DOMAIN) {
+      showError('在域名上访问请使用 GitHub Token 登录（切换到 Token 登录选项卡）');
+      return;
+    }
     APP.mode = 'local';
     sessionStorage.setItem('wanhong_admin', JSON.stringify({mode:'local',token:''}));
     enterDashboard();
@@ -462,29 +530,52 @@ async function enterDashboard() {
 
 // ===== Init =====
 async function initDashboard() {
-  // Load products
-  try {
-    let resp = await fetch('../data/products.json?_=' + Date.now());
-    let d = await resp.json();
-    APP.products = d.products || [];
-    APP.settings = d.settings || {};
-  } catch(e) { APP.products = []; APP.settings = {}; }
-
-  // Load orders
-  try {
-    let resp = await fetch('/api/orders?_=' + Date.now());
-    let d = await resp.json();
-    APP.orders = d.orders || [];
-  } catch(e) { APP.orders = []; }
-
-  // Load payment
-  try {
-    let resp = await fetch('/api/payment?_=' + Date.now());
-    APP.payment = await resp.json();
-  } catch(e) { APP.payment = {bank:{enabled:false},wechat:{enabled:false},alipay:{enabled:false}}; }
-
+  // On domain: load from GitHub API directly (if token is set) or from static JSON
+  // On local: load from local files + API
   if (APP.mode === 'github' && APP.token) {
-    await syncFromGithub(false);
+    // GitHub mode: load all from GitHub
+    try {
+      let { content } = await ghGet(PRODUCTS_PATH);
+      if (content) {
+        let d = JSON.parse(content);
+        APP.products = d.products || [];
+        APP.settings = d.settings || {};
+      }
+    } catch(e) { APP.products = []; APP.settings = {}; }
+
+    try {
+      let { content } = await ghGet(ORDERS_PATH);
+      if (content) {
+        let d = JSON.parse(content);
+        APP.orders = d.orders || [];
+      }
+    } catch(e) { APP.orders = []; }
+
+    try {
+      let { content } = await ghGet(PAYMENT_PATH);
+      if (content) {
+        APP.payment = JSON.parse(content);
+      }
+    } catch(e) { APP.payment = {bank:{enabled:false},wechat:{enabled:false},alipay:{enabled:false}}; }
+  } else {
+    // Local mode: load from local files + API
+    try {
+      let resp = await fetch('../data/products.json?_=' + Date.now());
+      let d = await resp.json();
+      APP.products = d.products || [];
+      APP.settings = d.settings || {};
+    } catch(e) { APP.products = []; APP.settings = {}; }
+
+    try {
+      let resp = await fetch('/api/orders?_=' + Date.now());
+      let d = await resp.json();
+      APP.orders = d.orders || [];
+    } catch(e) { APP.orders = []; }
+
+    try {
+      let resp = await fetch('/api/payment?_=' + Date.now());
+      APP.payment = await resp.json();
+    } catch(e) { APP.payment = {bank:{enabled:false},wechat:{enabled:false},alipay:{enabled:false}}; }
   }
 
   renderAll();
@@ -702,6 +793,19 @@ async function saveAllData() {
   let saveSettings = JSON.parse(JSON.stringify(APP.settings));
   delete saveSettings.githubToken;
 
+  if (APP.mode === 'github' && APP.token) {
+    // GitHub mode: save directly via API
+    try {
+      let sha = null;
+      try { const r = await ghGet(PRODUCTS_PATH); sha = r.sha; } catch(e) {}
+      let content = JSON.stringify({ products: APP.products, settings: saveSettings }, null, 2);
+      await ghPut(PRODUCTS_PATH, content, '管理员更新 - ' + new Date().toLocaleString('zh-CN'), sha);
+      toast('✅ 已保存到 GitHub，稍后前台更新');
+      return;
+    } catch(e) { toast('保存失败: ' + e.message, 'error'); console.error('saveAllData error:', e); return; }
+  }
+
+  // Local mode: save via API
   try {
     const resp = await fetch('/api/save-products', {
       method: 'POST',
@@ -719,6 +823,26 @@ async function saveAllData() {
   } catch(e) { toast('保存失败: ' + e.message, 'error'); console.error('saveAllData error:', e); }
 }
 
+async function saveOrdersToGithub() {
+  if (APP.mode !== 'github' || !APP.token) return;
+  try {
+    let sha = null;
+    try { const r = await ghGet(ORDERS_PATH); sha = r.sha; } catch(e) {}
+    let content = JSON.stringify({ orders: APP.orders }, null, 2);
+    await ghPut(ORDERS_PATH, content, '更新订单', sha);
+  } catch(e) { console.error('saveOrdersToGithub error:', e); }
+}
+
+async function savePaymentToGithub() {
+  if (APP.mode !== 'github' || !APP.token) return;
+  try {
+    let sha = null;
+    try { const r = await ghGet(PAYMENT_PATH); sha = r.sha; } catch(e) {}
+    let content = JSON.stringify(APP.payment, null, 2);
+    await ghPut(PAYMENT_PATH, content, '更新收款设置', sha);
+  } catch(e) { console.error('savePaymentToGithub error:', e); }
+}
+
 function deleteProduct(idx) {
   if (!confirm('确定删除"'+APP.products[idx].name+'"？')) return;
   APP.products.splice(idx,1); renderAll(); toast('产品已删除');
@@ -731,6 +855,21 @@ function handleFileSelect(files) {
   let file = files[0];
   if (file.size > 10*1024*1024) { toast('文件不能超过10MB','error'); return; }
 
+  if (APP.mode === 'github' && APP.token) {
+    // GitHub mode: upload via GitHub API
+    showStatus('正在上传到 GitHub...');
+    ghUploadImage(file).then(path => {
+      hideStatus();
+      document.getElementById('uploadResult').style.display = 'block';
+      document.getElementById('uploadPreview').src = '../' + path;
+      document.getElementById('uploadPath').innerHTML = '<code style="background:#f5f5f7;padding:4px 10px;border-radius:4px;">' + path + '</code>';
+      toast('上传成功！');
+      renderUploadedFiles();
+    }).catch(e => { hideStatus(); toast('上传失败: ' + e.message, 'error'); });
+    return;
+  }
+
+  // Local mode: upload via API
   let formData = new FormData();
   formData.append('file', file);
 
@@ -836,9 +975,15 @@ function renderOrders() {
 }
 
 async function updateOrderStatus(id, status) {
+  let o = APP.orders.find(o=>o.id===id); if(o) o.status = status;
+  if (APP.mode === 'github' && APP.token) {
+    await saveOrdersToGithub();
+    toast('订单状态已更新');
+    updateOrderBadge();
+    return;
+  }
   try {
     await fetch('/api/orders/'+id, {method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:status})});
-    let o = APP.orders.find(o=>o.id===id); if(o) o.status = status;
     toast('订单状态已更新');
     updateOrderBadge();
   } catch(e) { toast('更新失败','error'); }
@@ -846,9 +991,13 @@ async function updateOrderStatus(id, status) {
 
 async function saveOrderNote(id) {
   let notes = document.getElementById('notes_'+id).value;
+  let o = APP.orders.find(o=>o.id===id); if(o) o.adminNotes = notes;
+  if (APP.mode === 'github' && APP.token) {
+    await saveOrdersToGithub();
+    return;
+  }
   try {
     await fetch('/api/orders/'+id, {method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({adminNotes:notes})});
-    let o = APP.orders.find(o=>o.id===id); if(o) o.adminNotes = notes;
   } catch(e) {}
 }
 
@@ -898,6 +1047,14 @@ async function savePayment() {
   APP.payment.wechat.qrImage = document.getElementById('pay_wechatQR').value.trim();
   APP.payment.alipay.qrImage = document.getElementById('pay_alipayQR').value.trim();
 
+  if (APP.mode === 'github' && APP.token) {
+    await savePaymentToGithub();
+    document.getElementById('paymentStatus').textContent = '✅ 保存成功';
+    setTimeout(()=>{document.getElementById('paymentStatus').textContent='';},3000);
+    toast('收款设置已保存到 GitHub');
+    return;
+  }
+
   try {
     await fetch('/api/payment', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(APP.payment)});
     document.getElementById('paymentStatus').textContent = '✅ 保存成功';
@@ -908,6 +1065,25 @@ async function savePayment() {
 
 function uploadPaymentQR(type, files) {
   if (!files||!files.length) return;
+
+  if (APP.mode === 'github' && APP.token) {
+    showStatus('上传中...');
+    ghUploadImage(files[0]).then(data => {
+      hideStatus();
+      if (type==='wechat') {
+        document.getElementById('pay_wechatQR').value = data;
+        document.getElementById('wechatQrPreview').src = '../' + data;
+        document.getElementById('wechatQrPreview').style.display = 'block';
+      } else {
+        document.getElementById('pay_alipayQR').value = data;
+        document.getElementById('alipayQrPreview').src = '../' + data;
+        document.getElementById('alipayQrPreview').style.display = 'block';
+      }
+      toast('二维码上传成功');
+    }).catch(e => { hideStatus(); toast('上传失败: ' + e.message, 'error'); });
+    return;
+  }
+
   let formData = new FormData(); formData.append('file', files[0]);
   showStatus('上传中...');
   fetch('/api/upload', {method:'POST',body:formData})
@@ -956,6 +1132,21 @@ async function saveSettings() {
 
   APP.settings = {...APP.settings, ...settings};
   delete APP.settings.githubToken;
+
+  if (APP.mode === 'github' && APP.token) {
+    try {
+      let sha = null;
+      try { const r = await ghGet(PRODUCTS_PATH); sha = r.sha; } catch(e) {}
+      let saveSettings = JSON.parse(JSON.stringify(APP.settings));
+      delete saveSettings.githubToken;
+      let content = JSON.stringify({ products: APP.products, settings: saveSettings }, null, 2);
+      await ghPut(PRODUCTS_PATH, content, '更新设置', sha);
+      document.getElementById('settingsStatus').textContent = '✅ 设置已保存';
+      setTimeout(()=>{document.getElementById('settingsStatus').textContent='';},3000);
+      toast('设置已保存到 GitHub');
+    } catch(e) { toast('保存失败: ' + e.message, 'error'); }
+    return;
+  }
 
   try {
     await fetch('/api/settings', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(APP.settings)});
@@ -1043,10 +1234,21 @@ async function pollOrders() {
   if (!APP.orders) return;
 
   try {
-    const resp = await fetch('/api/orders?_=' + Date.now());
-    if (!resp.ok) return;
-    const data = await resp.json();
-    const freshOrders = data.orders || [];
+    let freshOrders = [];
+    if (APP.mode === 'github' && APP.token) {
+      try {
+        let { content } = await ghGet(ORDERS_PATH);
+        if (content) {
+          let d = JSON.parse(content);
+          freshOrders = d.orders || [];
+        }
+      } catch(e) { return; }
+    } else {
+      const resp = await fetch('/api/orders?_=' + Date.now());
+      if (!resp.ok) return;
+      const data = await resp.json();
+      freshOrders = data.orders || [];
+    }
 
     // Find new orders (IDs we haven't seen before)
     const newOrders = freshOrders.filter(o => !_knownOrderIds.has(o.id));
