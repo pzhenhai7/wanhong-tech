@@ -114,14 +114,14 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <img src="assets/logo.png" alt="万鸿科技" class="footer-logo-img">
-                    <p>专注电子烟电池 · 无人机电池研发制造</p>
+                    <p>专注电子烟电池研发制造</p>
                 </div>
                 <div class="footer-col">
                     <h5>产品</h5>
                     <ul>
                         <li><a href="product.html?id=18400">18400 电子烟电池</a></li>
                         <li><a href="product.html?id=18650">18650 高倍率电池</a></li>
-                        <li><a href="product.html?id=drone">无人机智能电池</a></li>
+                        <li><a href="product.html?id=18350-1000">18350 高容量电池</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -178,10 +178,137 @@
         function buyNow() {
             if (!currentProduct) return;
             const qty = parseInt(document.getElementById('pdQty')?.value) || 1;
-            cart.push({ id: currentProduct.id, name: currentProduct.name, price: currentProduct.price, qty });
-            saveCart();
-            showMsg('已添加 ' + qty + ' 件，即将跳转结算...');
-            setTimeout(() => { window.location.href = 'cart.html'; }, 800);
+            const total = currentProduct.price * qty;
+
+            // Show checkout modal directly
+            const formHtml = `
+                <div style="position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center;" id="checkoutModal" onclick="if(event.target===this)this.remove()">
+                <div style="background:#fff;border-radius:16px;padding:32px;width:480px;max-width:90vw;max-height:90vh;overflow-y:auto;box-shadow:0 25px 80px rgba(0,0,0,.3);">
+                    <h3 style="font-size:20px;margin-bottom:4px;">📋 确认订单</h3>
+                    <p style="font-size:14px;color:#888;margin-bottom:20px;">
+                        <strong>${currentProduct.name}</strong> × ${qty} 件<br>
+                        合计: <strong style="color:#FF6A00;font-size:22px;">¥ ${total.toFixed(2)}</strong>
+                    </p>
+                    <div style="display:flex;flex-direction:column;gap:12px;">
+                        <div><label style="font-size:12px;font-weight:600;color:#555;display:block;margin-bottom:4px;">收货人姓名 *</label><input id="co_name" placeholder="请输入收货人姓名" style="width:100%;padding:10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#FF6A00'" onblur="this.style.borderColor='#ddd'"></div>
+                        <div><label style="font-size:12px;font-weight:600;color:#555;display:block;margin-bottom:4px;">手机号码 *</label><input id="co_phone" type="tel" placeholder="请输入手机号码" style="width:100%;padding:10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#FF6A00'" onblur="this.style.borderColor='#ddd'"></div>
+                        <div><label style="font-size:12px;font-weight:600;color:#555;display:block;margin-bottom:4px;">收货地址 *</label><input id="co_address" placeholder="省/市/区/详细地址" style="width:100%;padding:10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#FF6A00'" onblur="this.style.borderColor='#ddd'"></div>
+                        <div><label style="font-size:12px;font-weight:600;color:#555;display:block;margin-bottom:4px;">公司名称</label><input id="co_company" placeholder="选填" style="width:100%;padding:10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#FF6A00'" onblur="this.style.borderColor='#ddd'"></div>
+                        <div><label style="font-size:12px;font-weight:600;color:#555;display:block;margin-bottom:4px;">电子邮箱</label><input id="co_email" type="email" placeholder="选填" style="width:100%;padding:10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;outline:none;" onfocus="this.style.borderColor='#FF6A00'" onblur="this.style.borderColor='#ddd'"></div>
+                        <div><label style="font-size:12px;font-weight:600;color:#555;display:block;margin-bottom:4px;">备注留言</label><textarea id="co_msg" rows="2" placeholder="如有特殊需求请在此留言" style="width:100%;padding:10px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;resize:vertical;outline:none;" onfocus="this.style.borderColor='#FF6A00'" onblur="this.style.borderColor='#ddd'"></textarea></div>
+                    </div>
+                    <div style="display:flex;gap:10px;margin-top:20px;">
+                        <button onclick="document.getElementById('checkoutModal').remove()" style="flex:1;padding:12px;background:#fff;border:1.5px solid #ddd;border-radius:8px;font-size:14px;cursor:pointer;">取消</button>
+                        <button onclick="submitBuyNow(${total}, ${qty})" style="flex:1;padding:12px;background:#FF6A00;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;">提交订单并付款</button>
+                    </div>
+                </div></div>`;
+            document.body.insertAdjacentHTML('beforeend', formHtml);
+        }
+
+        async function submitBuyNow(total, qty) {
+            const name = document.getElementById('co_name').value.trim();
+            const phone = document.getElementById('co_phone').value.trim();
+            const address = document.getElementById('co_address').value.trim();
+            if (!name || !phone) { alert('请填写收货人姓名和手机号码'); return; }
+            if (!address) { alert('请填写收货地址'); return; }
+
+            const order = {
+                customerName: name,
+                phone: phone,
+                address: address,
+                company: document.getElementById('co_company').value.trim(),
+                email: document.getElementById('co_email').value.trim(),
+                productId: currentProduct.id || '',
+                productName: currentProduct.name || '',
+                quantity: qty,
+                totalAmount: total,
+                message: document.getElementById('co_msg').value.trim()
+            };
+
+            try {
+                const resp = await fetch('/api/orders', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(order)
+                });
+                if (resp.ok) {
+                    document.getElementById('checkoutModal').remove();
+                    showPaymentModal(total);
+                } else {
+                    alert('提交失败，请稍后重试。\n也可直接致电: 13682629862');
+                }
+            } catch(e) {
+                // Offline fallback: save locally
+                try {
+                    localStorage.setItem('wanhong_last_order', JSON.stringify(order));
+                    document.getElementById('checkoutModal').remove();
+                    showPaymentModal(total);
+                } catch(e2) {
+                    alert('提交失败，请直接致电: 13682629862');
+                }
+            }
+        }
+
+        async function showPaymentModal(total) {
+            let payment = null;
+            try {
+                const resp = await fetch('/api/payment');
+                if (resp.ok) payment = await resp.json();
+            } catch(e) {}
+
+            if (!payment || (!payment.bank.enabled && !payment.wechat.enabled && !payment.alipay.enabled)) {
+                alert('✅ 订单已提交！\n\n我们会尽快与您联系确认。\n电话: 13682629862');
+                return;
+            }
+
+            let bankHtml = '', wechatHtml = '', alipayHtml = '';
+
+            if (payment.bank && payment.bank.enabled && payment.bank.accountNumber) {
+                bankHtml = `
+                <div style="background:#f9f9f9;border-radius:10px;padding:16px;margin-bottom:12px;">
+                    <h5 style="margin:0 0 10px;font-size:15px;">🏦 银行转账</h5>
+                    <div style="font-size:13px;line-height:2;">
+                        <div>户名: <strong>${payment.bank.accountName}</strong></div>
+                        <div>账号: <strong style="color:#FF6A00;font-size:15px;">${payment.bank.accountNumber}</strong></div>
+                        ${payment.bank.bankName ? `<div>开户行: ${payment.bank.bankName}</div>` : ''}
+                    </div>
+                </div>`;
+            }
+            if (payment.wechat && payment.wechat.enabled && payment.wechat.qrImage) {
+                wechatHtml = `
+                <div style="background:#f9f9f9;border-radius:10px;padding:16px;margin-bottom:12px;text-align:center;">
+                    <h5 style="margin:0 0 10px;font-size:15px;">💬 微信扫码支付</h5>
+                    <img src="/${payment.wechat.qrImage}" alt="微信收款码" style="width:200px;height:200px;object-fit:contain;border-radius:8px;border:1px solid #ddd;">
+                    <div style="font-size:12px;color:#888;margin-top:6px;">请使用微信扫一扫</div>
+                </div>`;
+            }
+            if (payment.alipay && payment.alipay.enabled && payment.alipay.qrImage) {
+                alipayHtml = `
+                <div style="background:#f9f9f9;border-radius:10px;padding:16px;margin-bottom:12px;text-align:center;">
+                    <h5 style="margin:0 0 10px;font-size:15px;">🧧 支付宝扫码支付</h5>
+                    <img src="/${payment.alipay.qrImage}" alt="支付宝收款码" style="width:200px;height:200px;object-fit:contain;border-radius:8px;border:1px solid #ddd;">
+                    <div style="font-size:12px;color:#888;margin-top:6px;">请使用支付宝扫一扫</div>
+                </div>`;
+            }
+
+            const payHtml = `
+                <div style="position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:flex;align-items:center;justify-content:center;" id="paymentModal" onclick="if(event.target===this)this.remove()">
+                <div style="background:#fff;border-radius:16px;padding:32px;width:480px;max-width:90vw;max-height:90vh;overflow-y:auto;box-shadow:0 25px 80px rgba(0,0,0,.3);">
+                    <div style="text-align:center;font-size:48px;margin-bottom:8px;">✅</div>
+                    <h3 style="font-size:20px;margin-bottom:4px;text-align:center;">订单已提交</h3>
+                    <p style="font-size:14px;color:#888;margin-bottom:8px;text-align:center;">请选择以下方式完成支付</p>
+                    <p style="font-size:28px;font-weight:700;color:#FF6A00;margin-bottom:24px;text-align:center;">应付: ¥ ${total.toFixed(2)}</p>
+                    ${bankHtml}
+                    ${wechatHtml}
+                    ${alipayHtml}
+                    <div style="background:#fff5eb;border-radius:10px;padding:14px;text-align:center;margin-bottom:16px;">
+                        <div style="font-size:13px;color:#555;">支付完成后请联系确认订单</div>
+                        <div style="font-size:18px;font-weight:700;color:#FF6A00;margin-top:6px;">📞 13682629862</div>
+                        <div style="font-size:12px;color:#888;">廖万欣（总经理）</div>
+                    </div>
+                    <button onclick="document.getElementById('paymentModal').remove()" style="width:100%;padding:12px;background:#FF6A00;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;">我知道了</button>
+                </div></div>`;
+            document.body.insertAdjacentHTML('beforeend', payHtml);
         }
 
         function addToCart() {

@@ -1,5 +1,18 @@
 // 惠州市万鸿科技有限公司 — 全站交互
 
+// ===== 监听后台保存通知，自动刷新 =====
+(function() {
+    try {
+        const bc = new BroadcastChannel('wanhong_reload');
+        bc.onmessage = function(e) {
+            if (e.data && e.data.action === 'reload') {
+                // 后台保存了，自动刷新页面显示最新数据
+                loadProducts();
+            }
+        };
+    } catch(e) {}
+})();
+
 // 购物车角标
 function updateCartBadge() {
     const badge = document.getElementById('cartBadge');

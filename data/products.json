@@ -1,233 +1,1107 @@
 {
   "products": [
     {
-      "id": "18400",
-      "name": "18400 电子烟电池",
-      "subtitle": "1100mAh · 钴+三元 · 5A/8A",
-      "fullName": "18400 1100mAh<br>钴+三元材料 电子烟电池",
+      "id": "08500",
+      "name": "08500 电子烟电池",
+      "subtitle": "260mAh · 3.7V · 0.96Wh",
+      "fullName": "08500 电子烟电池<br>260mAh · 3.7V · 0.96Wh",
       "category": "电子烟电池",
-      "price": 13.00,
+      "price": 19.99,
       "priceDesc": "单价 / 含税含运费，批量价格另议",
-      "image": "assets/product-18400.jpg",
+      "image": "assets/product-photo-17f2e152.jpg",
       "tag": "新品",
       "tagColor": "orange",
       "badge": "新品",
       "badgeType": "new",
-      "featured": true,
+      "featured": false,
       "specs": {
-        "容量": "1100mAh",
+        "容量": "260mAh",
         "标称电压": "3.7V",
-        "材料体系": "钴 + 三元 (NMC)",
-        "持续放电": "5A",
-        "峰值放电": "8A",
-        "循环寿命": "&gt;500 次"
+        "能量": "0.96Wh",
+        "型号": "08500"
       },
       "features": [
-        "钴+三元材料，能量密度高",
-        "支持 5A 持续 / 8A 峰值放电",
-        "过充、过放、短路三重保护",
-        "1000 件起订，支持定制"
+        "容量: 260mAh",
+        "标称电压: 3.7V",
+        "能量: 0.96Wh",
+        "型号: 08500"
       ],
-      "applications": ["电子烟", "POD小烟"],
-      "description": "18400 规格锂电池，采用高纯度钴+三元正极材料，容量密度高，放电性能稳定。适用于电子烟、POD小烟等设备。支持 5A 持续放电、8A 峰值放电，内置过充、过放、短路多重保护，安全可靠。",
-      "fullDescription": "<p>18400 规格锂电池，采用高纯度钴+三元正极材料，容量密度高，放电性能稳定。适用于电子烟、POD小烟等设备。</p><p>支持 5A 持续放电、8A 峰值放电，内置过充、过放、短路多重保护，安全可靠。通过CE、FCC等国际认证。</p>",
+      "applications": [
+        "电子烟",
+        "POD小烟"
+      ],
+      "description": "08500 规格锂电池，260mAh容量，3.7V标称电压，适用于小型电子烟设备。",
+      "fullDescription": "<p>08500 规格锂电池，260mAh容量，3.7V标称电压，适用于小型电子烟设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
       "specList": [
-        { "label": "容量", "value": "1100mAh" },
-        { "label": "标称电压", "value": "3.7V" },
-        { "label": "材料体系", "value": "钴 + 三元 (NMC)" },
-        { "label": "持续放电", "value": "5A" },
-        { "label": "峰值放电", "value": "8A" },
-        { "label": "循环寿命", "value": ">500 次" }
+        {
+          "label": "容量",
+          "value": "260mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "0.96Wh"
+        },
+        {
+          "label": "型号",
+          "value": "08500"
+        }
       ],
-      "createdAt": "2026-01-15"
+      "createdAt": "2026-06-04"
     },
     {
-      "id": "18650",
-      "name": "18650 高倍率电池",
-      "subtitle": "3000mAh · 高倍率 · 20A/40A",
-      "fullName": "18650 3000mAh<br>高倍率锂电池",
+      "id": "08570",
+      "name": "08570 电子烟电池",
+      "subtitle": "280-300mAh · 3.7V · 1.04Wh",
+      "fullName": "08570 电子烟电池<br>280-300mAh · 3.7V · 1.04Wh",
       "category": "电子烟电池",
-      "price": 18.00,
+      "price": 10,
       "priceDesc": "单价 / 含税含运费，批量价格另议",
-      "image": "assets/product-18650.svg",
-      "tag": "热销",
-      "tagColor": "blue",
-      "badge": "热销",
+      "image": "assets/product-photo-fe615da4.jpg",
+      "tag": "新品",
+      "tagColor": "orange",
+      "badge": "新品",
+      "badgeType": "new",
+      "featured": false,
+      "specs": {
+        "容量": "280-300mAh",
+        "标称电压": "3.7V",
+        "能量": "1.04Wh",
+        "型号": "08570"
+      },
+      "features": [
+        "容量: 280-300mAh",
+        "标称电压: 3.7V",
+        "能量: 1.04Wh",
+        "型号: 08570"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟"
+      ],
+      "description": "08570 规格锂电池，280-300mAh容量，3.7V标称电压。HQD品牌电芯，品质稳定，适用于电子烟、POD小烟等设备。",
+      "fullDescription": "<p>08570 规格锂电池，280-300mAh容量，3.7V标称电压。HQD品牌电芯，品质稳定，适用于电子烟、POD小烟等设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "280-300mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "1.04Wh"
+        },
+        {
+          "label": "型号",
+          "value": "08570"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "09430",
+      "name": "XSH09430 电子烟电池",
+      "subtitle": "280mAh · 3.7V · 1.04Wh",
+      "fullName": "XSH09430 电子烟电池<br>280mAh · 3.7V · 1.04Wh",
+      "category": "电子烟电池",
+      "price": 10,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-74981791.jpg",
+      "tag": "新品",
+      "tagColor": "orange",
+      "badge": "新品",
+      "badgeType": "new",
+      "featured": false,
+      "specs": {
+        "容量": "280mAh",
+        "标称电压": "3.7V",
+        "能量": "1.04Wh",
+        "型号": "XSH09430"
+      },
+      "features": [
+        "容量: 280mAh",
+        "标称电压: 3.7V",
+        "能量: 1.04Wh",
+        "型号: XSH09430"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟"
+      ],
+      "description": "XSH09430 规格锂电池，280mAh容量，3.7V标称电压，1.04Wh能量。适用于小型电子烟设备。",
+      "fullDescription": "<p>XSH09430 规格锂电池，280mAh容量，3.7V标称电压，1.04Wh能量。适用于小型电子烟设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "280mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "1.04Wh"
+        },
+        {
+          "label": "型号",
+          "value": "XSH09430"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "13300",
+      "name": "13300 电子烟电池",
+      "subtitle": "360mAh · 3.7V · 1.33Wh",
+      "fullName": "13300 电子烟电池<br>360mAh · 3.7V · 1.33Wh",
+      "category": "电子烟电池",
+      "price": 11,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-836db275.jpg",
+      "tag": "新品",
+      "tagColor": "orange",
+      "badge": "新品",
+      "badgeType": "new",
+      "featured": false,
+      "specs": {
+        "容量": "360mAh",
+        "标称电压": "3.7V",
+        "能量": "1.33Wh",
+        "型号": "13300"
+      },
+      "features": [
+        "容量: 360mAh",
+        "标称电压: 3.7V",
+        "能量: 1.33Wh",
+        "型号: 13300"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟"
+      ],
+      "description": "13300 规格锂电池，360mAh容量，3.7V标称电压，1.33Wh能量。适用于电子烟、POD小烟等便携设备。",
+      "fullDescription": "<p>13300 规格锂电池，360mAh容量，3.7V标称电压，1.33Wh能量。适用于电子烟、POD小烟等便携设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "360mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "1.33Wh"
+        },
+        {
+          "label": "型号",
+          "value": "13300"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "13350",
+      "name": "13350 电子烟电池",
+      "subtitle": "500mAh · 3.7V · 1.85Wh",
+      "fullName": "13350 电子烟电池<br>500mAh · 3.7V · 1.85Wh",
+      "category": "电子烟电池",
+      "price": 11.5,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-447629f4.jpg",
+      "tag": "新品",
+      "tagColor": "orange",
+      "badge": "新品",
+      "badgeType": "new",
+      "featured": false,
+      "specs": {
+        "容量": "500mAh",
+        "标称电压": "3.7V",
+        "能量": "1.85Wh",
+        "型号": "13350"
+      },
+      "features": [
+        "容量: 500mAh",
+        "标称电压: 3.7V",
+        "能量: 1.85Wh",
+        "型号: 13350"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟"
+      ],
+      "description": "13350 规格锂电池，500mAh容量，3.7V标称电压，1.85Wh能量。适用于电子烟、POD小烟等设备。",
+      "fullDescription": "<p>13350 规格锂电池，500mAh容量，3.7V标称电压，1.85Wh能量。适用于电子烟、POD小烟等设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "500mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "1.85Wh"
+        },
+        {
+          "label": "型号",
+          "value": "13350"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "13400",
+      "name": "13400 电子烟电池",
+      "subtitle": "550mAh · 3.7V · 2.04Wh",
+      "fullName": "13400 电子烟电池<br>550mAh · 3.7V · 2.04Wh",
+      "category": "电子烟电池",
+      "price": 12,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-068eabc0.jpg",
+      "tag": null,
+      "tagColor": "orange",
+      "badge": null,
       "badgeType": "hot",
       "featured": false,
       "specs": {
-        "容量": "3000mAh",
+        "容量": "550mAh",
         "标称电压": "3.7V",
-        "材料体系": "钴酸锂 / NMC",
-        "持续放电": "20A",
-        "峰值放电": "40A",
-        "循环寿命": "&gt;500 次"
-      },
-      "features": [],
-      "applications": ["电子烟", "大烟雾设备", "手电筒", "电动工具", "移动电源"],
-      "description": "18650 高倍率锂电池，采用高品质钴酸锂正极材料，3000mAh容量密度，支持 20A 持续放电、40A 峰值放电性能。适用于大功率电子烟、电动工具等设备。",
-      "fullDescription": "<p>18650 高倍率锂电池，采用高品质钴酸锂正极材料，3000mAh容量密度，支持 20A 持续放电、40A 峰值放电性能。</p><p>适用于大功率电子烟、电动工具等设备。内置过充、过放、短路、温控多重保护，通过CE、FCC认证，品质稳定可靠。</p>",
-      "specList": [
-        { "label": "容量", "value": "3000mAh" },
-        { "label": "标称电压", "value": "3.7V" },
-        { "label": "材料体系", "value": "钴酸锂 / NMC" },
-        { "label": "持续放电", "value": "20A" },
-        { "label": "峰值放电", "value": "40A" },
-        { "label": "循环寿命", "value": ">500 次" }
-      ],
-      "createdAt": "2026-06-01"
-    },
-    {
-      "id": "drone",
-      "name": "无人机智能电池",
-      "subtitle": "4200mAh · 11.4V · BMS",
-      "fullName": "无人机智能电池<br>11.4V 4200mAh 带BMS",
-      "category": "无人机电池",
-      "price": 128.00,
-      "priceDesc": "单价 / 含税含运费，批量价格另议",
-      "image": "assets/product-drone.svg",
-      "tag": "专业级",
-      "tagColor": "orange",
-      "badge": "专业级",
-      "badgeType": "pro",
-      "featured": false,
-      "specs": {
-        "容量": "4200mAh",
-        "标称电压": "11.4V (3S)",
-        "材料体系": "钴 + 三元 (NMC)",
-        "持续放电": "15A",
-        "峰值放电": "25A",
-        "循环寿命": "&gt;300 次"
+        "能量": "2.04Wh",
+        "型号": "13400"
       },
       "features": [
-        "智能BMS管理系统",
-        "过充/过放/温控保护",
-        "高倍率15A持续放电",
-        "循环寿命>300次"
+        "容量: 550mAh",
+        "标称电压: 3.7V",
+        "能量: 2.04Wh",
+        "型号: 13400"
       ],
-      "applications": ["航拍无人机", "植保无人机", "FPV穿越机"],
-      "description": "11.4V 4200mAh 无人机智能锂电池，3S串联结构。内置智能BMS管理系统，实时监控电压、温度、剩余电量。适用于航拍无人机、植保无人机、FPV穿越机等设备。",
-      "fullDescription": "<p>11.4V 4200mAh 无人机智能锂电池，采用高纯度钴+三元材料，3S串联结构。内置智能BMS管理系统，实时监控电压、温度、剩余电量。</p><p>支持过充、过放、短路、温控多重保护，适用于航拍无人机、植保无人机、FPV穿越机等设备，续航表现优异。</p>",
+      "applications": [
+        "电子烟",
+        "POD小烟"
+      ],
+      "description": "13400 规格锂电池，550mAh容量，3.7V标称电压，2.04Wh能量。适用于电子烟、POD小烟等设备。",
+      "fullDescription": "<p>13400 规格锂电池，550mAh容量，3.7V标称电压，2.04Wh能量。适用于电子烟、POD小烟等设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
       "specList": [
-        { "label": "容量", "value": "4200mAh" },
-        { "label": "标称电压", "value": "11.4V (3S)" },
-        { "label": "材料体系", "value": "钴 + 三元 (NMC)" },
-        { "label": "持续放电", "value": "15A" },
-        { "label": "峰值放电", "value": "25A" },
-        { "label": "循环寿命", "value": ">300 次" }
+        {
+          "label": "容量",
+          "value": "550mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "2.04Wh"
+        },
+        {
+          "label": "型号",
+          "value": "13400"
+        }
       ],
-      "createdAt": "2026-06-01"
+      "createdAt": "2026-06-04"
     },
     {
-      "id": "lg-17350",
-      "name": "LG 17350 电子烟电池",
-      "subtitle": "850mAh · 3.7V · 韩国LG电芯",
-      "fullName": "LG 17350 850mAh<br>韩国LG电芯 电子烟电池",
+      "id": "16350",
+      "name": "16350 电子烟电池",
+      "subtitle": "650mAh · 3.7V · 2.41Wh",
+      "fullName": "16350 电子烟电池<br>650mAh · 3.7V · 2.41Wh",
       "category": "电子烟电池",
-      "price": 15.00,
+      "price": 12.5,
       "priceDesc": "单价 / 含税含运费，批量价格另议",
-      "image": "assets/product-lg-17350.jpg",
-      "tag": "新品",
+      "image": "assets/product-photo-df839dfe.jpg",
+      "tag": null,
       "tagColor": "orange",
-      "badge": "新品",
-      "badgeType": "new",
+      "badge": null,
+      "badgeType": "hot",
+      "featured": false,
+      "specs": {
+        "容量": "650mAh",
+        "标称电压": "3.7V",
+        "能量": "2.41Wh",
+        "型号": "HGB16350R"
+      },
+      "features": [
+        "容量: 650mAh",
+        "标称电压: 3.7V",
+        "能量: 2.41Wh",
+        "型号: HGB16350R"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟",
+        "便携设备"
+      ],
+      "description": "16350 规格锂电池，采用HGB16350R电芯，650mAh容量，3.7V标称电压。适用于电子烟、POD小烟等便携设备。",
+      "fullDescription": "<p>16350 规格锂电池，采用HGB16350R电芯，650mAh容量，3.7V标称电压。适用于电子烟、POD小烟等便携设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "650mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "2.41Wh"
+        },
+        {
+          "label": "型号",
+          "value": "HGB16350R"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "16600",
+      "name": "16600 电子烟电池",
+      "subtitle": "1300mAh · 3.7V · 4.81Wh",
+      "fullName": "16600 电子烟电池<br>1300mAh · 3.7V · 4.81Wh",
+      "category": "电子烟电池",
+      "price": 15,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-091200ae.jpg",
+      "tag": null,
+      "tagColor": "orange",
+      "badge": null,
+      "badgeType": "hot",
+      "featured": false,
+      "specs": {
+        "容量": "1300mAh",
+        "标称电压": "3.7V",
+        "能量": "4.81Wh",
+        "型号": "SJD16600"
+      },
+      "features": [
+        "容量: 1300mAh",
+        "标称电压: 3.7V",
+        "能量: 4.81Wh",
+        "型号: SJD16600"
+      ],
+      "applications": [
+        "电子烟",
+        "大烟雾设备"
+      ],
+      "description": "16600 规格锂电池，采用SJD16600电芯，1300mAh容量，3.7V标称电压。大容量设计，适用于大烟雾电子烟设备。",
+      "fullDescription": "<p>16600 规格锂电池，采用SJD16600电芯，1300mAh容量，3.7V标称电压。大容量设计，适用于大烟雾电子烟设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "1300mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "4.81Wh"
+        },
+        {
+          "label": "型号",
+          "value": "SJD16600"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "17350",
+      "name": "17350 电子烟电池",
+      "subtitle": "850mAh · 3.7V · 3.15Wh",
+      "fullName": "17350 电子烟电池<br>850mAh · 3.7V · 3.15Wh",
+      "category": "电子烟电池",
+      "price": 13,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-49727457.jpg",
+      "tag": null,
+      "tagColor": "orange",
+      "badge": null,
+      "badgeType": "hot",
       "featured": false,
       "specs": {
         "容量": "850mAh",
         "标称电压": "3.7V",
-        "品牌": "LG",
-        "循环寿命": "&gt;500 次"
+        "能量": "3.15Wh",
+        "型号": "17350"
       },
       "features": [
-        "韩国LG原装电芯",
-        "850mAh稳定容量",
-        "3.7V标准电压",
-        "品质稳定，一致性好"
+        "容量: 850mAh",
+        "标称电压: 3.7V",
+        "能量: 3.15Wh",
+        "型号: 17350"
       ],
-      "applications": ["电子烟", "POD小烟", "便携设备"],
-      "description": "LG 17350 锂电池，采用韩国LG原装电芯，850mAh容量，3.7V标准电压。品质稳定，一致性好，适用于电子烟、POD小烟等便携设备。",
-      "fullDescription": "<p>LG 17350 锂电池，采用韩国LG原装电芯，850mAh容量，3.7V标准电压。</p><p>品质稳定，一致性好，适用于电子烟、POD小烟等便携设备。内置多重保护，安全可靠。</p>",
+      "applications": [
+        "电子烟",
+        "POD小烟"
+      ],
+      "description": "17350 规格锂电池，850mAh容量，3.7V标称电压，3.15Wh能量。适用于电子烟、POD小烟等设备，性能稳定。",
+      "fullDescription": "<p>17350 规格锂电池，850mAh容量，3.7V标称电压，3.15Wh能量。适用于电子烟、POD小烟等设备，性能稳定。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
       "specList": [
-        { "label": "容量", "value": "850mAh" },
-        { "label": "标称电压", "value": "3.7V" },
-        { "label": "品牌", "value": "LG" },
-        { "label": "循环寿命", "value": ">500 次" }
+        {
+          "label": "容量",
+          "value": "850mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "3.15Wh"
+        },
+        {
+          "label": "型号",
+          "value": "17350"
+        }
       ],
-      "createdAt": "2026-06-01"
+      "createdAt": "2026-06-04"
     },
     {
-      "id": "18300",
-      "name": "18300 电子烟电池",
-      "subtitle": "800mAh · 3.7V · 2.96Wh",
-      "fullName": "18300 800mAh<br>2.96Wh 电子烟电池",
+      "id": "173040",
+      "name": "173040 电子烟电池",
+      "subtitle": "2500mAh · 3.7V · 9.25Wh",
+      "fullName": "173040 电子烟电池<br>2500mAh · 3.7V · 9.25Wh",
       "category": "电子烟电池",
-      "price": 14.00,
+      "price": 22,
       "priceDesc": "单价 / 含税含运费，批量价格另议",
-      "image": "assets/product-18300.jpg",
-      "tag": "新品",
+      "image": "assets/product-photo-d220387b.jpg",
+      "tag": "热销",
       "tagColor": "orange",
-      "badge": "新品",
-      "badgeType": "new",
+      "badge": "热销",
+      "badgeType": "hot",
       "featured": false,
       "specs": {
-        "容量": "800mAh",
+        "容量": "2500mAh",
         "标称电压": "3.7V",
-        "能量": "2.96Wh",
-        "循环寿命": "&gt;500 次"
+        "能量": "9.25Wh",
+        "型号": "173040"
       },
       "features": [
-        "800mAh稳定容量",
-        "2.96Wh能量密度",
-        "3.7V标准电压",
-        "适用于多种电子烟设备"
+        "容量: 2500mAh",
+        "标称电压: 3.7V",
+        "能量: 9.25Wh",
+        "型号: 173040"
       ],
-      "applications": ["电子烟", "POD小烟"],
-      "description": "18300 规格锂电池，800mAh容量，3.7V标称电压，2.96Wh能量。适用于电子烟、POD小烟等设备，性能稳定可靠。",
-      "fullDescription": "<p>18300 规格锂电池，800mAh容量，3.7V标称电压，2.96Wh能量密度。</p><p>适用于电子烟、POD小烟等设备，性能稳定可靠，内置过充、过放保护。</p>",
+      "applications": [
+        "电子烟",
+        "大烟雾设备",
+        "便携电源"
+      ],
+      "description": "173040 规格大容量锂电池，2500mAh容量，3.7V标称电压，9.25Wh能量。采用高纯度钴+三元材料，适用于大烟雾电子烟、便携电源等设备。",
+      "fullDescription": "<p>173040 规格大容量锂电池，2500mAh容量，3.7V标称电压，9.25Wh能量。采用高纯度钴+三元材料，适用于大烟雾电子烟、便携电源等设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
       "specList": [
-        { "label": "容量", "value": "800mAh" },
-        { "label": "标称电压", "value": "3.7V" },
-        { "label": "能量", "value": "2.96Wh" },
-        { "label": "循环寿命", "value": ">500 次" }
+        {
+          "label": "容量",
+          "value": "2500mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "9.25Wh"
+        },
+        {
+          "label": "型号",
+          "value": "173040"
+        }
       ],
-      "createdAt": "2026-06-01"
+      "createdAt": "2026-06-04"
     },
     {
-      "id": "18250",
-      "name": "18250 电子烟电池",
-      "subtitle": "600mAh · 3.7V · 2.22Wh",
-      "fullName": "18250 600mAh<br>2.22Wh 电子烟电池",
+      "id": "18350-950",
+      "name": "18350 电子烟电池 (950mAh)",
+      "subtitle": "950mAh · 3.7V · 3.52Wh",
+      "fullName": "18350 电子烟电池 (950mAh)<br>950mAh · 3.7V · 3.52Wh",
       "category": "电子烟电池",
-      "price": 13.50,
+      "price": 13.5,
       "priceDesc": "单价 / 含税含运费，批量价格另议",
-      "image": "assets/product-18250.jpg",
-      "tag": "新品",
+      "image": "assets/product-photo-2a6d8eae.jpg",
+      "tag": "主推",
       "tagColor": "orange",
-      "badge": "新品",
-      "badgeType": "new",
-      "featured": false,
+      "badge": "主推",
+      "badgeType": "hot",
+      "featured": true,
       "specs": {
-        "容量": "600mAh",
+        "容量": "950mAh",
         "标称电压": "3.7V",
-        "能量": "2.22Wh",
-        "循环寿命": "&gt;500 次"
+        "能量": "3.52Wh",
+        "型号": "18350"
       },
       "features": [
-        "600mAh稳定容量",
-        "2.22Wh能量密度",
-        "3.7V标准电压",
-        "小巧尺寸，适用性广"
+        "容量: 950mAh",
+        "标称电压: 3.7V",
+        "能量: 3.52Wh",
+        "型号: 18350"
       ],
-      "applications": ["电子烟", "POD小烟", "迷你设备"],
-      "description": "18250 规格锂电池，600mAh容量，3.7V标称电压，2.22Wh能量。体积小巧，适用于电子烟、POD小烟、迷你设备等。",
-      "fullDescription": "<p>18250 规格锂电池，600mAh容量，3.7V标称电压，2.22Wh能量密度。</p><p>体积小巧，适用于电子烟、POD小烟、迷你设备等。性能稳定，安全可靠。</p>",
+      "applications": [
+        "电子烟",
+        "POD小烟",
+        "便携设备"
+      ],
+      "description": "18350 规格锂电池，950mAh容量，3.7V标称电压。适用于电子烟、POD小烟等设备。",
+      "fullDescription": "<p>18350 规格锂电池，950mAh容量，3.7V标称电压。适用于电子烟、POD小烟等设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
       "specList": [
-        { "label": "容量", "value": "600mAh" },
-        { "label": "标称电压", "value": "3.7V" },
-        { "label": "能量", "value": "2.22Wh" },
-        { "label": "循环寿命", "value": ">500 次" }
+        {
+          "label": "容量",
+          "value": "950mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "3.52Wh"
+        },
+        {
+          "label": "型号",
+          "value": "18350"
+        }
       ],
-      "createdAt": "2026-06-01"
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "18350-1000",
+      "name": "18350 电子烟电池 (1000mAh)",
+      "subtitle": "1000mAh · 3.7V · 3.70Wh",
+      "fullName": "18350 电子烟电池 (1000mAh)<br>1000mAh · 3.7V · 3.70Wh",
+      "category": "电子烟电池",
+      "price": 14,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-b9659633.jpg",
+      "tag": "主推",
+      "tagColor": "orange",
+      "badge": "主推",
+      "badgeType": "hot",
+      "featured": true,
+      "specs": {
+        "容量": "1000mAh",
+        "标称电压": "3.7V",
+        "能量": "3.70Wh",
+        "型号": "18350"
+      },
+      "features": [
+        "容量: 1000mAh",
+        "标称电压: 3.7V",
+        "能量: 3.70Wh",
+        "型号: 18350"
+      ],
+      "applications": [
+        "电子烟",
+        "大烟雾设备",
+        "便携设备"
+      ],
+      "description": "18350 规格锂电池，1000mAh容量，3.7V标称电压，3.70Wh能量。适用于大烟雾电子烟等设备，续航表现优异。",
+      "fullDescription": "<p>18350 规格锂电池，1000mAh容量，3.7V标称电压，3.70Wh能量。适用于大烟雾电子烟等设备，续航表现优异。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "1000mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "3.70Wh"
+        },
+        {
+          "label": "型号",
+          "value": "18350"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "18500",
+      "name": "18500 电子烟电池",
+      "subtitle": "1500mAh · 3.7V · 5.55Wh",
+      "fullName": "18500 电子烟电池<br>1500mAh · 3.7V · 5.55Wh",
+      "category": "电子烟电池",
+      "price": 16,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-283f10cf.jpg",
+      "tag": "主推",
+      "tagColor": "orange",
+      "badge": "主推",
+      "badgeType": "hot",
+      "featured": true,
+      "specs": {
+        "容量": "1500mAh",
+        "标称电压": "3.7V",
+        "能量": "5.55Wh",
+        "型号": "GSP18500P"
+      },
+      "features": [
+        "容量: 1500mAh",
+        "标称电压: 3.7V",
+        "能量: 5.55Wh",
+        "型号: GSP18500P"
+      ],
+      "applications": [
+        "电子烟",
+        "大烟雾设备",
+        "手电筒"
+      ],
+      "description": "18500 规格锂电池，采用GSP18500P电芯，1500mAh容量，3.7V标称电压。适用于大烟雾电子烟、手电筒等设备。",
+      "fullDescription": "<p>18500 规格锂电池，采用GSP18500P电芯，1500mAh容量，3.7V标称电压。适用于大烟雾电子烟、手电筒等设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "1500mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "5.55Wh"
+        },
+        {
+          "label": "型号",
+          "value": "GSP18500P"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "21350",
+      "name": "21350 电子烟电池",
+      "subtitle": "1300mAh · 3.7V · 4.81Wh",
+      "fullName": "21350 电子烟电池<br>1300mAh · 3.7V · 4.81Wh",
+      "category": "电子烟电池",
+      "price": 15,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-f1d869f3.jpg",
+      "tag": null,
+      "tagColor": "orange",
+      "badge": null,
+      "badgeType": "hot",
+      "featured": false,
+      "specs": {
+        "容量": "1300mAh",
+        "标称电压": "3.7V",
+        "能量": "4.81Wh",
+        "型号": "21350"
+      },
+      "features": [
+        "容量: 1300mAh",
+        "标称电压: 3.7V",
+        "能量: 4.81Wh",
+        "型号: 21350"
+      ],
+      "applications": [
+        "电子烟",
+        "大烟雾设备"
+      ],
+      "description": "21350 规格大容量锂电池，1300mAh容量，3.7V标称电压。21系列大尺寸电芯，支持高倍率放电，适用于大功率电子烟设备。",
+      "fullDescription": "<p>21350 规格大容量锂电池，1300mAh容量，3.7V标称电压。21系列大尺寸电芯，支持高倍率放电，适用于大功率电子烟设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "1300mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "4.81Wh"
+        },
+        {
+          "label": "型号",
+          "value": "21350"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "451645",
+      "name": "451645 软包锂电池",
+      "subtitle": "240mAh · 3.7V · 0.89Wh",
+      "fullName": "451645 软包锂电池<br>240mAh · 3.7V · 0.89Wh",
+      "category": "软包电池",
+      "price": 12,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-4fb182f4.jpg",
+      "tag": null,
+      "tagColor": "orange",
+      "badge": null,
+      "badgeType": "hot",
+      "featured": false,
+      "specs": {
+        "容量": "240mAh",
+        "标称电压": "3.7V",
+        "能量": "0.89Wh",
+        "型号": "ZHR 451645"
+      },
+      "features": [
+        "容量: 240mAh",
+        "标称电压: 3.7V",
+        "能量: 0.89Wh",
+        "型号: ZHR 451645"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟",
+        "迷你设备"
+      ],
+      "description": "451645 软包锂电池，240mAh容量，3.7V标称电压。ZHR品牌，体积小巧，适用于小型电子烟设备。",
+      "fullDescription": "<p>451645 软包锂电池，240mAh容量，3.7V标称电压。ZHR品牌，体积小巧，适用于小型电子烟设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "240mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "0.89Wh"
+        },
+        {
+          "label": "型号",
+          "value": "ZHR 451645"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "501447",
+      "name": "501447 软包锂电池",
+      "subtitle": "280mAh · 3.7V · 1.04Wh",
+      "fullName": "501447 软包锂电池<br>280mAh · 3.7V · 1.04Wh",
+      "category": "软包电池",
+      "price": 12,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-fb6e534e.jpg",
+      "tag": null,
+      "tagColor": "orange",
+      "badge": null,
+      "badgeType": "hot",
+      "featured": false,
+      "specs": {
+        "容量": "280mAh",
+        "标称电压": "3.7V",
+        "能量": "1.04Wh",
+        "型号": "SD501447"
+      },
+      "features": [
+        "容量: 280mAh",
+        "标称电压: 3.7V",
+        "能量: 1.04Wh",
+        "型号: SD501447"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟"
+      ],
+      "description": "501447 软包锂电池，280mAh容量，3.7V标称电压。超薄设计，适用于电子烟、POD小烟等便携设备。",
+      "fullDescription": "<p>501447 软包锂电池，280mAh容量，3.7V标称电压。超薄设计，适用于电子烟、POD小烟等便携设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "280mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "1.04Wh"
+        },
+        {
+          "label": "型号",
+          "value": "SD501447"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "601444",
+      "name": "601444 软包锂电池",
+      "subtitle": "350mAh · 3.7V · 1.30Wh",
+      "fullName": "601444 软包锂电池<br>350mAh · 3.7V · 1.30Wh",
+      "category": "软包电池",
+      "price": 12,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-38141981.jpg",
+      "tag": null,
+      "tagColor": "orange",
+      "badge": null,
+      "badgeType": "hot",
+      "featured": false,
+      "specs": {
+        "容量": "350mAh",
+        "标称电压": "3.7V",
+        "能量": "1.30Wh",
+        "型号": "GF 601444"
+      },
+      "features": [
+        "容量: 350mAh",
+        "标称电压: 3.7V",
+        "能量: 1.30Wh",
+        "型号: GF 601444"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟"
+      ],
+      "description": "601444 软包锂电池，采用GF电芯，350mAh容量，3.7V标称电压。适用于电子烟、POD小烟等设备，品质稳定。",
+      "fullDescription": "<p>601444 软包锂电池，采用GF电芯，350mAh容量，3.7V标称电压。适用于电子烟、POD小烟等设备，品质稳定。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "350mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "1.30Wh"
+        },
+        {
+          "label": "型号",
+          "value": "GF 601444"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "651545",
+      "name": "651545 软包锂电池",
+      "subtitle": "370mAh · 3.7V · 1.37Wh",
+      "fullName": "651545 软包锂电池<br>370mAh · 3.7V · 1.37Wh",
+      "category": "软包电池",
+      "price": 12,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-826fddd8.jpg",
+      "tag": null,
+      "tagColor": "orange",
+      "badge": null,
+      "badgeType": "hot",
+      "featured": false,
+      "specs": {
+        "容量": "370mAh",
+        "标称电压": "3.7V",
+        "能量": "1.37Wh",
+        "型号": "LVS 651545"
+      },
+      "features": [
+        "容量: 370mAh",
+        "标称电压: 3.7V",
+        "能量: 1.37Wh",
+        "型号: LVS 651545"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟"
+      ],
+      "description": "651545 软包锂电池，采用LVS电芯，370mAh容量，3.7V标称电压。适用于电子烟、POD小烟等设备。",
+      "fullDescription": "<p>651545 软包锂电池，采用LVS电芯，370mAh容量，3.7V标称电压。适用于电子烟、POD小烟等设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "370mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "1.37Wh"
+        },
+        {
+          "label": "型号",
+          "value": "LVS 651545"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "801437",
+      "name": "801437 软包锂电池",
+      "subtitle": "350mAh · 3.7V · 1.30Wh",
+      "fullName": "801437 软包锂电池<br>350mAh · 3.7V · 1.30Wh",
+      "category": "软包电池",
+      "price": 12,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-77359a30.jpg",
+      "tag": null,
+      "tagColor": "orange",
+      "badge": null,
+      "badgeType": "hot",
+      "featured": false,
+      "specs": {
+        "容量": "350mAh",
+        "标称电压": "3.7V",
+        "能量": "1.30Wh",
+        "型号": "EVE 801437"
+      },
+      "features": [
+        "容量: 350mAh",
+        "标称电压: 3.7V",
+        "能量: 1.30Wh",
+        "型号: EVE 801437"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟",
+        "便携设备"
+      ],
+      "description": "801437 软包锂电池，采用EVE亿纬锂能电芯，350mAh容量，3.7V标称电压。品质稳定，一致性好，适用于电子烟、POD小烟等便携设备。",
+      "fullDescription": "<p>801437 软包锂电池，采用EVE亿纬锂能电芯，350mAh容量，3.7V标称电压。品质稳定，一致性好，适用于电子烟、POD小烟等便携设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "350mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "1.30Wh"
+        },
+        {
+          "label": "型号",
+          "value": "EVE 801437"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "112040",
+      "name": "112040 软包锂电池",
+      "subtitle": "950mAh · 3.7V · 3.52Wh",
+      "fullName": "112040 软包锂电池<br>950mAh · 3.7V · 3.52Wh",
+      "category": "软包电池",
+      "price": 12,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-9337914d.jpg",
+      "tag": null,
+      "tagColor": "orange",
+      "badge": null,
+      "badgeType": "hot",
+      "featured": false,
+      "specs": {
+        "容量": "950mAh",
+        "标称电压": "3.7V",
+        "能量": "3.52Wh",
+        "型号": "112040"
+      },
+      "features": [
+        "容量: 950mAh",
+        "标称电压: 3.7V",
+        "能量: 3.52Wh",
+        "型号: 112040"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟",
+        "便携设备"
+      ],
+      "description": "112040 软包锂电池，950mAh容量，3.7V标称电压，3.52Wh能量。大容量软包设计，适用于电子烟、POD小烟等设备。",
+      "fullDescription": "<p>112040 软包锂电池，950mAh容量，3.7V标称电压，3.52Wh能量。大容量软包设计，适用于电子烟、POD小烟等设备。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "容量",
+          "value": "950mAh"
+        },
+        {
+          "label": "标称电压",
+          "value": "3.7V"
+        },
+        {
+          "label": "能量",
+          "value": "3.52Wh"
+        },
+        {
+          "label": "型号",
+          "value": "112040"
+        }
+      ],
+      "createdAt": "2026-06-04"
+    },
+    {
+      "id": "series-overview",
+      "name": "电子烟全系列电芯",
+      "subtitle": "08~26系列 · 全规格覆盖 · 支持定制",
+      "fullName": "电子烟全系列电芯<br>08~26系列 · 全规格覆盖 · 支持定制",
+      "category": "OEM/ODM定制",
+      "price": 0,
+      "priceDesc": "单价 / 含税含运费，批量价格另议",
+      "image": "assets/product-photo-ed4e4098.jpg",
+      "tag": null,
+      "tagColor": "orange",
+      "badge": null,
+      "badgeType": "hot",
+      "featured": false,
+      "specs": {
+        "产品系列": "08系列 / 10系列 / 13系列 / 16系列 / 17系列 / 18系列 / 20系列 / 21系列 / 26系列",
+        "电压": "3.7V (可定制)",
+        "容量范围": "180mAh - 2500mAh",
+        "特性": "钴+三元材料 · 支持OEM/ODM定制"
+      },
+      "features": [
+        "产品系列: 08系列 / 10系列 / 13系列 / 16系列 / 17系列 / 18系列 / 20系列 / 21系列 / 26系列",
+        "电压: 3.7V (可定制)",
+        "容量范围: 180mAh - 2500mAh",
+        "特性: 钴+三元材料 · 支持OEM/ODM定制"
+      ],
+      "applications": [
+        "电子烟",
+        "POD小烟",
+        "大烟雾设备",
+        "一次性电子烟",
+        "换弹式电子烟"
+      ],
+      "description": "万鸿科技提供电子烟全系列电芯，从08系列到26系列，覆盖180mAh到2500mAh全容量范围。采用高纯度钴+三元正极材料，支持OEM/ODM定制。所有产品通过CE、FCC等国际认证。",
+      "fullDescription": "<p>万鸿科技提供电子烟全系列电芯，从08系列到26系列，覆盖180mAh到2500mAh全容量范围。采用高纯度钴+三元正极材料，支持OEM/ODM定制。所有产品通过CE、FCC等国际认证。</p><p>所有产品通过CE、FCC等国际认证，内置过充、过放、短路多重保护。支持OEM/ODM定制，欢迎询价。</p>",
+      "specList": [
+        {
+          "label": "产品系列",
+          "value": "08系列 / 10系列 / 13系列 / 16系列 / 17系列 / 18系列 / 20系列 / 21系列 / 26系列"
+        },
+        {
+          "label": "电压",
+          "value": "3.7V (可定制)"
+        },
+        {
+          "label": "容量范围",
+          "value": "180mAh - 2500mAh"
+        },
+        {
+          "label": "特性",
+          "value": "钴+三元材料 · 支持OEM/ODM定制"
+        }
+      ],
+      "createdAt": "2026-06-04"
     }
   ],
   "settings": {
@@ -238,7 +1112,7 @@
     "contactPerson": "廖万欣",
     "contactTitle": "总经理",
     "address": "广东省惠州市仲恺高新区惠风路8号",
-    "footerDesc": "专注电子烟电池 · 无人机电池研发制造",
+    "footerDesc": "专注电子烟电池研发制造",
     "githubRepo": "pzhenhai7/wanhong-tech",
     "githubToken": ""
   }
